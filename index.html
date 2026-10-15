@@ -10,13 +10,15 @@
 <nav aria-label="主要导航">
 <a href="#overview" data-view="overview"><span>◫</span>知识库概览</a>
 <a href="#interfaces" data-view="interfaces"><span>◇</span>数学接口<span class="nav-count" id="interface-count"></span></a>
-<a href="#papers" data-view="papers"><span>▤</span>论文与证明进度</a>
-<a href="#mcp" data-view="mcp"><span>↗</span>DeepSeek 核读<span class="nav-count">5</span></a>
-<a href="#graph" data-view="graph"><span>⌘</span>依赖与迁移</a>
+<a href="#papers" data-view="papers"><span>▤</span>论文池<span class="nav-count" id="paper-count"></span></a>
+<a href="#proofs" data-view="proofs"><span>⌘</span>假设与后悔界</a>
+<a href="#mcp" data-view="mcp"><span>↗</span>DeepSeek 用量</a>
 </nav>
 <div class="sidebar-bottom"><span class="status-dot"></span> 可追溯的证据快照<p>每项结论，都有自己的边界。</p><a id="repo-link" href="https://github.com/entongw/or-om-proof-kb/tree/codex/mathematical-interface-dashboard" target="_blank" rel="noopener">在 GitHub 中查看 ↗</a></div></aside>
 <div class="shell"><header><div><span class="breadcrumb">WORKSPACE</span><span class="separator">/</span><span id="breadcrumb">知识库概览</span></div><div class="header-right"><span class="snapshot-pill">● 已审核快照</span><span id="snapshot-date"></span></div></header>
 <main id="main" tabindex="-1"><div id="loading" role="status">正在读取知识库快照…</div><div id="content"></div></main>
 <footer>Proof Atlas <span>数学接口 · 证据保全 · Lean 验证</span><a href="data/knowledge.json" download>下载公开数据 ↗</a></footer></div>
 <dialog id="detail"><div class="dialog-head"><div><span class="eyebrow" id="detail-kind"></span><h2 id="detail-title"></h2></div><button id="close-detail" aria-label="关闭详情">✕</button></div><div id="detail-body"></div></dialog>
-<script src="app.js" defer></script></body></html>
+<input id="pdf-picker" type="file" accept="application/pdf,.pdf" multiple hidden>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<script src="local-pool.js" defer></script><script src="app.js" defer></script><script src="workspace.js" defer></script></body></html>

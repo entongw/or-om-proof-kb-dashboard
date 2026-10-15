@@ -1,10 +1,10 @@
 {
-  "schema_version": 1,
-  "generated_at": "2026-10-15T08:35:07.391877+00:00",
+  "schema_version": 2,
+  "generated_at": "2026-10-15T10:58:00.288481+00:00",
   "source_commit": "9239ebdec68d7be14f0cf764c12b776582469e11",
   "source_commit_note": "Base commit only; working-tree inputs are bound by input SHA256 values.",
   "publication": {
-    "mode": "sanitized_read_only_snapshot",
+    "mode": "sanitized_snapshot_with_local_folder",
     "raw_excerpts": "local_only",
     "live_model_execution": false,
     "branch": "codex/mathematical-interface-dashboard"
@@ -2760,7 +2760,456 @@
       }
     }
   ],
-  "papers": [
+  "phases": [
+    {
+      "id": "p1-2026-10-13",
+      "status": "complete",
+      "completed_at": "2026-10-13T09:57:02.155527+00:00",
+      "scope": "P1 only: three existing pilot interfaces, five bounded textbook questions over four selected books, the existing MCP/Worker integration and independently accepted local normalization. No new Lean theorem, full-paper completion, P2/P3/P4 work, general model-quality claim or broader textbook certification is accepted.",
+      "sha256": "d34c6537ae40cf6e1cf2078166c132e5de468f0a9d10f8268367d7e50fe8e915"
+    },
+    {
+      "id": "p2-2026-10-13",
+      "status": "complete",
+      "completed_at": "2026-10-15T07:07:51.289674+00:00",
+      "scope": "Six local versioned mathematical interfaces, exact existing-proof reuse and independent acceptance; P3/P4 remain future work.",
+      "sha256": "17a6e0f63ab3c533d394d0b2e46ae711278e9d7af94ba92b238fc39b1633792f"
+    },
+    {
+      "id": "p3-2026-10-15",
+      "status": "complete",
+      "completed_at": "2026-10-15T07:34:27.918244+00:00",
+      "scope": "Six probability/time interfaces using existing proofs, with explicit model limits and independent current-version acceptance; P4 is not started.",
+      "sha256": "207cdb8c4d888eb47d7a82f60c40eef82159b774cc040a807715a4a4c9a12c3b"
+    },
+    {
+      "id": "p4-2026-10-15",
+      "status": "complete",
+      "completed_at": "2026-10-15T08:14:08.913338+00:00",
+      "scope": "Existing composition/application interface migration, complete old-technique mapping and evidence-bound paper-obligation reconciliation. Unfinished full-paper research remains explicit.",
+      "sha256": "bb5bf0d616920d4ed2832e8d2d38e127ef8d734caba747a7fe9a4721cb391466"
+    }
+  ],
+  "graph": {
+    "edges": [
+      {
+        "from": "cwz-deterministic-composition@v1",
+        "to": "cwz-quadratic-grid@v1",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.CWZ.Grid.quadraticGrid",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/verification.json",
+          "sha256": "4782ee4b54ace0d65f926569ac107c1483977b07617ac5bf8c6278666ca9c63e"
+        }
+      },
+      {
+        "from": "cwz-deterministic-composition@v1",
+        "to": "cwz-anchor-elimination@v1",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.CWZ.Tournament.eliminationGuarantee",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/verification.json",
+          "sha256": "4782ee4b54ace0d65f926569ac107c1483977b07617ac5bf8c6278666ca9c63e"
+        }
+      },
+      {
+        "from": "cwz-deterministic-composition@v1",
+        "to": "cwz-tournament-path@v1",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.CWZ.Tournament.pathGuarantee",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/verification.json",
+          "sha256": "4782ee4b54ace0d65f926569ac107c1483977b07617ac5bf8c6278666ca9c63e"
+        }
+      },
+      {
+        "from": "censored-inventory-log-regret@v1",
+        "to": "censored-feedback-mean@v1",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.NewsvendorPrimitives.censoredFeedbackMean",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/verification.json",
+          "sha256": "363ebc50cdfa3875e35d3cf955b1d63e464094949716a66f09ba98bcb29c697b"
+        }
+      },
+      {
+        "from": "censored-inventory-log-regret@v1",
+        "to": "newsvendor-finite-mean-cost@v2",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.NewsvendorPrimitives.finiteMeanCost",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/verification.json",
+          "sha256": "363ebc50cdfa3875e35d3cf955b1d63e464094949716a66f09ba98bcb29c697b"
+        }
+      },
+      {
+        "from": "censored-inventory-log-regret@v1",
+        "to": "projected-sgd-log@v1",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.ProjectedSGD.projectedSGDLog",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/verification.json",
+          "sha256": "363ebc50cdfa3875e35d3cf955b1d63e464094949716a66f09ba98bcb29c697b"
+        }
+      },
+      {
+        "from": "censored-inventory-log-regret@v1",
+        "to": "weighted-log-budget@v2",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.RegretAccounting.weightedLogBudget",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/verification.json",
+          "sha256": "363ebc50cdfa3875e35d3cf955b1d63e464094949716a66f09ba98bcb29c697b"
+        }
+      },
+      {
+        "from": "newsvendor-oracle-regret@v1",
+        "to": "censored-inventory-log-regret@v1",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.CensoredInventorySGD.logRegret",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+        }
+      },
+      {
+        "from": "newsvendor-oracle-regret@v1",
+        "to": "newsvendor-quantile@v2",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.NewsvendorOracle.quantile",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+        }
+      },
+      {
+        "from": "newsvendor-oracle-regret@v1",
+        "to": "independent-random-cost@v1",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.NewsvendorOracle.random_cost",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+        }
+      },
+      {
+        "from": "newsvendor-oracle-regret@v1",
+        "to": "newsvendor-oracle-lower-bound@v1",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.NewsvendorOracle.sequence_lower",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+        }
+      },
+      {
+        "from": "newsvendor-oracle-regret@v1",
+        "to": "censored-feedback-mean@v1",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.NewsvendorPrimitives.censoredFeedbackMean",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+        }
+      },
+      {
+        "from": "newsvendor-oracle-regret@v1",
+        "to": "newsvendor-finite-mean-cost@v2",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.NewsvendorPrimitives.finiteMeanCost",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+        }
+      },
+      {
+        "from": "newsvendor-oracle-regret@v1",
+        "to": "projected-sgd-log@v1",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.ProjectedSGD.projectedSGDLog",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+        }
+      },
+      {
+        "from": "newsvendor-oracle-regret@v1",
+        "to": "weighted-log-budget@v2",
+        "kind": "transitive_kernel_project_dependency",
+        "declaration": "ProofKB.RegretAccounting.weightedLogBudget",
+        "evidence": {
+          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+        }
+      }
+    ],
+    "kind": "transitive_kernel_project_dependency",
+    "status": "partial"
+  },
+  "mcp": {
+    "provider": "SiliconFlow",
+    "model": "deepseek-ai/DeepSeek-V4-Pro",
+    "usage": {
+      "prompt_tokens": 20367,
+      "completion_tokens": 3964,
+      "total_tokens": 24331
+    },
+    "attempts": [
+      {
+        "id": "attempt-0acc2f76ac494a698d7db2ce25fc6d3c",
+        "created_at": "2026-10-13T08:43:52.850157+00:00",
+        "day": "2026-10-13",
+        "model": "deepseek-ai/DeepSeek-V4-Pro",
+        "status": "succeeded",
+        "receipt_sha256": "543e60eeb8b4fbfaa7f6694962b1036e4e025bede35bae5bbd01331ccd0f2844",
+        "usage_recorded": true,
+        "prompt_tokens": 558,
+        "completion_tokens": 77,
+        "total_tokens": 635,
+        "cache_hit_tokens": 0
+      },
+      {
+        "id": "attempt-b5aaf19c3670476b929ae23036167364",
+        "created_at": "2026-10-13T08:43:56.145975+00:00",
+        "day": "2026-10-13",
+        "model": "deepseek-ai/DeepSeek-V4-Pro",
+        "status": "succeeded",
+        "receipt_sha256": "4f71b0f7a2f013917836d777e9c9cc0be25ff6d12bab3a8cc2458c2eb768b92d",
+        "usage_recorded": true,
+        "prompt_tokens": 1891,
+        "completion_tokens": 990,
+        "total_tokens": 2881,
+        "cache_hit_tokens": 0
+      },
+      {
+        "id": "attempt-b3d9257f29e1493ab5d7a2cf2c658fb3",
+        "created_at": "2026-10-13T08:56:20.224107+00:00",
+        "day": "2026-10-13",
+        "model": "deepseek-ai/DeepSeek-V4-Pro",
+        "status": "succeeded",
+        "receipt_sha256": "4eef02fd91fe32eed8797d4f87f874b307f2b6ad451f497b19a1bfaaa47aa5b4",
+        "usage_recorded": true,
+        "prompt_tokens": 577,
+        "completion_tokens": 122,
+        "total_tokens": 699,
+        "cache_hit_tokens": 0
+      },
+      {
+        "id": "attempt-7fac582c573e4519966f10c39604c844",
+        "created_at": "2026-10-13T08:56:25.361375+00:00",
+        "day": "2026-10-13",
+        "model": "deepseek-ai/DeepSeek-V4-Pro",
+        "status": "succeeded",
+        "receipt_sha256": "b821dd7e34f04890f2983247d39b291a542d2ff6a411b5ea71a495908f7f80f1",
+        "usage_recorded": true,
+        "prompt_tokens": 2012,
+        "completion_tokens": 958,
+        "total_tokens": 2970,
+        "cache_hit_tokens": 0
+      },
+      {
+        "id": "attempt-5a1e1d3aafac49aebf82f35d8efa784c",
+        "created_at": "2026-10-13T09:36:23.471254+00:00",
+        "day": "2026-10-13",
+        "model": "deepseek-ai/DeepSeek-V4-Pro",
+        "status": "succeeded",
+        "receipt_sha256": "b788919d63610e041b97c02a8b6173abe5c1dfb3d0d5379366e1a4413250ba44",
+        "usage_recorded": true,
+        "prompt_tokens": 2418,
+        "completion_tokens": 152,
+        "total_tokens": 2570,
+        "cache_hit_tokens": 0
+      },
+      {
+        "id": "attempt-82127083c6684e78bbbba77d05178117",
+        "created_at": "2026-10-13T09:36:29.890573+00:00",
+        "day": "2026-10-13",
+        "model": "deepseek-ai/DeepSeek-V4-Pro",
+        "status": "succeeded",
+        "receipt_sha256": "6e424a110812dd71660af7004dce47dbe82eb26dc4126fdf4733c60196099eb7",
+        "usage_recorded": true,
+        "prompt_tokens": 3729,
+        "completion_tokens": 252,
+        "total_tokens": 3981,
+        "cache_hit_tokens": 0
+      },
+      {
+        "id": "attempt-c82e1396534c4c88b3eaf4b17ce72009",
+        "created_at": "2026-10-13T09:37:16.522384+00:00",
+        "day": "2026-10-13",
+        "model": "deepseek-ai/DeepSeek-V4-Pro",
+        "status": "succeeded",
+        "receipt_sha256": "deea8d6472d48c0c3f5bc32c62235cb9f16fb8c7e086ef27285cd623571d9d1f",
+        "usage_recorded": true,
+        "prompt_tokens": 1928,
+        "completion_tokens": 298,
+        "total_tokens": 2226,
+        "cache_hit_tokens": 0
+      },
+      {
+        "id": "attempt-e1eee34342a34db6b9e24b49f3452ffe",
+        "created_at": "2026-10-13T09:37:28.191419+00:00",
+        "day": "2026-10-13",
+        "model": "deepseek-ai/DeepSeek-V4-Pro",
+        "status": "succeeded",
+        "receipt_sha256": "3804752530ee4822d63b1cfaead4df72f84a2e60ab407336e67c98dee37b94eb",
+        "usage_recorded": true,
+        "prompt_tokens": 4171,
+        "completion_tokens": 664,
+        "total_tokens": 4835,
+        "cache_hit_tokens": 0
+      },
+      {
+        "id": "attempt-3f4d73dceed44d4cbe53c44e1ae6be52",
+        "created_at": "2026-10-13T09:37:45.895579+00:00",
+        "day": "2026-10-13",
+        "model": "deepseek-ai/DeepSeek-V4-Pro",
+        "status": "succeeded",
+        "receipt_sha256": "0c1fa4050197b21dda168f6fa9d55e4920a057971c84ccf62ace3e1a121a079b",
+        "usage_recorded": true,
+        "prompt_tokens": 3083,
+        "completion_tokens": 451,
+        "total_tokens": 3534,
+        "cache_hit_tokens": 0
+      }
+    ],
+    "daily": [
+      {
+        "date": "2026-10-13",
+        "prompt_tokens": 20367,
+        "completion_tokens": 3964,
+        "total_tokens": 24331,
+        "calls": 9
+      }
+    ],
+    "provider_attempts": 9,
+    "missing_usage_attempts": 0,
+    "cost_money": null,
+    "coverage": "本知识库已归档的真实 Provider 尝试；包含调试与核读。不代表整个 SiliconFlow 账户账单。",
+    "live_account_balance": false
+  },
+  "input_sha256": {
+    "02_mathematical_interfaces/registry.json": "df853609fb94a81a8279f0cbff2761342203ebd554c2494fb9e5f26c158ae20d",
+    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v1/interface.json": "d6d40ce310df06227138e153ae64f19bc32f8de715ad9524fc5c1fcba15516a4",
+    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v1/definitions.md": "464a09a34066884dbb80463983bcd8d61c1e5e64921bf357671f19d3083cb8fa",
+    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v1/lemmas.md": "6b3507bee6bc36cd922d451ea493c83117ccac13da9417301579facdad6c8856",
+    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v1/theorems.md": "9961a3ee87bd1c48d18d023f59b317bfe959ee35c05c338bee7b73bed57a90ea",
+    "02_mathematical_interfaces/inventory/censored-feedback-mean/v1/interface.json": "dc31ffac03bfb5c576cacc8d85619cd8834f2a4981d24f0bad1c2c2e16cd344b",
+    "02_mathematical_interfaces/inventory/censored-feedback-mean/v1/definitions.md": "bcbb4093a90bdc5a224ee743451b45f516b601d5f1fc28e73feb6b70d1b829ba",
+    "02_mathematical_interfaces/inventory/censored-feedback-mean/v1/lemmas.md": "af15b7f17db51c65df96ee20948c77daa8b69d5825835ab18b801cc507739c35",
+    "02_mathematical_interfaces/inventory/censored-feedback-mean/v1/theorems.md": "feec8f89d1453a8008e10a6260f23b4ffe697d97f4f29a655e3e66bb06732ede",
+    "02_mathematical_interfaces/revenue_management/capacity-truncation/v1/interface.json": "84e828d5defefde2fa365562231eeca51f75729754ba006ad34e2cec9a83f3fe",
+    "02_mathematical_interfaces/revenue_management/capacity-truncation/v1/definitions.md": "85bff82d8c0686ab985662976814464ab72cc32db3e72c294a8de02d560498c3",
+    "02_mathematical_interfaces/revenue_management/capacity-truncation/v1/lemmas.md": "8d714df875057584bd6bb38d2695e00710d9c032bd4e41014c0f20391e416534",
+    "02_mathematical_interfaces/revenue_management/capacity-truncation/v1/theorems.md": "acfa1de4025c470f8208ee98bdbee509a0bb547238abdf2caeee71d68b8a35d6",
+    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v2/interface.json": "f0880332ed0a022e600b4a5b765a4954fcee27c4dac2e3d12f3145f156abbe23",
+    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v2/definitions.md": "c7a429eba2d8c740e9a70ef6425724e0ed05e924f965985d430874b38c0ff111",
+    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v2/lemmas.md": "6b3507bee6bc36cd922d451ea493c83117ccac13da9417301579facdad6c8856",
+    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v2/theorems.md": "9961a3ee87bd1c48d18d023f59b317bfe959ee35c05c338bee7b73bed57a90ea",
+    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v1/interface.json": "1432fc534ba65e3334e8524baf8ea063ecc911604952dfeea2846af104748882",
+    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v1/definitions.md": "bc8cfa09138b982ca73b47c17157235a4594e718078fa0ca83d7e0f62ce481f8",
+    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v1/lemmas.md": "b431ffb15f8f44948d03dab291ecc6d833bb105d20312d1e0303d70f0c938ab4",
+    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v1/theorems.md": "fe44ca9ceb68e016bad8c002207db7002fc0663481bc6eeef9caedc9a5aeef72",
+    "02_mathematical_interfaces/inventory/newsvendor-quantile/v1/interface.json": "3a1508063cf8d0280063e200d1e62d32810f0392293ac252f8408eab54b4e6f7",
+    "02_mathematical_interfaces/inventory/newsvendor-quantile/v1/definitions.md": "584346956e2c385d30d98ac8abd72303c7b20f6ff2503f096cb521cf9a5f14d8",
+    "02_mathematical_interfaces/inventory/newsvendor-quantile/v1/lemmas.md": "d722867693f8f63e4e0adbbfea96a7c80d658fd767ed693e10bc325d6aa8e2d0",
+    "02_mathematical_interfaces/inventory/newsvendor-quantile/v1/theorems.md": "dfd5911d0b2bd05dbb306b43297c71696f8ec45eafab1863d45ce66d2335e444",
+    "02_mathematical_interfaces/inventory/independent-random-cost/v1/interface.json": "d08e53cfa854e76dcc623efdf5a1a99f078dfe55a7bdd9509943c78a7e9fec7f",
+    "02_mathematical_interfaces/inventory/independent-random-cost/v1/definitions.md": "fc539f25685d0c2489889dbbb97bfe9fda21c73b061216695e3b83ba99d3880d",
+    "02_mathematical_interfaces/inventory/independent-random-cost/v1/lemmas.md": "ce004e0aea2049076795634c1e85709aabf2cf98183df9c9e8f45f9c75b00c1b",
+    "02_mathematical_interfaces/inventory/independent-random-cost/v1/theorems.md": "c068cae1d53454083b2dc7e38d8a5160ed5fd5c4e3dba18c83f6d6684d4bfb35",
+    "02_mathematical_interfaces/optimization/projected-sgd-log/v1/interface.json": "44e2279e1a513c29184fd51615aefb2eba8bd3056086e46d92c77186d993f77f",
+    "02_mathematical_interfaces/optimization/projected-sgd-log/v1/definitions.md": "f211e6376dfff04f3aa440a48ee04b2ffb1e6a7fbf7eb84d2a8c153e0f904074",
+    "02_mathematical_interfaces/optimization/projected-sgd-log/v1/lemmas.md": "70eb55f7eff1514032536d014ab55128dcbfbec8df4c94f4a3d029989d28b37e",
+    "02_mathematical_interfaces/optimization/projected-sgd-log/v1/theorems.md": "c4feae5ae9747ccec9310942083ffa0398e764a3d1e7fa33b6e1c1f46729666f",
+    "02_mathematical_interfaces/regret_accounting/geometric-stage-budget/v1/interface.json": "911868e65d3a73985a1056b045904259c10134f5ecb868d9b8caf38df854df5f",
+    "02_mathematical_interfaces/regret_accounting/geometric-stage-budget/v1/definitions.md": "f29e4cf2b1465d29352e0e10be9695edcd86c3aae2f5528b58de636f28bee85e",
+    "02_mathematical_interfaces/regret_accounting/geometric-stage-budget/v1/lemmas.md": "03f9a9a990e17901df79c47d817ab178105f49ee9a5b1479851b48364dd27385",
+    "02_mathematical_interfaces/regret_accounting/geometric-stage-budget/v1/theorems.md": "3bcb924d709b62c872c8172ecd546799a75da635d021e1a65418b4eaf6089294",
+    "02_mathematical_interfaces/inventory/newsvendor-oracle-lower-bound/v1/interface.json": "550219d39d7b87ff0b255370e39e7a070a3d30bb657150a1de728ffabe5d90ce",
+    "02_mathematical_interfaces/inventory/newsvendor-oracle-lower-bound/v1/definitions.md": "fff26677dfc7183dee035492c7b0a3f4e6a337b0a7dcc6960a523275d1316395",
+    "02_mathematical_interfaces/inventory/newsvendor-oracle-lower-bound/v1/lemmas.md": "03080a9b6a3b735479b1a8f65d9226c9132472c6c8784d868b57a08bb3e13ab9",
+    "02_mathematical_interfaces/inventory/newsvendor-oracle-lower-bound/v1/theorems.md": "a3d4d07f5d12cd051e881b9dda21de7f86bd5f3a3d316fd4e79fdfa6bc02f1f9",
+    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v2/interface.json": "4d0aef51f1e2eba32ad482ecde445cbe8c18b71140b4df0d3588cce965c48e5e",
+    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v2/definitions.md": "bc8cfa09138b982ca73b47c17157235a4594e718078fa0ca83d7e0f62ce481f8",
+    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v2/lemmas.md": "b431ffb15f8f44948d03dab291ecc6d833bb105d20312d1e0303d70f0c938ab4",
+    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v2/theorems.md": "fe44ca9ceb68e016bad8c002207db7002fc0663481bc6eeef9caedc9a5aeef72",
+    "02_mathematical_interfaces/inventory/newsvendor-quantile/v2/interface.json": "5d9619e9ccffa6deed3035e860c8298e51d76466b7a0f1d91b785c02f6c6e8b9",
+    "02_mathematical_interfaces/inventory/newsvendor-quantile/v2/definitions.md": "584346956e2c385d30d98ac8abd72303c7b20f6ff2503f096cb521cf9a5f14d8",
+    "02_mathematical_interfaces/inventory/newsvendor-quantile/v2/lemmas.md": "d722867693f8f63e4e0adbbfea96a7c80d658fd767ed693e10bc325d6aa8e2d0",
+    "02_mathematical_interfaces/inventory/newsvendor-quantile/v2/theorems.md": "dfd5911d0b2bd05dbb306b43297c71696f8ec45eafab1863d45ce66d2335e444",
+    "02_mathematical_interfaces/probability/running-maximum-square/v1/interface.json": "364d5e9a9e16cc15106a272ae9cd8c840085260e9f003cc488225f192407cf2d",
+    "02_mathematical_interfaces/probability/running-maximum-square/v1/definitions.md": "acec17c4552b855f13c467e4d479b60572de8c6b0b95d7c01c7457a7a6e723a2",
+    "02_mathematical_interfaces/probability/running-maximum-square/v1/lemmas.md": "24d7d2f8729ff4f16df7225c7ea5610729b1bd693e3ef3d3c4b45e3647f926bf",
+    "02_mathematical_interfaces/probability/running-maximum-square/v1/theorems.md": "6212570f543d488c13d93918d610f6eaeaffb02ba88f39b133e0a4de552cac0b",
+    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v1/interface.json": "60765651db4dcec39e7f1b491987a9f72a7d7af9a7476815ded02e3cc258321a",
+    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v1/definitions.md": "524a2b69f912a6145d3e2a43d40febb84114e0bc2fbcebcaf0607be679629470",
+    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v1/lemmas.md": "d3a7221c8459e840864325ea67297c98088f093e3caad8dff192f772e3c671f0",
+    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v1/theorems.md": "21ea5ef03b8bc583273d62c86dc89bb5e3f1608a71c39e2622e87441eee025bf",
+    "02_mathematical_interfaces/probability/predictable-submartingale-gain/v1/interface.json": "7f49d5911b1d6279d8e37c1b81b075b94ad0bdbec143ea8ea60b8439b9ebbc26",
+    "02_mathematical_interfaces/probability/predictable-submartingale-gain/v1/definitions.md": "6d2c5b6d813286726e53cf37941040ffecef04b08240c4e0fd23a675838b2f3d",
+    "02_mathematical_interfaces/probability/predictable-submartingale-gain/v1/lemmas.md": "f2e8210e9190cf0c87275621efa571beb886f4206dc65d9b9e52a80cda10adb2",
+    "02_mathematical_interfaces/probability/predictable-submartingale-gain/v1/theorems.md": "c6e81d3725239af75d157eb5876e6ebdf85b3a3cdc469c8b8d9eb6d67fd6aae9",
+    "02_mathematical_interfaces/probability/adaptive-stopped-capacity/v1/interface.json": "5cd66bb7408dbeb5b31bf7d799ab8b79c7b472668b4f500c72e67551f9d7f1fc",
+    "02_mathematical_interfaces/probability/adaptive-stopped-capacity/v1/definitions.md": "524a2b69f912a6145d3e2a43d40febb84114e0bc2fbcebcaf0607be679629470",
+    "02_mathematical_interfaces/probability/adaptive-stopped-capacity/v1/lemmas.md": "9f472cd1bf4aa9a0eb386f6435b7aecb4562b65ab1855cd8d85a51b314b3e945",
+    "02_mathematical_interfaces/probability/adaptive-stopped-capacity/v1/theorems.md": "2cff3922de360cd64a9d43d78acf7378e1f98b9b3a89df7a5987ac18e03085cf",
+    "02_mathematical_interfaces/probability/fresh-bernoulli-block/v1/interface.json": "63a5858464d7c2cf4ee37c1f2357c6b6840fed8f949d9241925be2b8b2fc2d34",
+    "02_mathematical_interfaces/probability/fresh-bernoulli-block/v1/definitions.md": "fcf461906fe497deb9c8ffebfb7f6e3933d51c12640ece5448b57085c9f0cbf1",
+    "02_mathematical_interfaces/probability/fresh-bernoulli-block/v1/lemmas.md": "6115b7defa8e6c7046901c9f0804d9b4b752aa88d6e42f8210948a736b442f78",
+    "02_mathematical_interfaces/probability/fresh-bernoulli-block/v1/theorems.md": "c612dc00255b46e498e51fae587ce89dfffbab704b6d71ac026090ba870881e4",
+    "02_mathematical_interfaces/probability/doob-l2-maximal/v1/interface.json": "d12800d0efc91061f2201bda52e329b731f5d4837690494ad2103a2ad0377fab",
+    "02_mathematical_interfaces/probability/doob-l2-maximal/v1/definitions.md": "481ecb12890287862422d4dc9d6ecc3b2e0e3e9c68fc986ef3a4cf943d277479",
+    "02_mathematical_interfaces/probability/doob-l2-maximal/v1/lemmas.md": "529954ac1ffdb5a1c5404e8b9ba24a714617eb88482eb07bee99a1b78d9034ef",
+    "02_mathematical_interfaces/probability/doob-l2-maximal/v1/theorems.md": "11bcfed148e7c973ec67cf4902cdb6ca961bbea5a51c2332a4cb3e1890a59b1f",
+    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v2/interface.json": "2cc1e5097752eedc42ccd65ba5c9caecc370901cb748be0789c83353d9c012e8",
+    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v2/definitions.md": "524a2b69f912a6145d3e2a43d40febb84114e0bc2fbcebcaf0607be679629470",
+    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v2/lemmas.md": "d3a7221c8459e840864325ea67297c98088f093e3caad8dff192f772e3c671f0",
+    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v2/theorems.md": "21ea5ef03b8bc583273d62c86dc89bb5e3f1608a71c39e2622e87441eee025bf",
+    "02_mathematical_interfaces/composition/cwz-quadratic-grid/v1/interface.json": "866a209530517215611ac22247bdb805a39e917f858bfe226f3d6c3ffd8c79d5",
+    "02_mathematical_interfaces/composition/cwz-quadratic-grid/v1/definitions.md": "35365e0934e4671ba69e94710a97197254f9efea832cf3a957cc887befc6b469",
+    "02_mathematical_interfaces/composition/cwz-quadratic-grid/v1/lemmas.md": "ce159ccb71a8ce5a98f7fbb2e42f7de543a08d8bf1085b703920125e19980539",
+    "02_mathematical_interfaces/composition/cwz-quadratic-grid/v1/theorems.md": "abb4b7c6daaa478dcd193975c0cfc735607755ae438560718dce995c9d829f9d",
+    "02_mathematical_interfaces/composition/cwz-tournament-path/v1/interface.json": "993b2b5cab4e3f9defe3d56de3cc8c2912ab2969fb9c623e133f6c0a3e5c1d88",
+    "02_mathematical_interfaces/composition/cwz-tournament-path/v1/definitions.md": "a996a265d29a0d5de3a14572c652e2ec343c644276f8d071afd9cc653c026419",
+    "02_mathematical_interfaces/composition/cwz-tournament-path/v1/lemmas.md": "eda04afb36eabb41b5ddcd0e3d0ecee65137777ce77d28a980fa4ffca3f12349",
+    "02_mathematical_interfaces/composition/cwz-tournament-path/v1/theorems.md": "b4a7998fa7bb570cb0ec6815ac4a0ed1d821c119ebc33b8a613bc30c3ec0f01a",
+    "02_mathematical_interfaces/composition/cwz-anchor-elimination/v1/interface.json": "ea7ec3bad307e2d9589f84ce85d42f7aae546ff6da82ce0bfe5b6dbe2a8a3507",
+    "02_mathematical_interfaces/composition/cwz-anchor-elimination/v1/definitions.md": "4e9ace3f3833f43ca55365132f095a635276fda1ecbea0a765585dbe84428110",
+    "02_mathematical_interfaces/composition/cwz-anchor-elimination/v1/lemmas.md": "27b7f2b650c6dc47494e93f8290f09b32a9bd2921abd951fbefdec24a1435ba3",
+    "02_mathematical_interfaces/composition/cwz-anchor-elimination/v1/theorems.md": "f24d334890f5ceda92302fd615df9e5850fe6ebad29846cc533c8e081cd5d2d2",
+    "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/interface.json": "125e6938ad885baa4d3b599187d47270d0fed0185f73d2f4af9eb6a17f622371",
+    "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/definitions.md": "d74cdeb452435d0e2da9ef1dc03a4e4763a9d787bd9680aeab97038e33c8b98c",
+    "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/lemmas.md": "8bc5aba505bb828bf7c12ecc38115381a7114bcb3c68a09729e119b00d257512",
+    "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/theorems.md": "d507591ed899b99d98af9b8e5e0c172bf9216ec811344024492e8c36c0b51217",
+    "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/interface.json": "346864f79be8be08f05e8f3b181087a57c368bcc070f8d9503d20a53729ab04e",
+    "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/definitions.md": "f3d578ef0050ab1ed1756a9cf678e0c886e84aa9dc7e1d170dd139287c975613",
+    "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/lemmas.md": "95c22006cefd61bddeb60ffb8d450af8599e086704066ba0d1e214bcc1c606b2",
+    "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/theorems.md": "bca499d299a8e4d854e8c60411618c8439ff9c96b315682de85335383cfb067f",
+    "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/interface.json": "38b27031b9cf580e7b348cf996332a9c818c653424f59f26c982384e45bf0564",
+    "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/definitions.md": "45c593b07d2fa463a4a61e36be9ff542ea69c252936c7ff703a812271f9f69a8",
+    "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/lemmas.md": "04579071ecdbb663187f545d0a8dc31225ca3301ce859629dde290c76b75b208",
+    "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/theorems.md": "516c0ffa3d32da20fc193fcd2d6c104df60e3e847f3fa817a8df5de40c56cd5a",
+    "02_mathematical_interfaces/normalization/p4-2026-10-15/paper-scope-ledger.json": "c1cb1efe5c816630ee07312dbdd16926c2a6fa3c2820d43b9f238de0a14848d6",
+    "01_raw_knowledge/migrations/p1-deepseek-2026-10-13/execution-summary.json": "94101976da505165617f618cd353e988d33cc6a2802fb7ee831a98b2bf584f0e",
+    "02_mathematical_interfaces/normalization/p1-2026-10-13/source-answers.json": "f77ec67d35d0f88eafc33315675a20aa8e5b468981ff7cefa218036921eebb13",
+    "02_mathematical_interfaces/normalization/p1-2026-10-13/reviews/p1-source-answers-independent-review.json": "fa5b262add4529b727943508de7fe68568be77253b9f0c23d9f5f3fabd6d6961",
+    "exports/catalog.json": "fbe0c979e1cc4187f572aff127aadbfc0d28754e10abff6822b01084dd7cfb60",
+    "01_raw_knowledge/migrations/p4-2026-10-15/cross-interface-dependencies.json": "c3e50f95ddd206b52f6cb89355636f572212c5fe301b048a4add0f451ad3da78",
+    "02_mathematical_interfaces/normalization/p1-2026-10-13/closeout.json": "d34c6537ae40cf6e1cf2078166c132e5de468f0a9d10f8268367d7e50fe8e915",
+    "02_mathematical_interfaces/normalization/p2-2026-10-13/closeout.json": "17a6e0f63ab3c533d394d0b2e46ae711278e9d7af94ba92b238fc39b1633792f",
+    "02_mathematical_interfaces/normalization/p3-2026-10-15/closeout.json": "207cdb8c4d888eb47d7a82f60c40eef82159b774cc040a807715a4a4c9a12c3b",
+    "02_mathematical_interfaces/normalization/p4-2026-10-15/closeout.json": "bb5bf0d616920d4ed2832e8d2d38e127ef8d734caba747a7fe9a4721cb391466",
+    "knowledge/paper_pool/papers/chen-2019a.json": "3cad67f3d3218174b4c213038bada653487c46793c5078c4816915c683b5b841",
+    "knowledge/paper_pool/papers/chen-2021.json": "0a4b686ee6c223569fd388c0216fa29dd2bafb0f1c4e649a1a26b0b9e8f0496e",
+    "knowledge/paper_pool/papers/cwz-2024.json": "51a2eada4879306e1e7c377c65ad2052fdec37b2fe32c54816e400c869a215c0",
+    "knowledge/paper_pool/papers/gallego-vanryzin-1994-oracle.json": "c4cfe819d8fed2e9b978fb1e8aed7e715cb87186db07a243ad2a2314dd230ab2",
+    "knowledge/paper_pool/papers/huh-2009.json": "4a4edf42e7ae9413876259d08eef24f07b1285f9964004bf22ed0a8936bef47a",
+    "knowledge/paper_pool/papers/lei-2014.json": "034add1b40a599ad64f0bd39ea5c681b9c5231fa745250afb01921dd7e32de1f",
+    "knowledge/paper_pool/papers/wang-2014.json": "1cda8317a3c56531f13f1e4b265459c905023e961df8a4dd637c89e422fb21e6",
+    "knowledge/paper_pool/papers/wang-2021.json": "6b741ad00727d31d2530112f3586984dd784c08f99a6b444f7d3909429b8eaf0"
+  },
+  "legacy_paper_targets": [
     {
       "id": "lei-2014",
       "upper": {
@@ -3075,622 +3524,1450 @@
       }
     }
   ],
-  "phases": [
-    {
-      "id": "p1-2026-10-13",
-      "status": "complete",
-      "completed_at": "2026-10-13T09:57:02.155527+00:00",
-      "scope": "P1 only: three existing pilot interfaces, five bounded textbook questions over four selected books, the existing MCP/Worker integration and independently accepted local normalization. No new Lean theorem, full-paper completion, P2/P3/P4 work, general model-quality claim or broader textbook certification is accepted.",
-      "sha256": "d34c6537ae40cf6e1cf2078166c132e5de468f0a9d10f8268367d7e50fe8e915"
-    },
-    {
-      "id": "p2-2026-10-13",
-      "status": "complete",
-      "completed_at": "2026-10-15T07:07:51.289674+00:00",
-      "scope": "Six local versioned mathematical interfaces, exact existing-proof reuse and independent acceptance; P3/P4 remain future work.",
-      "sha256": "17a6e0f63ab3c533d394d0b2e46ae711278e9d7af94ba92b238fc39b1633792f"
-    },
-    {
-      "id": "p3-2026-10-15",
-      "status": "complete",
-      "completed_at": "2026-10-15T07:34:27.918244+00:00",
-      "scope": "Six probability/time interfaces using existing proofs, with explicit model limits and independent current-version acceptance; P4 is not started.",
-      "sha256": "207cdb8c4d888eb47d7a82f60c40eef82159b774cc040a807715a4a4c9a12c3b"
-    },
-    {
-      "id": "p4-2026-10-15",
-      "status": "complete",
-      "completed_at": "2026-10-15T08:14:08.913338+00:00",
-      "scope": "Existing composition/application interface migration, complete old-technique mapping and evidence-bound paper-obligation reconciliation. Unfinished full-paper research remains explicit.",
-      "sha256": "bb5bf0d616920d4ed2832e8d2d38e127ef8d734caba747a7fe9a4721cb391466"
-    }
-  ],
-  "graph": {
-    "edges": [
+  "paper_pool": {
+    "schema_version": 1,
+    "storage": "local_folder",
+    "papers": [
       {
-        "from": "cwz-deterministic-composition@v1",
-        "to": "cwz-quadratic-grid@v1",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.CWZ.Grid.quadraticGrid",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/verification.json",
-          "sha256": "4782ee4b54ace0d65f926569ac107c1483977b07617ac5bf8c6278666ca9c63e"
-        }
+        "id": "chen-2019a",
+        "title": "Coordinating Pricing and Inventory Replenishment with Nonparametric Demand Learning",
+        "authors": "Boxiao Chen;Xiuli Chao;Hyun-Soo Ahn",
+        "year": 2019,
+        "doi": "10.1287/opre.2018.1808",
+        "kind": "paper",
+        "origin": "existing_knowledge",
+        "targets": [
+          {
+            "id": "chen-2019a",
+            "name": "主要后悔界目标",
+            "upper": {
+              "full_regret_reward": 0,
+              "last_event": "event-0032",
+              "run_ids": [
+                "table2-analytic-bridges-002"
+              ],
+              "status": "verified_component"
+            },
+            "lower": {
+              "full_regret_reward": 0,
+              "last_event": null,
+              "run_ids": [],
+              "status": "statement_pending"
+            },
+            "assumptions": [
+              "Assumption1(1): r(d)=d*lambda_tilde^{-1}(d) is concave.",
+              "Assumption1(2): 0 < lambda_tilde''(p)*lambda_tilde(p)/(lambda_tilde'(p))^2 < 2.",
+              "Assumption1(3): the optimized profile p -> G(p,y_bar(exp(lambda(p)))) has bounded second derivative.",
+              "Assumption1(4): the source writes E[D_t(p)]>0 for every p. D_t was defined in log coordinates; preserve this notation issue rather than substituting positivity of actual demand.",
+              "Assumption1(5): lambda=log lambda_tilde is twice differentiable with bounded first and second derivatives.",
+              "Assumption1(6): the original multiplicative-noise density f is bounded below by a positive constant on [l,u].",
+              "Assumption1(7): there is a uniform K_1 Lipschitz bound for both optimizer maps of empirical problem B3 under changes in (alpha,beta) and separate constant shifts (m_1,m_2) in the two residual blocks. The bound uses K_1*(|delta alpha|+|delta beta|+|m_1|+|m_2|). This is an explicit assumption, not a proved consequence of ordinary smoothness.",
+              "Assumption1(8): P and Y are large enough to contain unconstrained complete-information and tangent-demand problem B1 optimizers."
+            ],
+            "source_bound": "Expected cumulative regret <=K_2*sqrt(T).",
+            "accepted_bound": null,
+            "bound_type": "以已抽取的论文量词和比较基准为准",
+            "scope": "原文目标；尚未完成整个模型的 Lean 复现。",
+            "remaining": [
+              "Separate main multiplicative, additive and unbounded targets",
+              "Algorithm/model/domain/optimizer-stability and source-resolution obligations"
+            ],
+            "interface_ids": [
+              "projected-sgd-log",
+              "geometric-stage-budget"
+            ],
+            "evidence": [
+              {
+                "path": "campaigns/cwz-table2-v1/statements/source_contracts_v6_statements.json",
+                "sha256": "7a58293d02d6e992b826b707f98d03f39314b12e242d983cf5c7890853a440c1"
+              }
+            ],
+            "historical": {
+              "formal_status": "not_formalized",
+              "freeze_readiness": "full_source_specific_statement_or_model_obligations_remain",
+              "formal_targets": null,
+              "statement_gaps_as_recorded": [
+                "Main multiplicative DDA, additive AppendixD and unbounded AppendixE must remain separate exact targets.",
+                "Encode main Assumption1(7) optimizer stability and full domains; objective-value stability does not eliminate this premise.",
+                "Resolve main log-demand positivity notation, initialization, perturbation direction, rounding, horizon truncation, ties and empirical objectives.",
+                "Official appendix text is available; new supplements lack local PDF-byte pinning and visual verification.",
+                "AppendixD parsed min_y versus max_y notation and G(p,lambda(p)) versus optimized profile require documented source resolution."
+              ]
+            },
+            "proof_map": {
+              "nodes": [
+                {
+                  "id": "assumptions",
+                  "kind": "assumptions",
+                  "title": "模型与数学假设",
+                  "status": "retained",
+                  "items": [
+                    "Assumption1(1): r(d)=d*lambda_tilde^{-1}(d) is concave.",
+                    "Assumption1(2): 0 < lambda_tilde''(p)*lambda_tilde(p)/(lambda_tilde'(p))^2 < 2.",
+                    "Assumption1(3): the optimized profile p -> G(p,y_bar(exp(lambda(p)))) has bounded second derivative.",
+                    "Assumption1(4): the source writes E[D_t(p)]>0 for every p. D_t was defined in log coordinates; preserve this notation issue rather than substituting positivity of actual demand.",
+                    "Assumption1(5): lambda=log lambda_tilde is twice differentiable with bounded first and second derivatives.",
+                    "Assumption1(6): the original multiplicative-noise density f is bounded below by a positive constant on [l,u].",
+                    "Assumption1(7): there is a uniform K_1 Lipschitz bound for both optimizer maps of empirical problem B3 under changes in (alpha,beta) and separate constant shifts (m_1,m_2) in the two residual blocks. The bound uses K_1*(|delta alpha|+|delta beta|+|m_1|+|m_2|). This is an explicit assumption, not a proved consequence of ordinary smoothness.",
+                    "Assumption1(8): P and Y are large enough to contain unconstrained complete-information and tangent-demand problem B1 optimizers."
+                  ],
+                  "column": 0
+                },
+                {
+                  "id": "geometric-stage-budget",
+                  "kind": "interface",
+                  "title": "精确几何阶段平方根费用预算",
+                  "status": "accepted_component",
+                  "interface_id": "geometric-stage-budget",
+                  "version": 1,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.GeometricBudget.geometricStageRegret",
+                  "receipt_sha256": "e6d487fa234d771ae905a8e6543a385307c820e501a3f3c609436f2161fd540c"
+                },
+                {
+                  "id": "projected-sgd-log",
+                  "kind": "interface",
+                  "title": "一维随机投影更新到期望对数预算",
+                  "status": "accepted_component",
+                  "interface_id": "projected-sgd-log",
+                  "version": 1,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.ProjectedSGD.projectedSGDLog",
+                  "receipt_sha256": "5ca698b98da651d5d06b99067e17e602f2110898fe4605154754dae3b3f5076d"
+                },
+                {
+                  "id": "gap",
+                  "kind": "gap",
+                  "title": "尚待闭合的证明义务",
+                  "status": "pending",
+                  "items": [
+                    "Separate main multiplicative, additive and unbounded targets",
+                    "Algorithm/model/domain/optimizer-stability and source-resolution obligations"
+                  ],
+                  "column": 2
+                },
+                {
+                  "id": "regret",
+                  "kind": "regret",
+                  "title": "目标后悔界 · 尚未验收",
+                  "status": "pending",
+                  "formula": "Expected cumulative regret <=K_2*sqrt(T).",
+                  "column": 3,
+                  "scope": "原文目标；尚未完成整个模型的 Lean 复现。"
+                }
+              ],
+              "edges": [
+                {
+                  "from": "assumptions",
+                  "to": "projected-sgd-log",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "assumptions",
+                  "to": "geometric-stage-budget",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "projected-sgd-log",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "geometric-stage-budget",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "gap",
+                  "to": "regret",
+                  "kind": "unproved_bridge"
+                }
+              ],
+              "semantics": "Narrative assumptions and unresolved bridges are distinct from receipt-backed transitive Lean dependencies."
+            }
+          }
+        ],
+        "pdf": null,
+        "expected_pdf_sha256": [
+          "6e96876f2edfe36645a50c7201f87817d0f1695d55298ca5f5cd0bb4c75672e7"
+        ]
       },
       {
-        "from": "cwz-deterministic-composition@v1",
-        "to": "cwz-anchor-elimination@v1",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.CWZ.Tournament.eliminationGuarantee",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/verification.json",
-          "sha256": "4782ee4b54ace0d65f926569ac107c1483977b07617ac5bf8c6278666ca9c63e"
-        }
+        "id": "chen-2021",
+        "title": "Nonparametric Learning Algorithms for Joint Pricing and Inventory Control with Lost Sales and Censored Demand",
+        "authors": "Boxiao Chen;Xiuli Chao;Cong Shi",
+        "year": 2021,
+        "doi": "10.1287/moor.2020.1084",
+        "kind": "paper",
+        "origin": "existing_knowledge",
+        "targets": [
+          {
+            "id": "chen-2021",
+            "name": "主要后悔界目标",
+            "upper": {
+              "full_regret_reward": 0,
+              "last_event": "event-0028",
+              "run_ids": [],
+              "status": "statement_pending"
+            },
+            "lower": {
+              "full_regret_reward": 0,
+              "last_event": null,
+              "run_ids": [],
+              "status": "statement_pending"
+            },
+            "assumptions": [
+              "Section2.5 condition1: optimal price p* lies in the interior of P.",
+              "Condition2: for m=max{3,ceil(sqrt(log T))}, derivatives of lambda of every order 0<=j<=m exist on [p_L-A,p_H+A] and are bounded by one common M, with A>0.",
+              "Condition3: the source calls epsilon subexponential and prints a right-density-tail condition f(x)<=theta_1 exp(-theta_2 x) for x>=theta_3, for positive theta constants.",
+              "Condition4: there are kappa,r>0 such that, for every p in P, f is at least r throughout the kappa-neighborhood of F^{-1}((b+p)/(b+p+h)).",
+              "Condition5: G''(p)<=-a throughout P for some a>0."
+            ],
+            "source_bound": "There exists K_hat>0 such that R^SALA(T)<=K_hat*T^(1/2+epsilon(T))*(log T)^3*log log T, with epsilon(T)=(log T)^(-1/3)+(1/4)*(log T)^(-1/2).",
+            "accepted_bound": null,
+            "bound_type": "Expected cumulative regret.",
+            "scope": "For admissible fixed problem parameters and the specified SALA tuning; encode the large-horizon threshold and common regularity constants explicitly.",
+            "remaining": [
+              "Full spline/empirical-objective SALA policy, feasibility and implementation",
+              "Horizon regime and finite-T versus asymptotic smoothness/source interpretation"
+            ],
+            "interface_ids": [],
+            "evidence": [
+              {
+                "path": "campaigns/cwz-table2-v1/statements/source_contracts_v6_statements.json",
+                "sha256": "7a58293d02d6e992b826b707f98d03f39314b12e242d983cf5c7890853a440c1"
+              }
+            ],
+            "historical": {
+              "formal_status": "not_formalized",
+              "freeze_readiness": "full_source_specific_statement_or_model_obligations_remain",
+              "formal_targets": null,
+              "statement_gaps_as_recorded": [
+                "Encode the full spline coefficient construction and the sample-residual empirical objective.",
+                "Pin expanded-price feasibility, positive-demand conventions, grid endpoints and inventory implementation.",
+                "State a horizon threshold for exploration to finish before T.",
+                "Keep the finite-T derivative requirement distinct from a fixed asymptotic function class.",
+                "An exact finite-T explicit-constant bound is not claimed from the displayed asymptotic theorem.",
+                "PDFp5 history and carryover recursion are source-resolved; nonnegative-demand/support semantics remain separate from the unformalized SALA policy."
+              ]
+            },
+            "proof_map": {
+              "nodes": [
+                {
+                  "id": "assumptions",
+                  "kind": "assumptions",
+                  "title": "模型与数学假设",
+                  "status": "retained",
+                  "items": [
+                    "Section2.5 condition1: optimal price p* lies in the interior of P.",
+                    "Condition2: for m=max{3,ceil(sqrt(log T))}, derivatives of lambda of every order 0<=j<=m exist on [p_L-A,p_H+A] and are bounded by one common M, with A>0.",
+                    "Condition3: the source calls epsilon subexponential and prints a right-density-tail condition f(x)<=theta_1 exp(-theta_2 x) for x>=theta_3, for positive theta constants.",
+                    "Condition4: there are kappa,r>0 such that, for every p in P, f is at least r throughout the kappa-neighborhood of F^{-1}((b+p)/(b+p+h)).",
+                    "Condition5: G''(p)<=-a throughout P for some a>0."
+                  ],
+                  "column": 0
+                },
+                {
+                  "id": "gap",
+                  "kind": "gap",
+                  "title": "尚待闭合的证明义务",
+                  "status": "pending",
+                  "items": [
+                    "Full spline/empirical-objective SALA policy, feasibility and implementation",
+                    "Horizon regime and finite-T versus asymptotic smoothness/source interpretation"
+                  ],
+                  "column": 1
+                },
+                {
+                  "id": "regret",
+                  "kind": "regret",
+                  "title": "目标后悔界 · 尚未验收",
+                  "status": "pending",
+                  "formula": "There exists K_hat>0 such that R^SALA(T)<=K_hat*T^(1/2+epsilon(T))*(log T)^3*log log T, with epsilon(T)=(log T)^(-1/3)+(1/4)*(log T)^(-1/2).",
+                  "column": 2,
+                  "scope": "For admissible fixed problem parameters and the specified SALA tuning; encode the large-horizon threshold and common regularity constants explicitly."
+                }
+              ],
+              "edges": [
+                {
+                  "from": "assumptions",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "gap",
+                  "to": "regret",
+                  "kind": "unproved_bridge"
+                }
+              ],
+              "semantics": "Narrative assumptions and unresolved bridges are distinct from receipt-backed transitive Lean dependencies."
+            }
+          }
+        ],
+        "pdf": null,
+        "expected_pdf_sha256": [
+          "caaecaa703d68cefd3086aad6b2e15b675ade0b4978b8cb465c88e539a5b19e5"
+        ]
       },
       {
-        "from": "cwz-deterministic-composition@v1",
-        "to": "cwz-tournament-path@v1",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.CWZ.Tournament.pathGuarantee",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/verification.json",
-          "sha256": "4782ee4b54ace0d65f926569ac107c1483977b07617ac5bf8c6278666ca9c63e"
-        }
+        "id": "cwz-2024",
+        "title": "Optimal Policies for Dynamic Pricing and Inventory Control with Nonparametric Censored Demands",
+        "authors": "Boxiao Chen;Yining Wang;Yuan Zhou",
+        "year": 2024,
+        "doi": "10.1287/mnsc.2023.4859",
+        "kind": "paper",
+        "origin": "existing_knowledge",
+        "targets": [
+          {
+            "id": "cwz-concave",
+            "name": "凹收益分支",
+            "upper": {
+              "full_regret_reward": 0,
+              "last_event": "event-0029",
+              "run_ids": [
+                "table2-accounting-001",
+                "table2-accounting-reuse-001"
+              ],
+              "status": "statement_pending"
+            },
+            "lower": {
+              "full_regret_reward": 0,
+              "last_event": null,
+              "run_ids": [],
+              "status": "statement_pending"
+            },
+            "assumptions": [
+              "价格与库存域、删失需求、误差与正则性条件必须保留。",
+              "CWZAssumption1",
+              "CWZAssumption2,strong curvature of G"
+            ],
+            "source_bound": "O(sqrt(T)*(lnT)^2)",
+            "accepted_bound": null,
+            "bound_type": "高概率后悔界",
+            "scope": "Fixed admissible model and specified horizon-dependent policy; numerical big-O and failure constants are existential, with an explicit allowed large-horizon regime still to state. Source gives probability 1-O(1/T), not a fully specified all-T bound.",
+            "remaining": [
+              "Source-model to profile C2/curvature and concrete price-grid bridge",
+              "Complete Algorithms1-3, tuning domains, horizon and inventory implementation",
+              "Actual estimator event, integrability/expected-regret conversion and lower-bound embedding"
+            ],
+            "interface_ids": [
+              "cwz-quadratic-grid"
+            ],
+            "evidence": [
+              {
+                "path": "campaigns/cwz-table2-v1/statements/source_contracts_v6_statements.json",
+                "sha256": "7a58293d02d6e992b826b707f98d03f39314b12e242d983cf5c7890853a440c1"
+              }
+            ],
+            "historical": {
+              "formal_status": "not_formalized",
+              "freeze_readiness": "full_source_specific_statement_or_model_obligations_remain",
+              "formal_targets": null,
+              "statement_gaps_as_recorded": [
+                "C1/C2 and B1 coefficient factors now pinned; complete Algorithms1-3 and source-specific horizon conventions remain unformalized.",
+                "Resolve dlow=0 versus displayed reciprocal, positive logarithm arguments and explicit horizon regime.",
+                "Resolve profile/inventory domain and demand/support semantics.",
+                "Expected-regret conversion still needs actual integrability and loss bound.",
+                "Imported pricing lower-bound embedding remains unverified.",
+                "Recheck simplified remark-level log powers after substituting T-dependent C1 and C2."
+              ]
+            },
+            "proof_map": {
+              "nodes": [
+                {
+                  "id": "assumptions",
+                  "kind": "assumptions",
+                  "title": "模型与数学假设",
+                  "status": "retained",
+                  "items": [
+                    "价格与库存域、删失需求、误差与正则性条件必须保留。",
+                    "CWZAssumption1",
+                    "CWZAssumption2,strong curvature of G"
+                  ],
+                  "column": 0
+                },
+                {
+                  "id": "cwz-quadratic-grid",
+                  "kind": "interface",
+                  "title": "驻点C2二次网格损失",
+                  "status": "accepted_component",
+                  "interface_id": "cwz-quadratic-grid",
+                  "version": 1,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.CWZ.Grid.quadraticGrid",
+                  "receipt_sha256": "0242aac50a27e347e13b943a5397b31327025d97b72b040f655b0300beea41dd"
+                },
+                {
+                  "id": "gap",
+                  "kind": "gap",
+                  "title": "尚待闭合的证明义务",
+                  "status": "pending",
+                  "items": [
+                    "Source-model to profile C2/curvature and concrete price-grid bridge",
+                    "Complete Algorithms1-3, tuning domains, horizon and inventory implementation",
+                    "Actual estimator event, integrability/expected-regret conversion and lower-bound embedding"
+                  ],
+                  "column": 2
+                },
+                {
+                  "id": "regret",
+                  "kind": "regret",
+                  "title": "目标后悔界 · 尚未验收",
+                  "status": "pending",
+                  "formula": "O(sqrt(T)*(lnT)^2)",
+                  "column": 3,
+                  "scope": "Fixed admissible model and specified horizon-dependent policy; numerical big-O and failure constants are existential, with an explicit allowed large-horizon regime still to state. Source gives probability 1-O(1/T), not a fully specified all-T bound."
+                }
+              ],
+              "edges": [
+                {
+                  "from": "assumptions",
+                  "to": "cwz-quadratic-grid",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "cwz-quadratic-grid",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "gap",
+                  "to": "regret",
+                  "kind": "unproved_bridge"
+                }
+              ],
+              "semantics": "Narrative assumptions and unresolved bridges are distinct from receipt-backed transitive Lean dependencies."
+            }
+          },
+          {
+            "id": "cwz-nonconcave",
+            "name": "非凹收益分支",
+            "upper": {
+              "full_regret_reward": 0,
+              "last_event": "event-0030",
+              "run_ids": [
+                "table2-accounting-001",
+                "table2-accounting-reuse-001"
+              ],
+              "status": "statement_pending"
+            },
+            "lower": {
+              "full_regret_reward": 0,
+              "last_event": null,
+              "run_ids": [],
+              "status": "statement_pending"
+            },
+            "assumptions": [
+              "价格与库存域、删失需求、误差与正则性条件必须保留。",
+              "CWZAssumption1"
+            ],
+            "source_bound": "O(T^(3/5)*(lnT)^3)",
+            "accepted_bound": null,
+            "bound_type": "高概率后悔界",
+            "scope": "Fixed admissible model and specified horizon-dependent policy; numerical big-O and failure constants are existential, with an explicit allowed large-horizon regime still to state. Source gives probability 1-O(1/T), not a fully specified all-T bound.",
+            "remaining": [
+              "Source-model C2/curvature and concrete grid coverage",
+              "Actual Algorithms1,2,4 pairings, depth and anchor construction",
+              "Random estimation event, exceptional-event costs and inventory/horizon budget",
+              "Tuning/log domains, expectation conversion and all-policy minimax lower bound"
+            ],
+            "interface_ids": [
+              "cwz-quadratic-grid",
+              "cwz-tournament-path",
+              "cwz-anchor-elimination",
+              "cwz-deterministic-composition"
+            ],
+            "evidence": [
+              {
+                "path": "campaigns/cwz-table2-v1/statements/source_contracts_v6_statements.json",
+                "sha256": "7a58293d02d6e992b826b707f98d03f39314b12e242d983cf5c7890853a440c1"
+              }
+            ],
+            "historical": {
+              "formal_status": "not_formalized",
+              "freeze_readiness": "full_source_specific_statement_or_model_obligations_remain",
+              "formal_targets": null,
+              "statement_gaps_as_recorded": [
+                "C1/C3 and B2 coefficient factors now pinned; complete Algorithms1,2,4 and actual grid/pairing/anchor definitions remain pending.",
+                "Resolve reciprocal/log domains, horizon regime, inventory-profile and demand-support conventions.",
+                "Regularity at the endpoints of the closed price interval remains unspecified in the formal source contract.",
+                "Recheck simplified remark-level log powers after substituting T-dependent tuning.",
+                "Lower-bound family, observation path measures and all-policy quantifiers remain to formalize."
+              ]
+            },
+            "proof_map": {
+              "nodes": [
+                {
+                  "id": "assumptions",
+                  "kind": "assumptions",
+                  "title": "模型与数学假设",
+                  "status": "retained",
+                  "items": [
+                    "价格与库存域、删失需求、误差与正则性条件必须保留。",
+                    "CWZAssumption1"
+                  ],
+                  "column": 0
+                },
+                {
+                  "id": "cwz-anchor-elimination",
+                  "kind": "interface",
+                  "title": "显式锚点差距下的保守淘汰",
+                  "status": "accepted_component",
+                  "interface_id": "cwz-anchor-elimination",
+                  "version": 1,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.CWZ.Tournament.eliminationGuarantee",
+                  "receipt_sha256": "5ffc40a0adfa4d97c14d08f353ddeee854d89fb717d25e7b20347d5bb431606d"
+                },
+                {
+                  "id": "cwz-quadratic-grid",
+                  "kind": "interface",
+                  "title": "驻点C2二次网格损失",
+                  "status": "accepted_component",
+                  "interface_id": "cwz-quadratic-grid",
+                  "version": 1,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.CWZ.Grid.quadraticGrid",
+                  "receipt_sha256": "0242aac50a27e347e13b943a5397b31327025d97b72b040f655b0300beea41dd"
+                },
+                {
+                  "id": "cwz-tournament-path",
+                  "kind": "interface",
+                  "title": "误差事件上的确定性比较路径",
+                  "status": "accepted_component",
+                  "interface_id": "cwz-tournament-path",
+                  "version": 1,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.CWZ.Tournament.pathGuarantee",
+                  "receipt_sha256": "114a194545308aaac8b13887c2dfc7f546b4a25a2f83e8a38ab2657971d98780"
+                },
+                {
+                  "id": "cwz-deterministic-composition",
+                  "kind": "interface",
+                  "title": "二次网格与比较淘汰的确定性组合",
+                  "status": "accepted_component",
+                  "interface_id": "cwz-deterministic-composition",
+                  "version": 1,
+                  "column": 2,
+                  "proof_declaration": "ProofKB.CWZ.Composition.proof",
+                  "receipt_sha256": "1d859fa3ac6b0a6cb9aa1750c179e25b3fa3ba7cbcdd79e2f9b97286f2cdde1a"
+                },
+                {
+                  "id": "gap",
+                  "kind": "gap",
+                  "title": "尚待闭合的证明义务",
+                  "status": "pending",
+                  "items": [
+                    "Source-model C2/curvature and concrete grid coverage",
+                    "Actual Algorithms1,2,4 pairings, depth and anchor construction",
+                    "Random estimation event, exceptional-event costs and inventory/horizon budget",
+                    "Tuning/log domains, expectation conversion and all-policy minimax lower bound"
+                  ],
+                  "column": 3
+                },
+                {
+                  "id": "regret",
+                  "kind": "regret",
+                  "title": "目标后悔界 · 尚未验收",
+                  "status": "pending",
+                  "formula": "O(T^(3/5)*(lnT)^3)",
+                  "column": 4,
+                  "scope": "Fixed admissible model and specified horizon-dependent policy; numerical big-O and failure constants are existential, with an explicit allowed large-horizon regime still to state. Source gives probability 1-O(1/T), not a fully specified all-T bound."
+                }
+              ],
+              "edges": [
+                {
+                  "from": "cwz-quadratic-grid",
+                  "to": "cwz-deterministic-composition",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/verification.json",
+                    "sha256": "4782ee4b54ace0d65f926569ac107c1483977b07617ac5bf8c6278666ca9c63e"
+                  }
+                },
+                {
+                  "from": "cwz-anchor-elimination",
+                  "to": "cwz-deterministic-composition",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/verification.json",
+                    "sha256": "4782ee4b54ace0d65f926569ac107c1483977b07617ac5bf8c6278666ca9c63e"
+                  }
+                },
+                {
+                  "from": "cwz-tournament-path",
+                  "to": "cwz-deterministic-composition",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/verification.json",
+                    "sha256": "4782ee4b54ace0d65f926569ac107c1483977b07617ac5bf8c6278666ca9c63e"
+                  }
+                },
+                {
+                  "from": "assumptions",
+                  "to": "cwz-quadratic-grid",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "assumptions",
+                  "to": "cwz-anchor-elimination",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "assumptions",
+                  "to": "cwz-tournament-path",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "cwz-quadratic-grid",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "cwz-tournament-path",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "cwz-anchor-elimination",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "cwz-deterministic-composition",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "gap",
+                  "to": "regret",
+                  "kind": "unproved_bridge"
+                }
+              ],
+              "semantics": "Narrative assumptions and unresolved bridges are distinct from receipt-backed transitive Lean dependencies."
+            }
+          }
+        ],
+        "pdf": null,
+        "expected_pdf_sha256": [
+          "c45d2cfee2abfb0d1c41b67c295e7695158bb36abfcfedfe72864f741a515db6"
+        ]
       },
       {
-        "from": "censored-inventory-log-regret@v1",
-        "to": "censored-feedback-mean@v1",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.NewsvendorPrimitives.censoredFeedbackMean",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/verification.json",
-          "sha256": "363ebc50cdfa3875e35d3cf955b1d63e464094949716a66f09ba98bcb29c697b"
-        }
+        "id": "gallego-vanryzin-1994-oracle",
+        "title": "Gallego and van Ryzin (1994): deterministic capacity relaxation as a stochastic pricing upper bound",
+        "authors": "Guillermo Gallego; Garrett van Ryzin",
+        "year": 1994,
+        "doi": null,
+        "kind": "reference_paper",
+        "origin": "existing_knowledge",
+        "pdf": null,
+        "notes": [
+          "Source uses continuous-time controlled demand intensity, not the discrete Bernoulli history tree; no theorem transfer is certified by this citation.",
+          "Nonbinding capacity uses the unconstrained maximizer; in the binding regime derive the balancing price from continuity and bracket inequalities.",
+          "A source-informed supporting-line route for the discrete tree is proposed in preparation-v6/oracle-literature/SUPPORTING_LINE_ALTERNATIVE.md. Coefficients, support and complementarity must be derived from native assumptions; oracle and complete regret remain unproved.",
+          "The separately preflight-checked zero-closure target remains unapproved and is not admitted to the source contract."
+        ],
+        "targets": []
       },
       {
-        "from": "censored-inventory-log-regret@v1",
-        "to": "newsvendor-finite-mean-cost@v2",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.NewsvendorPrimitives.finiteMeanCost",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/verification.json",
-          "sha256": "363ebc50cdfa3875e35d3cf955b1d63e464094949716a66f09ba98bcb29c697b"
-        }
+        "id": "huh-2009",
+        "title": "A Nonparametric Asymptotic Analysis of Inventory Planning with Censored Demand",
+        "authors": "Woonghee Tim Huh;Paat Rusmevichientong",
+        "year": 2009,
+        "doi": "10.1287/moor.1080.0355",
+        "kind": "paper",
+        "origin": "existing_knowledge",
+        "targets": [
+          {
+            "id": "huh-2009",
+            "name": "主要后悔界目标",
+            "upper": {
+              "full_regret_reward": 1,
+              "last_event": "event-0039",
+              "run_ids": [
+                "table2-accounting-001",
+                "table2-analytic-bridges-002",
+                "newsvendor-primitive-001",
+                "huh-finite-mean-full-001",
+                "huh-newsvendor-oracle-001"
+              ],
+              "status": "accepted_full_regret"
+            },
+            "lower": {
+              "full_regret_reward": 0,
+              "last_event": "event-0005",
+              "run_ids": [],
+              "status": "not_in_table"
+            },
+            "assumptions": [
+              "b,h>0;Q(y)=hE(y-D)^++bE(D-y)^+",
+              "known ybar>=yNV=inf{y>=0:F(y)>=b/(b+h)}",
+              "perishable x_t=0",
+              "continuous density f with inf_[0,ybar]f>=alpha>0;known alpha for step",
+              "用户已批准的有限需求一阶矩；2007 作者稿修正版，不声称与发表版逐字等价。"
+            ],
+            "source_bound": "Expected cumulative newsvendor cost gap is O(log T) under the modified AIM policy and strengthened density condition.",
+            "accepted_bound": "0 ≤ R_T ≤ C(1 + ln T), T ≥ 1; C = max(b,h)² / (2α(b+h))",
+            "bound_type": "以已抽取的论文量词和比较基准为准",
+            "scope": "Existing corrected finite-first-moment, perishable iid 2007 author-source target with 1+log(T); not literal published-2009 equivalence or original log(T+1) display.",
+            "remaining": [],
+            "interface_ids": [
+              "censored-inventory-log-regret",
+              "newsvendor-oracle-regret"
+            ],
+            "evidence": [
+              {
+                "path": "campaigns/cwz-table2-v1/statements/source_contracts_v6_statements.json",
+                "sha256": "7a58293d02d6e992b826b707f98d03f39314b12e242d983cf5c7890853a440c1"
+              }
+            ],
+            "historical": {
+              "formal_status": "target_defined_preflight_passed_proof_pending",
+              "freeze_readiness": "complete_corrected_oracle_target",
+              "formal_targets": {
+                "upper_bound": {
+                  "run_id": "huh-newsvendor-oracle-001",
+                  "scope": "full_regret",
+                  "target_sha256": "0b48a1aee6a34ef77f8397571abfcdff9fb4f0cc4ff43a69e026add10c6ffda9"
+                }
+              },
+              "statement_gaps_as_recorded": [
+                "Published 2009 full-text equivalence remains unverified; controlling source is the inspected 2007 author manuscript.",
+                "Finite demand first moment is an explicit user-approved correction; original gap is preserved.",
+                "Literal original ln(T+1) display and optional sharper harmonic bound are not claims of this target.",
+                "No nonperishable logarithmic bound or coupled-inventory policy theorem is claimed."
+              ]
+            },
+            "proof_map": {
+              "nodes": [
+                {
+                  "id": "assumptions",
+                  "kind": "assumptions",
+                  "title": "模型与数学假设",
+                  "status": "retained",
+                  "items": [
+                    "b,h>0;Q(y)=hE(y-D)^++bE(D-y)^+",
+                    "known ybar>=yNV=inf{y>=0:F(y)>=b/(b+h)}",
+                    "perishable x_t=0",
+                    "continuous density f with inf_[0,ybar]f>=alpha>0;known alpha for step",
+                    "用户已批准的有限需求一阶矩；2007 作者稿修正版，不声称与发表版逐字等价。"
+                  ],
+                  "column": 0
+                },
+                {
+                  "id": "censored-feedback-mean",
+                  "kind": "interface",
+                  "title": "censored feedback mean",
+                  "status": "accepted_component",
+                  "interface_id": "censored-feedback-mean",
+                  "version": 1,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.NewsvendorPrimitives.censoredFeedbackMean",
+                  "receipt_sha256": "2f1d6d575e92b64656c37e16b6f38960e18e67e350c83cf9283ea61963191cbd"
+                },
+                {
+                  "id": "independent-random-cost",
+                  "kind": "interface",
+                  "title": "独立有界随机库存的成本可积性与期望恒等式",
+                  "status": "accepted_component",
+                  "interface_id": "independent-random-cost",
+                  "version": 1,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.NewsvendorOracle.random_cost",
+                  "receipt_sha256": "0bbd10ad6e5c13bc9164080517ffd587b67a82336c4404df5a0565ec7e200356"
+                },
+                {
+                  "id": "newsvendor-finite-mean-cost",
+                  "kind": "interface",
+                  "title": "有限一阶矩下固定库存成本的可积性与Lipschitz界",
+                  "status": "accepted_component",
+                  "interface_id": "newsvendor-finite-mean-cost",
+                  "version": 2,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.NewsvendorPrimitives.finiteMeanCost",
+                  "receipt_sha256": "0c5177815189f54a1f60ae3ccc7737e37ddf0a45f96c4038006d32449c1fb9cb"
+                },
+                {
+                  "id": "newsvendor-oracle-lower-bound",
+                  "kind": "interface",
+                  "title": "给定单期比较下界向期望成本有限和的传递",
+                  "status": "accepted_component",
+                  "interface_id": "newsvendor-oracle-lower-bound",
+                  "version": 1,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.NewsvendorOracle.sequence_lower",
+                  "receipt_sha256": "f8d4008009a7997fdcf2e15e24a4de405062bbbdefb23ead4010b9e64ccdd36d"
+                },
+                {
+                  "id": "newsvendor-quantile",
+                  "kind": "interface",
+                  "title": "无原子非负需求下临界下分位数的CDF等式",
+                  "status": "accepted_component",
+                  "interface_id": "newsvendor-quantile",
+                  "version": 2,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.NewsvendorOracle.quantile",
+                  "receipt_sha256": "b75a3aa8319c3348c3225f3ba0728720a5bbb8219fff3b02e66e55c8cd6647b0"
+                },
+                {
+                  "id": "projected-sgd-log",
+                  "kind": "interface",
+                  "title": "一维随机投影更新到期望对数预算",
+                  "status": "accepted_component",
+                  "interface_id": "projected-sgd-log",
+                  "version": 1,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.ProjectedSGD.projectedSGDLog",
+                  "receipt_sha256": "5ca698b98da651d5d06b99067e17e602f2110898fe4605154754dae3b3f5076d"
+                },
+                {
+                  "id": "weighted-log-budget",
+                  "kind": "interface",
+                  "title": "weighted log budget",
+                  "status": "accepted_component",
+                  "interface_id": "weighted-log-budget",
+                  "version": 2,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.RegretAccounting.weightedLogBudget",
+                  "receipt_sha256": "0fe25ff8edc43c56e8d2b1fcee001f381d4faa6fe078d1689b88e97d97e429ea"
+                },
+                {
+                  "id": "censored-inventory-log-regret",
+                  "kind": "interface",
+                  "title": "完整实际删失SGD策略界",
+                  "status": "accepted_component",
+                  "interface_id": "censored-inventory-log-regret",
+                  "version": 1,
+                  "column": 2,
+                  "proof_declaration": "ProofKB.CensoredInventorySGD.logRegret",
+                  "receipt_sha256": "5afef7463b0f761106ccc0465cd2164423ee0cb5dcc89d762e9e26870ddda1a8"
+                },
+                {
+                  "id": "newsvendor-oracle-regret",
+                  "kind": "interface",
+                  "title": "完整newsvendor oracle与实际删失SGD后悔界",
+                  "status": "accepted_component",
+                  "interface_id": "newsvendor-oracle-regret",
+                  "version": 1,
+                  "column": 3,
+                  "proof_declaration": "ProofKB.NewsvendorOracle.oracleRegret",
+                  "receipt_sha256": "453d11428329508f92b40d36ace1fbd0d7aacac9c06971fc78106964e2d6da80"
+                },
+                {
+                  "id": "regret",
+                  "kind": "regret",
+                  "title": "后悔界",
+                  "status": "accepted_full_regret",
+                  "formula": "0 ≤ R_T ≤ C(1 + ln T), T ≥ 1; C = max(b,h)² / (2α(b+h))",
+                  "column": 4,
+                  "scope": "Existing corrected finite-first-moment, perishable iid 2007 author-source target with 1+log(T); not literal published-2009 equivalence or original log(T+1) display."
+                }
+              ],
+              "edges": [
+                {
+                  "from": "censored-feedback-mean",
+                  "to": "censored-inventory-log-regret",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/verification.json",
+                    "sha256": "363ebc50cdfa3875e35d3cf955b1d63e464094949716a66f09ba98bcb29c697b"
+                  }
+                },
+                {
+                  "from": "newsvendor-finite-mean-cost",
+                  "to": "censored-inventory-log-regret",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/verification.json",
+                    "sha256": "363ebc50cdfa3875e35d3cf955b1d63e464094949716a66f09ba98bcb29c697b"
+                  }
+                },
+                {
+                  "from": "projected-sgd-log",
+                  "to": "censored-inventory-log-regret",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/verification.json",
+                    "sha256": "363ebc50cdfa3875e35d3cf955b1d63e464094949716a66f09ba98bcb29c697b"
+                  }
+                },
+                {
+                  "from": "weighted-log-budget",
+                  "to": "censored-inventory-log-regret",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/verification.json",
+                    "sha256": "363ebc50cdfa3875e35d3cf955b1d63e464094949716a66f09ba98bcb29c697b"
+                  }
+                },
+                {
+                  "from": "censored-inventory-log-regret",
+                  "to": "newsvendor-oracle-regret",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+                    "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+                  }
+                },
+                {
+                  "from": "newsvendor-quantile",
+                  "to": "newsvendor-oracle-regret",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+                    "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+                  }
+                },
+                {
+                  "from": "independent-random-cost",
+                  "to": "newsvendor-oracle-regret",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+                    "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+                  }
+                },
+                {
+                  "from": "newsvendor-oracle-lower-bound",
+                  "to": "newsvendor-oracle-regret",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+                    "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+                  }
+                },
+                {
+                  "from": "censored-feedback-mean",
+                  "to": "newsvendor-oracle-regret",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+                    "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+                  }
+                },
+                {
+                  "from": "newsvendor-finite-mean-cost",
+                  "to": "newsvendor-oracle-regret",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+                    "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+                  }
+                },
+                {
+                  "from": "projected-sgd-log",
+                  "to": "newsvendor-oracle-regret",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+                    "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+                  }
+                },
+                {
+                  "from": "weighted-log-budget",
+                  "to": "newsvendor-oracle-regret",
+                  "kind": "verified_transitive_dependency",
+                  "evidence": {
+                    "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
+                    "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
+                  }
+                },
+                {
+                  "from": "assumptions",
+                  "to": "newsvendor-quantile",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "assumptions",
+                  "to": "projected-sgd-log",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "assumptions",
+                  "to": "weighted-log-budget",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "assumptions",
+                  "to": "newsvendor-finite-mean-cost",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "assumptions",
+                  "to": "censored-feedback-mean",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "assumptions",
+                  "to": "independent-random-cost",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "assumptions",
+                  "to": "newsvendor-oracle-lower-bound",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "censored-inventory-log-regret",
+                  "to": "regret",
+                  "kind": "accepted_target_scope"
+                },
+                {
+                  "from": "newsvendor-oracle-regret",
+                  "to": "regret",
+                  "kind": "accepted_target_scope"
+                }
+              ],
+              "semantics": "Narrative assumptions and unresolved bridges are distinct from receipt-backed transitive Lean dependencies."
+            }
+          }
+        ],
+        "pdf": null,
+        "expected_pdf_sha256": [
+          "d3bd959649a22aae96d69ef05dc65279ecd02d783b7117357476144ea0f89ea8"
+        ]
       },
       {
-        "from": "censored-inventory-log-regret@v1",
-        "to": "projected-sgd-log@v1",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.ProjectedSGD.projectedSGDLog",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/verification.json",
-          "sha256": "363ebc50cdfa3875e35d3cf955b1d63e464094949716a66f09ba98bcb29c697b"
-        }
+        "id": "lei-2014",
+        "title": "Near-Optimal Bisection Search for Nonparametric Dynamic Pricing with Inventory Constraint",
+        "authors": "Yanzhe(Murray)Lei;Stefanus Jasin;Amitabh Sinha",
+        "year": 2014,
+        "doi": null,
+        "kind": "paper",
+        "origin": "existing_knowledge",
+        "targets": [
+          {
+            "id": "lei-2014",
+            "name": "主要后悔界目标",
+            "upper": {
+              "full_regret_reward": 0,
+              "last_event": "event-0047",
+              "run_ids": [
+                "lei-capacity-truncation-001",
+                "lei-adaptive-bernoulli-001",
+                "lei-policy-bridge-001",
+                "lei-fresh-block-001",
+                "lei-policy-block-001"
+              ],
+              "status": "verified_component"
+            },
+            "lower": {
+              "full_regret_reward": 0,
+              "last_event": null,
+              "run_ids": [],
+              "status": "statement_pending"
+            },
+            "assumptions": [
+              "A1: lambda is invertible, twice differentiable and strictly decreasing; |lambda'(p)| is bounded below by a positive L.",
+              "A2: price revenue r(p) is strictly unimodal, and rate revenue r(d) is strictly concave.",
+              "A3: lambda and its inverse are K-Lipschitz on their feasible domains.",
+              "A4: a shutoff price p_infinity is available, with demand vanishing as price tends to it.",
+              "A5: positive constants M_L<M_U bound rate curvature by -M_U <= r''(d) <= -M_L < 0; also M_L |p-p_u| <= |r'(p)| <= M_U |p-p_u|. The source says the latter requirement is used only for stochastic-approximation analysis.",
+              "A6: known 0<p_L<p_U bracket both p_D and unconstrained optimum p_u, within the feasible price domain.",
+              "Section3.1 additionally takes lambda(p_U)<C/T. The capacity-balancing price is p_c=p(C/T), and p_D=max(p_u,p_c)."
+            ],
+            "source_bound": "BDPA: O(theta^(3/4)*(log theta)^(1/2))；D-BDPA: O(sqrt(theta)*log theta)；SA-BDPA: O(sqrt(theta))",
+            "accepted_bound": null,
+            "bound_type": "Absolute expected capacity-relaxation revenue gap.",
+            "scope": "For the supplied algorithm with its stated tuning and admissible fixed model, as theta tends to infinity. Constants and large-theta threshold depend on fixed model parameters.",
+            "remaining": [
+              "Random block-start and data-selected simultaneous events for the concrete policy",
+              "Budget/round-maxima/horizon accounting and guard inactivity",
+              "Source-faithful binding/nonbinding oracle and complete regret"
+            ],
+            "interface_ids": [
+              "capacity-truncation",
+              "adaptive-bernoulli-moments",
+              "adaptive-stopped-capacity",
+              "fresh-bernoulli-block"
+            ],
+            "evidence": [
+              {
+                "path": "campaigns/cwz-table2-v1/statements/source_contracts_v6_statements.json",
+                "sha256": "7a58293d02d6e992b826b707f98d03f39314b12e242d983cf5c7890853a440c1"
+              }
+            ],
+            "historical": {
+              "formal_status": "adaptive_component_accepted_concrete_policy_defined_full_regret_pending",
+              "freeze_readiness": "full_source_specific_statement_or_model_obligations_remain",
+              "formal_targets": null,
+              "statement_gaps_as_recorded": [
+                "Concrete corrected D-BDPA definitions are compiled and source-mapped; eventual guard inactivity, finite-versus-unbounded round maxima and exact horizon accounting remain unproved.",
+                "The printed p_c=p(C/T) requires inverse-domain membership; lambda(p_U)<C/T alone does not establish it. No new membership assumption is approved or inserted. A full oracle formulation must handle the nonbinding case without silently strengthening the source.",
+                "Source-faithful curvature/oracle formalization, algorithm-specific estimates and complete asymptotic regret remain to freeze. SA-BDPA is a later separate goal."
+              ]
+            },
+            "proof_map": {
+              "nodes": [
+                {
+                  "id": "assumptions",
+                  "kind": "assumptions",
+                  "title": "模型与数学假设",
+                  "status": "retained",
+                  "items": [
+                    "A1: lambda is invertible, twice differentiable and strictly decreasing; |lambda'(p)| is bounded below by a positive L.",
+                    "A2: price revenue r(p) is strictly unimodal, and rate revenue r(d) is strictly concave.",
+                    "A3: lambda and its inverse are K-Lipschitz on their feasible domains.",
+                    "A4: a shutoff price p_infinity is available, with demand vanishing as price tends to it.",
+                    "A5: positive constants M_L<M_U bound rate curvature by -M_U <= r''(d) <= -M_L < 0; also M_L |p-p_u| <= |r'(p)| <= M_U |p-p_u|. The source says the latter requirement is used only for stochastic-approximation analysis.",
+                    "A6: known 0<p_L<p_U bracket both p_D and unconstrained optimum p_u, within the feasible price domain.",
+                    "Section3.1 additionally takes lambda(p_U)<C/T. The capacity-balancing price is p_c=p(C/T), and p_D=max(p_u,p_c)."
+                  ],
+                  "column": 0
+                },
+                {
+                  "id": "adaptive-bernoulli-moments",
+                  "kind": "interface",
+                  "title": "自适应Bernoulli有限树中心矩与L1波动界",
+                  "status": "accepted_component",
+                  "interface_id": "adaptive-bernoulli-moments",
+                  "version": 2,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.AdaptiveBernoulli.noise_l1",
+                  "receipt_sha256": "f2801a0c97e58674f2c9ba42593b228f757e42aa7df2702c27665cb25ef80a7b"
+                },
+                {
+                  "id": "adaptive-stopped-capacity",
+                  "kind": "interface",
+                  "title": "自适应Bernoulli停卖容量完整会计目标",
+                  "status": "accepted_component",
+                  "interface_id": "adaptive-stopped-capacity",
+                  "version": 1,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.AdaptiveBernoulli.adaptiveCapacity",
+                  "receipt_sha256": "ec042c709a084ab200d43458e9f65d7b4d66671321b56ccc10d8c5ebb9ff06a0"
+                },
+                {
+                  "id": "capacity-truncation",
+                  "kind": "interface",
+                  "title": "capacity truncation",
+                  "status": "accepted_component",
+                  "interface_id": "capacity-truncation",
+                  "version": 1,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.CapacityTruncation.truncation",
+                  "receipt_sha256": "65d45a52548fa3f198de9ceeb88e8c2203f6307d55ea626d07a7b3a5898608f3"
+                },
+                {
+                  "id": "fresh-bernoulli-block",
+                  "kind": "interface",
+                  "title": "局部恒定Bernoulli新样本块完整集中目标",
+                  "status": "accepted_component",
+                  "interface_id": "fresh-bernoulli-block",
+                  "version": 1,
+                  "column": 1,
+                  "proof_declaration": "ProofKB.FreshBernoulli.freshBlockConcentration",
+                  "receipt_sha256": "af1e2fd8d8727db61b90221ae966d3f551a101f0b99ccc927ba353d8274163b1"
+                },
+                {
+                  "id": "gap",
+                  "kind": "gap",
+                  "title": "尚待闭合的证明义务",
+                  "status": "pending",
+                  "items": [
+                    "Random block-start and data-selected simultaneous events for the concrete policy",
+                    "Budget/round-maxima/horizon accounting and guard inactivity",
+                    "Source-faithful binding/nonbinding oracle and complete regret"
+                  ],
+                  "column": 2
+                },
+                {
+                  "id": "regret",
+                  "kind": "regret",
+                  "title": "目标后悔界 · 尚未验收",
+                  "status": "pending",
+                  "formula": "BDPA: O(theta^(3/4)*(log theta)^(1/2))；D-BDPA: O(sqrt(theta)*log theta)；SA-BDPA: O(sqrt(theta))",
+                  "column": 3,
+                  "scope": "For the supplied algorithm with its stated tuning and admissible fixed model, as theta tends to infinity. Constants and large-theta threshold depend on fixed model parameters."
+                }
+              ],
+              "edges": [
+                {
+                  "from": "assumptions",
+                  "to": "adaptive-stopped-capacity",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "assumptions",
+                  "to": "adaptive-bernoulli-moments",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "assumptions",
+                  "to": "capacity-truncation",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "assumptions",
+                  "to": "fresh-bernoulli-block",
+                  "kind": "retained_conditions"
+                },
+                {
+                  "from": "capacity-truncation",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "adaptive-bernoulli-moments",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "adaptive-stopped-capacity",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "fresh-bernoulli-block",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "gap",
+                  "to": "regret",
+                  "kind": "unproved_bridge"
+                }
+              ],
+              "semantics": "Narrative assumptions and unresolved bridges are distinct from receipt-backed transitive Lean dependencies."
+            }
+          }
+        ],
+        "pdf": null,
+        "expected_pdf_sha256": [
+          "4b8ee5530c735b612252ba3ccf62df53ea6361d1b7d7fc9ab425b917bfd469a2"
+        ]
       },
       {
-        "from": "censored-inventory-log-regret@v1",
-        "to": "weighted-log-budget@v2",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.RegretAccounting.weightedLogBudget",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/verification.json",
-          "sha256": "363ebc50cdfa3875e35d3cf955b1d63e464094949716a66f09ba98bcb29c697b"
-        }
+        "id": "wang-2014",
+        "title": "Close the Gaps: A Learning-While-Doing Algorithm for Single-Product Revenue Management Problems",
+        "authors": "Zizhuo Wang;Shiming Deng;Yinyu Ye",
+        "year": 2014,
+        "doi": "10.1287/opre.2013.1245",
+        "kind": "paper",
+        "origin": "existing_knowledge",
+        "targets": [
+          {
+            "id": "wang-2014",
+            "name": "主要后悔界目标",
+            "upper": {
+              "full_regret_reward": 0,
+              "last_event": "event-0024",
+              "run_ids": [],
+              "status": "statement_pending"
+            },
+            "lower": {
+              "full_regret_reward": 0,
+              "last_event": null,
+              "run_ids": [],
+              "status": "statement_pending"
+            },
+            "assumptions": [
+              "lambda decreasing,invertible,bounded by M",
+              "lambda,composed revenue,and inverse demand K-Lipschitz",
+              "-mL<=r''(d)<=-mU<0",
+              "author text assumes deterministic optimum interior"
+            ],
+            "source_bound": "sup_{lambda in Gamma}R_n^DPA<=C(log n)^(9/2)/sqrt(n)",
+            "accepted_bound": null,
+            "bound_type": "以已抽取的论文量词和比较基准为准",
+            "scope": "For all n>=1 as printed; C depends only on M,K,mL,mU,x,T.",
+            "remaining": [
+              "Complete controlled-Poisson DPA and stopping/remaining-season model",
+              "Source-version equivalence and n=1 logarithmic endpoint resolution"
+            ],
+            "interface_ids": [],
+            "evidence": [
+              {
+                "path": "campaigns/cwz-table2-v1/statements/source_contracts_v6_statements.json",
+                "sha256": "7a58293d02d6e992b826b707f98d03f39314b12e242d983cf5c7890853a440c1"
+              }
+            ],
+            "historical": {
+              "formal_status": "not_formalized",
+              "freeze_readiness": "full_source_specific_statement_or_model_obligations_remain",
+              "formal_targets": null,
+              "statement_gaps_as_recorded": [
+                "Published/preprint equivalence remains unverified.",
+                "Complete controlled Poisson DPA policy with equations21,25-31, stopping, stockout and remaining-season behavior is not formally defined.",
+                "Printed all-n>=1 logarithmic upper display has an unresolved n=1 endpoint; any eventual n>=n0>1 repair must be labeled."
+              ]
+            },
+            "proof_map": {
+              "nodes": [
+                {
+                  "id": "assumptions",
+                  "kind": "assumptions",
+                  "title": "模型与数学假设",
+                  "status": "retained",
+                  "items": [
+                    "lambda decreasing,invertible,bounded by M",
+                    "lambda,composed revenue,and inverse demand K-Lipschitz",
+                    "-mL<=r''(d)<=-mU<0",
+                    "author text assumes deterministic optimum interior"
+                  ],
+                  "column": 0
+                },
+                {
+                  "id": "gap",
+                  "kind": "gap",
+                  "title": "尚待闭合的证明义务",
+                  "status": "pending",
+                  "items": [
+                    "Complete controlled-Poisson DPA and stopping/remaining-season model",
+                    "Source-version equivalence and n=1 logarithmic endpoint resolution"
+                  ],
+                  "column": 1
+                },
+                {
+                  "id": "regret",
+                  "kind": "regret",
+                  "title": "目标后悔界 · 尚未验收",
+                  "status": "pending",
+                  "formula": "sup_{lambda in Gamma}R_n^DPA<=C(log n)^(9/2)/sqrt(n)",
+                  "column": 2,
+                  "scope": "For all n>=1 as printed; C depends only on M,K,mL,mU,x,T."
+                }
+              ],
+              "edges": [
+                {
+                  "from": "assumptions",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "gap",
+                  "to": "regret",
+                  "kind": "unproved_bridge"
+                }
+              ],
+              "semantics": "Narrative assumptions and unresolved bridges are distinct from receipt-backed transitive Lean dependencies."
+            }
+          }
+        ],
+        "pdf": null,
+        "expected_pdf_sha256": []
       },
       {
-        "from": "newsvendor-oracle-regret@v1",
-        "to": "censored-inventory-log-regret@v1",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.CensoredInventorySGD.logRegret",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
-          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
-        }
-      },
-      {
-        "from": "newsvendor-oracle-regret@v1",
-        "to": "newsvendor-quantile@v2",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.NewsvendorOracle.quantile",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
-          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
-        }
-      },
-      {
-        "from": "newsvendor-oracle-regret@v1",
-        "to": "independent-random-cost@v1",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.NewsvendorOracle.random_cost",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
-          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
-        }
-      },
-      {
-        "from": "newsvendor-oracle-regret@v1",
-        "to": "newsvendor-oracle-lower-bound@v1",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.NewsvendorOracle.sequence_lower",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
-          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
-        }
-      },
-      {
-        "from": "newsvendor-oracle-regret@v1",
-        "to": "censored-feedback-mean@v1",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.NewsvendorPrimitives.censoredFeedbackMean",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
-          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
-        }
-      },
-      {
-        "from": "newsvendor-oracle-regret@v1",
-        "to": "newsvendor-finite-mean-cost@v2",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.NewsvendorPrimitives.finiteMeanCost",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
-          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
-        }
-      },
-      {
-        "from": "newsvendor-oracle-regret@v1",
-        "to": "projected-sgd-log@v1",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.ProjectedSGD.projectedSGDLog",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
-          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
-        }
-      },
-      {
-        "from": "newsvendor-oracle-regret@v1",
-        "to": "weighted-log-budget@v2",
-        "kind": "transitive_kernel_project_dependency",
-        "declaration": "ProofKB.RegretAccounting.weightedLogBudget",
-        "evidence": {
-          "path": "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/verification.json",
-          "sha256": "43cc039c0f84729f6e5673cfb2f91bc36d01bd15c66ba445075f560912c804c6"
-        }
+        "id": "wang-2021",
+        "title": "Multimodal Dynamic Pricing",
+        "authors": "Yining Wang;Boxiao Chen;David Simchi-Levi",
+        "year": 2021,
+        "doi": "10.1287/mnsc.2020.3819",
+        "kind": "paper",
+        "origin": "existing_knowledge",
+        "targets": [
+          {
+            "id": "wang-2021",
+            "name": "主要后悔界目标",
+            "upper": {
+              "full_regret_reward": 0,
+              "last_event": "event-0025",
+              "run_ids": [],
+              "status": "statement_pending"
+            },
+            "lower": {
+              "full_regret_reward": 0,
+              "last_event": null,
+              "run_ids": [],
+              "status": "statement_pending"
+            },
+            "assumptions": [
+              "Assumption1: f belongs to the Holder class Sigma_k([p_min,p_max];C), for integer k>=1.",
+              "f is (k-1)-times continuously differentiable; |f^(j)|<=C for 0<=j<=k-1; f^(k-1) is C-Lipschitz.",
+              "No monotonicity or revenue concavity is imposed on this main target.",
+              "Theorem1 requires T >= (p_max-p_min)^(2k+1).",
+              "Official companion p1: demand noise has conditional mean zero given all preceding prices/demands and the current price. This is a source-grounded history-conditioned primitive, not inferred from conditioning only on current price."
+            ],
+            "source_bound": "With probability 1-O(T^-1), Regret(T) <= O_tilde(sqrt(T)) + 3k*ln(2kT)*[4*max(1,C)+C*(p_max-p_min)^k]*T^((k+1)/(2k+1)).",
+            "accepted_bound": null,
+            "bound_type": "高概率后悔界",
+            "scope": "For each admissible f in the stated Holder class and the specified policy, under the theorem's horizon and model conditions. Probabilistic constants and threshold must be made explicit for a full formal target.",
+            "remaining": [
+              "Counterfactual realized-regret coupling and conditional model",
+              "Initialization, confidence radii, measurable optimizer/ties and source lower-order terms"
+            ],
+            "interface_ids": [],
+            "evidence": [
+              {
+                "path": "campaigns/cwz-table2-v1/statements/source_contracts_v6_statements.json",
+                "sha256": "7a58293d02d6e992b826b707f98d03f39314b12e242d983cf5c7890853a440c1"
+              }
+            ],
+            "historical": {
+              "formal_status": "not_formalized",
+              "freeze_readiness": "full_source_specific_statement_or_model_obligations_remain",
+              "formal_targets": null,
+              "statement_gaps_as_recorded": [
+                "Define the upper counterfactual realized-regret object and joint coupling; do not identify it with pseudo-regret without a theorem or explicit interpretation.",
+                "Encode source-resolved full-history conditional centering in the actual probability model.",
+                "Fix empty-sample confidence radius, initialization, continuous argmax existence and measurable tie-breaking.",
+                "Pin hidden lower-order logarithms, uniform constants and horizon regime if needed by the exact target.",
+                "Official companion is available through parsed primary PDF text, but local PDF-byte pinning and visual verification remain unavailable.",
+                "Parsed Lemma10 has an unrestricted SPD-matrix quantifier whereas the source uses a specific regularized Gram matrix; its literal scope requires visual/source resolution. This issue is not a finding against the full regret theorem."
+              ]
+            },
+            "proof_map": {
+              "nodes": [
+                {
+                  "id": "assumptions",
+                  "kind": "assumptions",
+                  "title": "模型与数学假设",
+                  "status": "retained",
+                  "items": [
+                    "Assumption1: f belongs to the Holder class Sigma_k([p_min,p_max];C), for integer k>=1.",
+                    "f is (k-1)-times continuously differentiable; |f^(j)|<=C for 0<=j<=k-1; f^(k-1) is C-Lipschitz.",
+                    "No monotonicity or revenue concavity is imposed on this main target.",
+                    "Theorem1 requires T >= (p_max-p_min)^(2k+1).",
+                    "Official companion p1: demand noise has conditional mean zero given all preceding prices/demands and the current price. This is a source-grounded history-conditioned primitive, not inferred from conditioning only on current price."
+                  ],
+                  "column": 0
+                },
+                {
+                  "id": "gap",
+                  "kind": "gap",
+                  "title": "尚待闭合的证明义务",
+                  "status": "pending",
+                  "items": [
+                    "Counterfactual realized-regret coupling and conditional model",
+                    "Initialization, confidence radii, measurable optimizer/ties and source lower-order terms"
+                  ],
+                  "column": 1
+                },
+                {
+                  "id": "regret",
+                  "kind": "regret",
+                  "title": "目标后悔界 · 尚未验收",
+                  "status": "pending",
+                  "formula": "With probability 1-O(T^-1), Regret(T) <= O_tilde(sqrt(T)) + 3k*ln(2kT)*[4*max(1,C)+C*(p_max-p_min)^k]*T^((k+1)/(2k+1)).",
+                  "column": 2,
+                  "scope": "For each admissible f in the stated Holder class and the specified policy, under the theorem's horizon and model conditions. Probabilistic constants and threshold must be made explicit for a full formal target."
+                }
+              ],
+              "edges": [
+                {
+                  "from": "assumptions",
+                  "to": "gap",
+                  "kind": "unproved_bridge"
+                },
+                {
+                  "from": "gap",
+                  "to": "regret",
+                  "kind": "unproved_bridge"
+                }
+              ],
+              "semantics": "Narrative assumptions and unresolved bridges are distinct from receipt-backed transitive Lean dependencies."
+            }
+          }
+        ],
+        "pdf": null,
+        "expected_pdf_sha256": [
+          "e18df9870bbbd67aafcf8ce690342b6182ee1e6f356db864d7b84fd3152208f3"
+        ]
       }
     ],
-    "kind": "transitive_kernel_project_dependency",
-    "status": "partial"
-  },
-  "mcp": {
-    "provider": "SiliconFlow",
-    "model": "deepseek-ai/DeepSeek-V4-Pro",
-    "provider_attempts": 5,
-    "tool_successes": 3,
-    "tool_errors": 2,
-    "usage": {
-      "prompt_tokens": 15329,
-      "completion_tokens": 1817,
-      "total_tokens": 17146
-    },
-    "cost_money": null,
-    "tasks": [
-      {
-        "id": "p1-hazan-log-factor-001",
-        "question": {
-          "text": "请仅核对强凸函数在线梯度法定理中显示的对数因子和时域量词：原文写 log T、1+log T、log(T+1) 还是其他形式？逐字摘录相应短公式及其 T 范围，并提供物理PDF页码、印刷页码和定理编号。不要推导或判断本库定理是否正确。",
-          "version": "v1"
-        },
-        "book": "Introduction to Online Convex Optimization",
-        "pages": {
-          "first": 68,
-          "last": 71
-        },
-        "source_sha256": "0c0678244a56006734f9114dc57b0fa9d5ff06ad62cbe4ca3222b6c61acd4e9e",
-        "job_id": "job-28bba5dc611d438faab4b71c17c40d2e",
-        "result_id": "result-d2c8ea8704a642b5b73b846ea3fdb8ff",
-        "raw_status": "unreviewed",
-        "raw_answer_status": "answered",
-        "provider_error": false,
-        "answer_summary": "Hazan Theorem 3.3 显示 G²/(2α)·(1+log T)，明确量词为所有 T≥1；步长η_t=1/(αt)。位置是物理PDF第69页、印刷第47页。",
-        "correction_summary": "Worker核心因子和T范围正确；补上漏掉的印刷页47。",
-        "resolution": "corrected_locator",
-        "scope": [
-          "这是强凸OGD的教材表述；本库weighted-log-budget仅是递推后的确定性记账定理。",
-          "不把T=0的Lean总函数约定当作教材对数约定；算法递推、有限前缀延拓另行桥接。"
-        ],
-        "review_verdict": "accept",
-        "reviewer": "/root/p1_normalization_review",
-        "review_sha256": "fa5b262add4529b727943508de7fe68568be77253b9f0c23d9f5f3fabd6d6961",
-        "locators": [
-          {
-            "pdf_page": 69,
-            "printed_page": "47"
-          },
-          {
-            "pdf_page": 69,
-            "printed_page": "47"
-          }
-        ],
-        "attempts": [
-          {
-            "status": "succeeded",
-            "usage": {
-              "completion_tokens": 152,
-              "completion_tokens_details": {
-                "reasoning_tokens": 0
-              },
-              "prompt_cache_hit_tokens": 0,
-              "prompt_cache_miss_tokens": 2418,
-              "prompt_tokens": 2418,
-              "prompt_tokens_details": {
-                "cached_tokens": 0
-              },
-              "total_tokens": 2570
-            },
-            "model": "deepseek-ai/DeepSeek-V4-Pro"
-          }
-        ]
-      },
-      {
-        "id": "p1-censored-feedback-001",
-        "question": {
-          "text": "在这些页中，单周期或易腐库存模型每期可观察的销量/需求信息如何定义？请给出定义它的原文短摘录、符号与页码。若此范围没有明确说明，回答 not_found_in_scope，不推断全文没有该定义，也不自行补出条件无偏性。",
-          "version": "v1"
-        },
-        "book": "The Elements of Joint Learning and Optimization in OM",
-        "pages": {
-          "first": 277,
-          "last": 281
-        },
-        "source_sha256": "7a5c80fc8fb7a8176459fa7d57f7d00e696566cb87019a319fe2f1b13fcb4428",
-        "job_id": "job-ea11dd4ac9bd401cafa8055ee21fe3dd",
-        "result_id": "result-76f962667938474588f43eb23366b702",
-        "raw_status": "unreviewed",
-        "raw_answer_status": "not_found_in_scope",
-        "provider_error": false,
-        "answer_summary": "在§11.2.1的单周期/重复新闻商模型中，订货量x_t、需求D_t，每期观察的销量是min(x_t,D_t)。物理280页、印刷276页；此处已有明确模型描述，无需另设一个通用Definition段落。",
-        "correction_summary": "Worker错误地额外要求通用定义段落并返回not_found_in_scope；用页面上的明确销量句纠正。",
-        "resolution": "corrected_false_not_found",
-        "scope": [
-          "已知y与销量min(y,D)可识别D<y；销量=y不能区分D=y和D>y。",
-          "固定y的均值公式不自动给出自适应条件无偏或成本导数；原书本页成本p与临界分位数b的符号不一致另记。"
-        ],
-        "review_verdict": "accept",
-        "reviewer": "/root/p1_normalization_review",
-        "review_sha256": "fa5b262add4529b727943508de7fe68568be77253b9f0c23d9f5f3fabd6d6961",
-        "locators": [
-          {
-            "pdf_page": 280,
-            "printed_page": "276"
-          },
-          {
-            "pdf_page": 280,
-            "printed_page": "276"
-          }
-        ],
-        "attempts": [
-          {
-            "status": "succeeded",
-            "usage": {
-              "completion_tokens": 252,
-              "completion_tokens_details": {
-                "reasoning_tokens": 0
-              },
-              "prompt_cache_hit_tokens": 0,
-              "prompt_cache_miss_tokens": 3729,
-              "prompt_tokens": 3729,
-              "prompt_tokens_details": {
-                "cached_tokens": 0
-              },
-              "total_tokens": 3981
-            },
-            "model": "deepseek-ai/DeepSeek-V4-Pro"
-          }
-        ]
-      },
-      {
-        "id": "p1-hoeffding-premises-001",
-        "question": {
-          "text": "Corollary 5.5 对样本变量的独立性、中心化和次高斯参数有哪些明确前提？请逐条返回原文短摘录及位置，另标出它显示的是单侧还是双侧概率式。不要将它推广到自适应随机起点。",
-          "version": "v1"
-        },
-        "book": "Bandit Algorithms",
-        "pages": {
-          "first": 86,
-          "last": 87
-        },
-        "source_sha256": "63340edca211ae4204e4ca93fab496c89ff21f5ef9acbabc5d1ebf730d23de9d",
-        "job_id": "job-4bc8d972a1b849f99da5af01d1f99703",
-        "result_id": "result-8cb99bb9cea149d592ee6dab41ef2e5a",
-        "raw_status": "unreviewed",
-        "raw_answer_status": "answered",
-        "provider_error": false,
-        "answer_summary": "Corollary 5.5 要求X_i−μ独立且均为共同参数σ的σ-subgaussian；显示ε≥0下两个分别的单侧概率界，各为exp(−nε²/(2σ²))。位置物理87页、印刷78页；不是带系数2的单一双侧式，也没有明确要求同分布。",
-        "correction_summary": "Worker答案与原页一致；保留独立corroborated收据。",
-        "resolution": "corroborated_source_answer",
-        "scope": [
-          "Definition 5.2采用未中心化mgf定义σ-subgaussian，Lemma 5.4给出零均值，因此这里对X_i−μ施加该条件。",
-          "不推广到自适应随机起点或停时；不是三个试点定理的新增Lean依赖。"
-        ],
-        "review_verdict": "accept",
-        "reviewer": "/root/p1_normalization_review",
-        "review_sha256": "fa5b262add4529b727943508de7fe68568be77253b9f0c23d9f5f3fabd6d6961",
-        "locators": [
-          {
-            "pdf_page": 87,
-            "printed_page": "78"
-          }
-        ],
-        "attempts": [
-          {
-            "status": "succeeded",
-            "usage": {
-              "completion_tokens": 298,
-              "completion_tokens_details": {
-                "reasoning_tokens": 0
-              },
-              "prompt_cache_hit_tokens": 0,
-              "prompt_cache_miss_tokens": 1928,
-              "prompt_tokens": 1928,
-              "prompt_tokens_details": {
-                "cached_tokens": 0
-              },
-              "total_tokens": 2226
-            },
-            "model": "deepseek-ai/DeepSeek-V4-Pro"
-          }
-        ]
-      },
-      {
-        "id": "p1-newsvendor-cdf-001",
-        "question": {
-          "text": "在隐式单周期新闻商模型的这些页中，期望成本的一阶导数如何写成CDF？请核对需求分布假设、CDF采用D≤S还是D<S、过量/缺货成本记号，并引用关键原文或短公式。仅报告这些页实际内容，不将连续分布结论推广到原子分布。",
-          "version": "v1"
-        },
-        "book": "Fundamentals of Supply Chain Theory",
-        "pages": {
-          "first": 125,
-          "last": 129
-        },
-        "source_sha256": "d016d39ea5ebb4b6bb99d963ecbab0a300bf0810bd99b0f5bf411fcb274b9adf",
-        "job_id": "job-1a91b0f2a57343199a2b83e8e1413945",
-        "result_id": null,
-        "raw_status": "error",
-        "raw_answer_status": null,
-        "provider_error": true,
-        "answer_summary": "隐式新闻商模型令h为过量成本、p为缺货成本；该段采用连续需求并用密度作积分。式(4.15)写g′(S)=(h+p)F(S)−p，物理128/印刷93页；物理129/印刷94页明确F(S)=P(D≤S)。",
-        "correction_summary": "原Worker候选含省略号拼接、公式改写及成本引文错页，被MCP拒收；此记录是协调者本地来源更正，不是新的Worker返回。",
-        "resolution": "local_replacement_of_rejected_candidate",
-        "scope": [
-          "明确映射S→y、p→b；F(y)与P(D<y)只在y无原子时相同。",
-          "成本可积性/可微性及最优临界分位数不是既有反馈均值定理自动提供；不把一般原子分布视为本书连续密度分析的结论。"
-        ],
-        "review_verdict": "accept",
-        "reviewer": "/root/p1_normalization_review",
-        "review_sha256": "fa5b262add4529b727943508de7fe68568be77253b9f0c23d9f5f3fabd6d6961",
-        "locators": [
-          {
-            "pdf_page": 126,
-            "printed_page": "91"
-          },
-          {
-            "pdf_page": 127,
-            "printed_page": "92"
-          },
-          {
-            "pdf_page": 128,
-            "printed_page": "93"
-          },
-          {
-            "pdf_page": 129,
-            "printed_page": "94"
-          }
-        ],
-        "attempts": [
-          {
-            "status": "succeeded",
-            "usage": {
-              "completion_tokens": 664,
-              "completion_tokens_details": {
-                "reasoning_tokens": 0
-              },
-              "prompt_cache_hit_tokens": 0,
-              "prompt_cache_miss_tokens": 4171,
-              "prompt_tokens": 4171,
-              "prompt_tokens_details": {
-                "cached_tokens": 0
-              },
-              "total_tokens": 4835
-            },
-            "model": "deepseek-ai/DeepSeek-V4-Pro"
-          }
-        ]
-      },
-      {
-        "id": "p1-capacity-convention-001",
-        "question": {
-          "text": "这些页如何定义库存容量、销售过程和售罄后的动作？请指出需求过程是连续时间Poisson过程还是离散需求序列、价格是否可根据历史自适应、停卖/容量约束的具体表达，逐项给原文短引文。不要声称存在离散同一路径的截断收入损失定理，除非这些页明文陈述。",
-          "version": "v1"
-        },
-        "book": "The Elements of Joint Learning and Optimization in OM",
-        "pages": {
-          "first": 112,
-          "last": 115
-        },
-        "source_sha256": "7a5c80fc8fb7a8176459fa7d57f7d00e696566cb87019a319fe2f1b13fcb4428",
-        "job_id": "job-bdccafd5d2b74d00b9d5d98438e66a65",
-        "result_id": null,
-        "raw_status": "error",
-        "raw_answer_status": null,
-        "provider_error": true,
-        "answer_summary": "§5.2以初始库存x、季节内无补货和Poisson到达λ(p(t))建模；可行策略为非预见价格过程且累计需求不超过x几乎必然。另有λ(p∞)=0的停卖价格。物理113/印刷104页脚注明确给出离散时间到达概率解释；物理114/印刷105页给策略与容量限制。所选页没有逐字陈述售罄即刻设p∞的规则，也没有本库同一路径截断收入损失定理。",
-        "correction_summary": "原候选引文经拼接和公式清理均不匹配，且把non-anticipating译为非预期并漏脚注；本地更正为非预见，并保留原文对离散化的说明。",
-        "resolution": "local_replacement_of_rejected_candidate",
-        "scope": [
-          "停卖价格和容量可行性支持停卖解释，不能伪造成原文售罄动作引文。",
-          "与本库离散同一路径的容量代数相关但模型不同；不同自适应策略比较仍需耦合，随机积分/期望溢出/全后悔另行证明。"
-        ],
-        "review_verdict": "accept",
-        "reviewer": "/root/p1_normalization_review",
-        "review_sha256": "fa5b262add4529b727943508de7fe68568be77253b9f0c23d9f5f3fabd6d6961",
-        "locators": [
-          {
-            "pdf_page": 113,
-            "printed_page": "104"
-          },
-          {
-            "pdf_page": 113,
-            "printed_page": "104"
-          },
-          {
-            "pdf_page": 113,
-            "printed_page": "104"
-          },
-          {
-            "pdf_page": 113,
-            "printed_page": "104"
-          },
-          {
-            "pdf_page": 114,
-            "printed_page": "105"
-          }
-        ],
-        "attempts": [
-          {
-            "status": "succeeded",
-            "usage": {
-              "completion_tokens": 451,
-              "completion_tokens_details": {
-                "reasoning_tokens": 0
-              },
-              "prompt_cache_hit_tokens": 0,
-              "prompt_cache_miss_tokens": 3083,
-              "prompt_tokens": 3083,
-              "prompt_tokens_details": {
-                "cached_tokens": 0
-              },
-              "total_tokens": 3534
-            },
-            "model": "deepseek-ai/DeepSeek-V4-Pro"
-          }
-        ]
-      }
-    ],
-    "physical_pages": 20,
-    "later_phases_new_calls": 0,
-    "excluded_book": "Online Algorithms for Revenue Management"
-  },
-  "input_sha256": {
-    "02_mathematical_interfaces/registry.json": "df853609fb94a81a8279f0cbff2761342203ebd554c2494fb9e5f26c158ae20d",
-    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v1/interface.json": "d6d40ce310df06227138e153ae64f19bc32f8de715ad9524fc5c1fcba15516a4",
-    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v1/definitions.md": "464a09a34066884dbb80463983bcd8d61c1e5e64921bf357671f19d3083cb8fa",
-    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v1/lemmas.md": "6b3507bee6bc36cd922d451ea493c83117ccac13da9417301579facdad6c8856",
-    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v1/theorems.md": "9961a3ee87bd1c48d18d023f59b317bfe959ee35c05c338bee7b73bed57a90ea",
-    "02_mathematical_interfaces/inventory/censored-feedback-mean/v1/interface.json": "dc31ffac03bfb5c576cacc8d85619cd8834f2a4981d24f0bad1c2c2e16cd344b",
-    "02_mathematical_interfaces/inventory/censored-feedback-mean/v1/definitions.md": "bcbb4093a90bdc5a224ee743451b45f516b601d5f1fc28e73feb6b70d1b829ba",
-    "02_mathematical_interfaces/inventory/censored-feedback-mean/v1/lemmas.md": "af15b7f17db51c65df96ee20948c77daa8b69d5825835ab18b801cc507739c35",
-    "02_mathematical_interfaces/inventory/censored-feedback-mean/v1/theorems.md": "feec8f89d1453a8008e10a6260f23b4ffe697d97f4f29a655e3e66bb06732ede",
-    "02_mathematical_interfaces/revenue_management/capacity-truncation/v1/interface.json": "84e828d5defefde2fa365562231eeca51f75729754ba006ad34e2cec9a83f3fe",
-    "02_mathematical_interfaces/revenue_management/capacity-truncation/v1/definitions.md": "85bff82d8c0686ab985662976814464ab72cc32db3e72c294a8de02d560498c3",
-    "02_mathematical_interfaces/revenue_management/capacity-truncation/v1/lemmas.md": "8d714df875057584bd6bb38d2695e00710d9c032bd4e41014c0f20391e416534",
-    "02_mathematical_interfaces/revenue_management/capacity-truncation/v1/theorems.md": "acfa1de4025c470f8208ee98bdbee509a0bb547238abdf2caeee71d68b8a35d6",
-    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v2/interface.json": "f0880332ed0a022e600b4a5b765a4954fcee27c4dac2e3d12f3145f156abbe23",
-    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v2/definitions.md": "c7a429eba2d8c740e9a70ef6425724e0ed05e924f965985d430874b38c0ff111",
-    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v2/lemmas.md": "6b3507bee6bc36cd922d451ea493c83117ccac13da9417301579facdad6c8856",
-    "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v2/theorems.md": "9961a3ee87bd1c48d18d023f59b317bfe959ee35c05c338bee7b73bed57a90ea",
-    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v1/interface.json": "1432fc534ba65e3334e8524baf8ea063ecc911604952dfeea2846af104748882",
-    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v1/definitions.md": "bc8cfa09138b982ca73b47c17157235a4594e718078fa0ca83d7e0f62ce481f8",
-    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v1/lemmas.md": "b431ffb15f8f44948d03dab291ecc6d833bb105d20312d1e0303d70f0c938ab4",
-    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v1/theorems.md": "fe44ca9ceb68e016bad8c002207db7002fc0663481bc6eeef9caedc9a5aeef72",
-    "02_mathematical_interfaces/inventory/newsvendor-quantile/v1/interface.json": "3a1508063cf8d0280063e200d1e62d32810f0392293ac252f8408eab54b4e6f7",
-    "02_mathematical_interfaces/inventory/newsvendor-quantile/v1/definitions.md": "584346956e2c385d30d98ac8abd72303c7b20f6ff2503f096cb521cf9a5f14d8",
-    "02_mathematical_interfaces/inventory/newsvendor-quantile/v1/lemmas.md": "d722867693f8f63e4e0adbbfea96a7c80d658fd767ed693e10bc325d6aa8e2d0",
-    "02_mathematical_interfaces/inventory/newsvendor-quantile/v1/theorems.md": "dfd5911d0b2bd05dbb306b43297c71696f8ec45eafab1863d45ce66d2335e444",
-    "02_mathematical_interfaces/inventory/independent-random-cost/v1/interface.json": "d08e53cfa854e76dcc623efdf5a1a99f078dfe55a7bdd9509943c78a7e9fec7f",
-    "02_mathematical_interfaces/inventory/independent-random-cost/v1/definitions.md": "fc539f25685d0c2489889dbbb97bfe9fda21c73b061216695e3b83ba99d3880d",
-    "02_mathematical_interfaces/inventory/independent-random-cost/v1/lemmas.md": "ce004e0aea2049076795634c1e85709aabf2cf98183df9c9e8f45f9c75b00c1b",
-    "02_mathematical_interfaces/inventory/independent-random-cost/v1/theorems.md": "c068cae1d53454083b2dc7e38d8a5160ed5fd5c4e3dba18c83f6d6684d4bfb35",
-    "02_mathematical_interfaces/optimization/projected-sgd-log/v1/interface.json": "44e2279e1a513c29184fd51615aefb2eba8bd3056086e46d92c77186d993f77f",
-    "02_mathematical_interfaces/optimization/projected-sgd-log/v1/definitions.md": "f211e6376dfff04f3aa440a48ee04b2ffb1e6a7fbf7eb84d2a8c153e0f904074",
-    "02_mathematical_interfaces/optimization/projected-sgd-log/v1/lemmas.md": "70eb55f7eff1514032536d014ab55128dcbfbec8df4c94f4a3d029989d28b37e",
-    "02_mathematical_interfaces/optimization/projected-sgd-log/v1/theorems.md": "c4feae5ae9747ccec9310942083ffa0398e764a3d1e7fa33b6e1c1f46729666f",
-    "02_mathematical_interfaces/regret_accounting/geometric-stage-budget/v1/interface.json": "911868e65d3a73985a1056b045904259c10134f5ecb868d9b8caf38df854df5f",
-    "02_mathematical_interfaces/regret_accounting/geometric-stage-budget/v1/definitions.md": "f29e4cf2b1465d29352e0e10be9695edcd86c3aae2f5528b58de636f28bee85e",
-    "02_mathematical_interfaces/regret_accounting/geometric-stage-budget/v1/lemmas.md": "03f9a9a990e17901df79c47d817ab178105f49ee9a5b1479851b48364dd27385",
-    "02_mathematical_interfaces/regret_accounting/geometric-stage-budget/v1/theorems.md": "3bcb924d709b62c872c8172ecd546799a75da635d021e1a65418b4eaf6089294",
-    "02_mathematical_interfaces/inventory/newsvendor-oracle-lower-bound/v1/interface.json": "550219d39d7b87ff0b255370e39e7a070a3d30bb657150a1de728ffabe5d90ce",
-    "02_mathematical_interfaces/inventory/newsvendor-oracle-lower-bound/v1/definitions.md": "fff26677dfc7183dee035492c7b0a3f4e6a337b0a7dcc6960a523275d1316395",
-    "02_mathematical_interfaces/inventory/newsvendor-oracle-lower-bound/v1/lemmas.md": "03080a9b6a3b735479b1a8f65d9226c9132472c6c8784d868b57a08bb3e13ab9",
-    "02_mathematical_interfaces/inventory/newsvendor-oracle-lower-bound/v1/theorems.md": "a3d4d07f5d12cd051e881b9dda21de7f86bd5f3a3d316fd4e79fdfa6bc02f1f9",
-    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v2/interface.json": "4d0aef51f1e2eba32ad482ecde445cbe8c18b71140b4df0d3588cce965c48e5e",
-    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v2/definitions.md": "bc8cfa09138b982ca73b47c17157235a4594e718078fa0ca83d7e0f62ce481f8",
-    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v2/lemmas.md": "b431ffb15f8f44948d03dab291ecc6d833bb105d20312d1e0303d70f0c938ab4",
-    "02_mathematical_interfaces/inventory/newsvendor-finite-mean-cost/v2/theorems.md": "fe44ca9ceb68e016bad8c002207db7002fc0663481bc6eeef9caedc9a5aeef72",
-    "02_mathematical_interfaces/inventory/newsvendor-quantile/v2/interface.json": "5d9619e9ccffa6deed3035e860c8298e51d76466b7a0f1d91b785c02f6c6e8b9",
-    "02_mathematical_interfaces/inventory/newsvendor-quantile/v2/definitions.md": "584346956e2c385d30d98ac8abd72303c7b20f6ff2503f096cb521cf9a5f14d8",
-    "02_mathematical_interfaces/inventory/newsvendor-quantile/v2/lemmas.md": "d722867693f8f63e4e0adbbfea96a7c80d658fd767ed693e10bc325d6aa8e2d0",
-    "02_mathematical_interfaces/inventory/newsvendor-quantile/v2/theorems.md": "dfd5911d0b2bd05dbb306b43297c71696f8ec45eafab1863d45ce66d2335e444",
-    "02_mathematical_interfaces/probability/running-maximum-square/v1/interface.json": "364d5e9a9e16cc15106a272ae9cd8c840085260e9f003cc488225f192407cf2d",
-    "02_mathematical_interfaces/probability/running-maximum-square/v1/definitions.md": "acec17c4552b855f13c467e4d479b60572de8c6b0b95d7c01c7457a7a6e723a2",
-    "02_mathematical_interfaces/probability/running-maximum-square/v1/lemmas.md": "24d7d2f8729ff4f16df7225c7ea5610729b1bd693e3ef3d3c4b45e3647f926bf",
-    "02_mathematical_interfaces/probability/running-maximum-square/v1/theorems.md": "6212570f543d488c13d93918d610f6eaeaffb02ba88f39b133e0a4de552cac0b",
-    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v1/interface.json": "60765651db4dcec39e7f1b491987a9f72a7d7af9a7476815ded02e3cc258321a",
-    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v1/definitions.md": "524a2b69f912a6145d3e2a43d40febb84114e0bc2fbcebcaf0607be679629470",
-    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v1/lemmas.md": "d3a7221c8459e840864325ea67297c98088f093e3caad8dff192f772e3c671f0",
-    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v1/theorems.md": "21ea5ef03b8bc583273d62c86dc89bb5e3f1608a71c39e2622e87441eee025bf",
-    "02_mathematical_interfaces/probability/predictable-submartingale-gain/v1/interface.json": "7f49d5911b1d6279d8e37c1b81b075b94ad0bdbec143ea8ea60b8439b9ebbc26",
-    "02_mathematical_interfaces/probability/predictable-submartingale-gain/v1/definitions.md": "6d2c5b6d813286726e53cf37941040ffecef04b08240c4e0fd23a675838b2f3d",
-    "02_mathematical_interfaces/probability/predictable-submartingale-gain/v1/lemmas.md": "f2e8210e9190cf0c87275621efa571beb886f4206dc65d9b9e52a80cda10adb2",
-    "02_mathematical_interfaces/probability/predictable-submartingale-gain/v1/theorems.md": "c6e81d3725239af75d157eb5876e6ebdf85b3a3cdc469c8b8d9eb6d67fd6aae9",
-    "02_mathematical_interfaces/probability/adaptive-stopped-capacity/v1/interface.json": "5cd66bb7408dbeb5b31bf7d799ab8b79c7b472668b4f500c72e67551f9d7f1fc",
-    "02_mathematical_interfaces/probability/adaptive-stopped-capacity/v1/definitions.md": "524a2b69f912a6145d3e2a43d40febb84114e0bc2fbcebcaf0607be679629470",
-    "02_mathematical_interfaces/probability/adaptive-stopped-capacity/v1/lemmas.md": "9f472cd1bf4aa9a0eb386f6435b7aecb4562b65ab1855cd8d85a51b314b3e945",
-    "02_mathematical_interfaces/probability/adaptive-stopped-capacity/v1/theorems.md": "2cff3922de360cd64a9d43d78acf7378e1f98b9b3a89df7a5987ac18e03085cf",
-    "02_mathematical_interfaces/probability/fresh-bernoulli-block/v1/interface.json": "63a5858464d7c2cf4ee37c1f2357c6b6840fed8f949d9241925be2b8b2fc2d34",
-    "02_mathematical_interfaces/probability/fresh-bernoulli-block/v1/definitions.md": "fcf461906fe497deb9c8ffebfb7f6e3933d51c12640ece5448b57085c9f0cbf1",
-    "02_mathematical_interfaces/probability/fresh-bernoulli-block/v1/lemmas.md": "6115b7defa8e6c7046901c9f0804d9b4b752aa88d6e42f8210948a736b442f78",
-    "02_mathematical_interfaces/probability/fresh-bernoulli-block/v1/theorems.md": "c612dc00255b46e498e51fae587ce89dfffbab704b6d71ac026090ba870881e4",
-    "02_mathematical_interfaces/probability/doob-l2-maximal/v1/interface.json": "d12800d0efc91061f2201bda52e329b731f5d4837690494ad2103a2ad0377fab",
-    "02_mathematical_interfaces/probability/doob-l2-maximal/v1/definitions.md": "481ecb12890287862422d4dc9d6ecc3b2e0e3e9c68fc986ef3a4cf943d277479",
-    "02_mathematical_interfaces/probability/doob-l2-maximal/v1/lemmas.md": "529954ac1ffdb5a1c5404e8b9ba24a714617eb88482eb07bee99a1b78d9034ef",
-    "02_mathematical_interfaces/probability/doob-l2-maximal/v1/theorems.md": "11bcfed148e7c973ec67cf4902cdb6ca961bbea5a51c2332a4cb3e1890a59b1f",
-    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v2/interface.json": "2cc1e5097752eedc42ccd65ba5c9caecc370901cb748be0789c83353d9c012e8",
-    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v2/definitions.md": "524a2b69f912a6145d3e2a43d40febb84114e0bc2fbcebcaf0607be679629470",
-    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v2/lemmas.md": "d3a7221c8459e840864325ea67297c98088f093e3caad8dff192f772e3c671f0",
-    "02_mathematical_interfaces/probability/adaptive-bernoulli-moments/v2/theorems.md": "21ea5ef03b8bc583273d62c86dc89bb5e3f1608a71c39e2622e87441eee025bf",
-    "02_mathematical_interfaces/composition/cwz-quadratic-grid/v1/interface.json": "866a209530517215611ac22247bdb805a39e917f858bfe226f3d6c3ffd8c79d5",
-    "02_mathematical_interfaces/composition/cwz-quadratic-grid/v1/definitions.md": "35365e0934e4671ba69e94710a97197254f9efea832cf3a957cc887befc6b469",
-    "02_mathematical_interfaces/composition/cwz-quadratic-grid/v1/lemmas.md": "ce159ccb71a8ce5a98f7fbb2e42f7de543a08d8bf1085b703920125e19980539",
-    "02_mathematical_interfaces/composition/cwz-quadratic-grid/v1/theorems.md": "abb4b7c6daaa478dcd193975c0cfc735607755ae438560718dce995c9d829f9d",
-    "02_mathematical_interfaces/composition/cwz-tournament-path/v1/interface.json": "993b2b5cab4e3f9defe3d56de3cc8c2912ab2969fb9c623e133f6c0a3e5c1d88",
-    "02_mathematical_interfaces/composition/cwz-tournament-path/v1/definitions.md": "a996a265d29a0d5de3a14572c652e2ec343c644276f8d071afd9cc653c026419",
-    "02_mathematical_interfaces/composition/cwz-tournament-path/v1/lemmas.md": "eda04afb36eabb41b5ddcd0e3d0ecee65137777ce77d28a980fa4ffca3f12349",
-    "02_mathematical_interfaces/composition/cwz-tournament-path/v1/theorems.md": "b4a7998fa7bb570cb0ec6815ac4a0ed1d821c119ebc33b8a613bc30c3ec0f01a",
-    "02_mathematical_interfaces/composition/cwz-anchor-elimination/v1/interface.json": "ea7ec3bad307e2d9589f84ce85d42f7aae546ff6da82ce0bfe5b6dbe2a8a3507",
-    "02_mathematical_interfaces/composition/cwz-anchor-elimination/v1/definitions.md": "4e9ace3f3833f43ca55365132f095a635276fda1ecbea0a765585dbe84428110",
-    "02_mathematical_interfaces/composition/cwz-anchor-elimination/v1/lemmas.md": "27b7f2b650c6dc47494e93f8290f09b32a9bd2921abd951fbefdec24a1435ba3",
-    "02_mathematical_interfaces/composition/cwz-anchor-elimination/v1/theorems.md": "f24d334890f5ceda92302fd615df9e5850fe6ebad29846cc533c8e081cd5d2d2",
-    "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/interface.json": "125e6938ad885baa4d3b599187d47270d0fed0185f73d2f4af9eb6a17f622371",
-    "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/definitions.md": "d74cdeb452435d0e2da9ef1dc03a4e4763a9d787bd9680aeab97038e33c8b98c",
-    "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/lemmas.md": "8bc5aba505bb828bf7c12ecc38115381a7114bcb3c68a09729e119b00d257512",
-    "02_mathematical_interfaces/composition/cwz-deterministic-composition/v1/theorems.md": "d507591ed899b99d98af9b8e5e0c172bf9216ec811344024492e8c36c0b51217",
-    "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/interface.json": "346864f79be8be08f05e8f3b181087a57c368bcc070f8d9503d20a53729ab04e",
-    "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/definitions.md": "f3d578ef0050ab1ed1756a9cf678e0c886e84aa9dc7e1d170dd139287c975613",
-    "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/lemmas.md": "95c22006cefd61bddeb60ffb8d450af8599e086704066ba0d1e214bcc1c606b2",
-    "02_mathematical_interfaces/composition/censored-inventory-log-regret/v1/theorems.md": "bca499d299a8e4d854e8c60411618c8439ff9c96b315682de85335383cfb067f",
-    "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/interface.json": "38b27031b9cf580e7b348cf996332a9c818c653424f59f26c982384e45bf0564",
-    "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/definitions.md": "45c593b07d2fa463a4a61e36be9ff542ea69c252936c7ff703a812271f9f69a8",
-    "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/lemmas.md": "04579071ecdbb663187f545d0a8dc31225ca3301ce859629dde290c76b75b208",
-    "02_mathematical_interfaces/composition/newsvendor-oracle-regret/v1/theorems.md": "516c0ffa3d32da20fc193fcd2d6c104df60e3e847f3fa817a8df5de40c56cd5a",
-    "02_mathematical_interfaces/normalization/p4-2026-10-15/paper-scope-ledger.json": "c1cb1efe5c816630ee07312dbdd16926c2a6fa3c2820d43b9f238de0a14848d6",
-    "01_raw_knowledge/migrations/p1-deepseek-2026-10-13/execution-summary.json": "94101976da505165617f618cd353e988d33cc6a2802fb7ee831a98b2bf584f0e",
-    "02_mathematical_interfaces/normalization/p1-2026-10-13/source-answers.json": "f77ec67d35d0f88eafc33315675a20aa8e5b468981ff7cefa218036921eebb13",
-    "02_mathematical_interfaces/normalization/p1-2026-10-13/reviews/p1-source-answers-independent-review.json": "fa5b262add4529b727943508de7fe68568be77253b9f0c23d9f5f3fabd6d6961",
-    "exports/catalog.json": "fbe0c979e1cc4187f572aff127aadbfc0d28754e10abff6822b01084dd7cfb60",
-    "01_raw_knowledge/migrations/p4-2026-10-15/cross-interface-dependencies.json": "c3e50f95ddd206b52f6cb89355636f572212c5fe301b048a4add0f451ad3da78",
-    "02_mathematical_interfaces/normalization/p1-2026-10-13/closeout.json": "d34c6537ae40cf6e1cf2078166c132e5de468f0a9d10f8268367d7e50fe8e915",
-    "02_mathematical_interfaces/normalization/p2-2026-10-13/closeout.json": "17a6e0f63ab3c533d394d0b2e46ae711278e9d7af94ba92b238fc39b1633792f",
-    "02_mathematical_interfaces/normalization/p3-2026-10-15/closeout.json": "207cdb8c4d888eb47d7a82f60c40eef82159b774cc040a807715a4a4c9a12c3b",
-    "02_mathematical_interfaces/normalization/p4-2026-10-15/closeout.json": "bb5bf0d616920d4ed2832e8d2d38e127ef8d734caba747a7fe9a4721cb391466"
+    "unlimited_records": true,
+    "manifest_filename": "paper-pool.json",
+    "pdf_directory": "pdfs"
   }
 }
