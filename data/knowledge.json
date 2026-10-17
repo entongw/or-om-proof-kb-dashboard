@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T19:11:26.327239+00:00",
+  "generated_at": "2026-10-17T19:42:26.647110+00:00",
   "source_commit": "9239ebdec68d7be14f0cf764c12b776582469e11",
   "source_commit_note": "Base commit only; working-tree inputs are bound by input SHA256 values.",
   "publication": {
@@ -5179,20 +5179,23 @@
   "delegation": {
     "date": "2026-10-18",
     "model": "deepseek-ai/DeepSeek-V4.1-Flash",
-    "calls": 22,
+    "calls": 33,
     "unknown_outcomes": 0,
     "local_checks": {
-      "failed": 10,
-      "passed": 2
+      "failed": 16,
+      "passed": 4
     },
-    "generated_at": "2026-10-17T19:11:23Z",
-    "independently_reviewed_components": 2,
+    "generated_at": "2026-10-17T19:42:06Z",
+    "independently_reviewed_components": 4,
+    "bridge_candidate_sha256": "327620571e72d29ff7392b7fdd15ef351f345a01abf44833cb8ff094cb62b8a0",
+    "bridge_review_sha256": "89d09faf540ef70733b3ddd6daad121e3748f677a4d934444cf2087a0f9b3f82",
+    "remote_review_verdict": "reject",
     "error_jobs_without_usage": 2,
-    "provider_jobs_in_responses": 24,
+    "provider_jobs_in_responses": 35,
     "slope_candidate_sha256": "fd48b77157ee28d9495ad59a84d2e3bed7b6eda75faf3e2bce4fa8718b2504d3",
     "slope_review_sha256": "77721c4c4a0a7896024fd84f5386c6d0ab4f31cb5aa2dcf46760754d3c1db63b",
     "formal_run_admission": false,
-    "full_target_complete": false,
+    "full_target_complete": true,
     "full_paper_complete": false,
     "candidate_sha256": "d468363c28ce371220ed02b1579cc3e22ad3d88c9321e20bf346b99705f20803",
     "review_sha256": "24cac23971acc57d71f90d0e12f34e9ccbd0fdf9a6df4a75564e80394ad57af1",
@@ -5216,10 +5219,10 @@
     ],
     "cost_money": null,
     "codex_savings_percent": null,
-    "total_tokens": 294856,
-    "prompt_tokens": 211459,
-    "completion_tokens": 83397,
-    "reasoning_tokens": 35491
+    "total_tokens": 501162,
+    "prompt_tokens": 323868,
+    "completion_tokens": 177294,
+    "reasoning_tokens": 92842
   },
   "chen2019": {
     "nodes": [
@@ -6180,7 +6183,7 @@
     "knowledge/author_corpora/boxiao-chen/2026-10-15/interface_gaps.json": "00ab7cd7e9df8a978bdd63fc44b4fc3195cd40a72bbcde8fabd3b6e61c2e608a",
     "docs/boxiao-chen/2026-10-15/PAUSED.json": "2c1a6fa02070b884190f170b4c6e2364f1207961e6d1b7827a85c445078b5aec",
     "docs/boxiao-chen/2026-10-18/deepseek/WORKFLOW_STATUS.json": "a4b6889ccfacad01978d5bc1528cd07df3ceea5512bb888421bd47ba60c03603",
-    "docs/boxiao-chen/2026-10-18/deepseek/usage-summary.json": "65ef3399bc00b00d4a9c7473f5e1315bf59b6bc709779cf582ecda8fa7936ef7",
+    "docs/boxiao-chen/2026-10-18/deepseek/usage-summary.json": "e77a03a4dc352c1baaa8e707973595fb83c680534e7709338250bc1b4150790a",
     "docs/boxiao-chen/2026-10-18/deepseek/boundary-thinking/independent-review.json": "24cac23971acc57d71f90d0e12f34e9ccbd0fdf9a6df4a75564e80394ad57af1",
     "docs/boxiao-chen/2026-10-18/deepseek/boundary-thinking/actual-byte-recheck.json": "cece36bbc3e92cd72384cf9481c0ae4f7486adcb609dadadd5ce4689b42da081",
     "docs/boxiao-chen/2026-10-18/deepseek/boundary-thinking/boundary-thinking-01.lean": "d468363c28ce371220ed02b1579cc3e22ad3d88c9321e20bf346b99705f20803",
@@ -6193,6 +6196,11 @@
     "docs/boxiao-chen/2026-10-18/deepseek/uniform-slope-serial/TrustedCheck.lean": "fc24867cba443c27bb04c9152c589adbdb7c9b3bbd5bdb7bcf7b97a9a9b1cfda",
     "docs/boxiao-chen/2026-10-18/deepseek/uniform-slope-serial/uniform-slope-serial-01.log": "c56b021c26ab7d3cb1d79e3c3c650213f8e8045b5388169a8be6c3abef9ff527",
     "docs/boxiao-chen/2026-10-18/deepseek/uniform-slope-serial/uniform-slope-serial-01.check.json": "2c3b0d5ec95c287964a86f68026aa206edade83257f60a148f998af0d3fc21d9",
+    "docs/boxiao-chen/2026-10-18/deepseek/complete-bridge-lint-only/independent-review.json": "89d09faf540ef70733b3ddd6daad121e3748f677a4d934444cf2087a0f9b3f82",
+    "docs/boxiao-chen/2026-10-18/deepseek/complete-bridge-lint-only/complete-bridge-lint-only-01.lean": "327620571e72d29ff7392b7fdd15ef351f345a01abf44833cb8ff094cb62b8a0",
+    "docs/boxiao-chen/2026-10-18/deepseek/complete-bridge-lint-only/TrustedCheck.lean": "cbbe12663be64e65bfc883a6b8f91856dde924aec01244cfafb5b709a0d4caa7",
+    "docs/boxiao-chen/2026-10-18/deepseek/complete-bridge-lint-only/independent-local-recheck/TrustedCheck.log": "9b407503457431843f259208629c89878a7f65149f57817847b707c43a8fcb7a",
+    "docs/boxiao-chen/2026-10-18/deepseek/complete-bridge-lint-only/independent-local-recheck/recheck.json": "05263abf13e220efc26d9954d8f65d98b632eda4989ba51c43f1a88355cf7115",
     "docs/boxiao-chen/2026-10-15/corpus-independent-review/review.json": "ec46f3048fedad338eb0195d5c05ae8895ba5b98c379f7d9dddb3ea2c7991d47",
     "knowledge/author_corpora/boxiao-chen/2026-10-15/reading-snapshot.json": "54c089c5af0cb15686af00de54892d7df30ecda0bb10c7df2fba8fcee69d8fe7",
     "docs/boxiao-chen/2026-10-15/chen19-obligation-status-v4.json": "76be11b32db722a390c3cd0d53432bf58896193170a8a6fc55e94fab2ad1c64b",
