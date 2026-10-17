@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-15T14:47:03.830146+00:00",
+  "generated_at": "2026-10-17T19:11:26.327239+00:00",
   "source_commit": "9239ebdec68d7be14f0cf764c12b776582469e11",
   "source_commit_note": "Base commit only; working-tree inputs are bound by input SHA256 values.",
   "publication": {
@@ -3539,8 +3539,8 @@
     }
   ],
   "research": {
-    "status": "paused_by_user",
-    "date": "2026-10-15",
+    "status": "resumed_by_user",
+    "date": "2026-10-18",
     "completed": {
       "visible_items_indexed": 33,
       "acquired_versions_read": 18,
@@ -3554,6 +3554,8 @@
       "table2_upper_targets": 8,
       "chen2019_full_regret_proved": false
     },
+    "historical_pause_status": "paused_by_user",
+    "historical_pause_date": "2026-10-15",
     "paused_run": {
       "id": "chen19-signed-secant-001",
       "lifecycle_at_pause": "prepared",
@@ -5174,6 +5176,51 @@
     },
     "correction": "SQ-08已撤回：SALA探索长度指数使用立方根，原阶数疑点来自读者转录错误。更正及原判断均保留。"
   },
+  "delegation": {
+    "date": "2026-10-18",
+    "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+    "calls": 22,
+    "unknown_outcomes": 0,
+    "local_checks": {
+      "failed": 10,
+      "passed": 2
+    },
+    "generated_at": "2026-10-17T19:11:23Z",
+    "independently_reviewed_components": 2,
+    "error_jobs_without_usage": 2,
+    "provider_jobs_in_responses": 24,
+    "slope_candidate_sha256": "fd48b77157ee28d9495ad59a84d2e3bed7b6eda75faf3e2bce4fa8718b2504d3",
+    "slope_review_sha256": "77721c4c4a0a7896024fd84f5386c6d0ab4f31cb5aa2dcf46760754d3c1db63b",
+    "formal_run_admission": false,
+    "full_target_complete": false,
+    "full_paper_complete": false,
+    "candidate_sha256": "d468363c28ce371220ed02b1579cc3e22ad3d88c9321e20bf346b99705f20803",
+    "review_sha256": "24cac23971acc57d71f90d0e12f34e9ccbd0fdf9a6df4a75564e80394ad57af1",
+    "routing": [
+      {
+        "task": "来源问答、接口草稿、Lean 编写与报错修复",
+        "owner": "DeepSeek 初稿；验证与验收后方可采用"
+      },
+      {
+        "task": "网页、文档、常规脚本草稿",
+        "owner": "DeepSeek 起草与修复；本地检查"
+      },
+      {
+        "task": "统计、哈希、编译、状态生成",
+        "owner": "确定性脚本；无需模型调用"
+      },
+      {
+        "task": "数学陈述、原文对应、关键错误与正式验收",
+        "owner": "Codex 协调；独立审查"
+      }
+    ],
+    "cost_money": null,
+    "codex_savings_percent": null,
+    "total_tokens": 294856,
+    "prompt_tokens": 211459,
+    "completion_tokens": 83397,
+    "reasoning_tokens": 35491
+  },
   "chen2019": {
     "nodes": [
       {
@@ -6132,6 +6179,20 @@
     "knowledge/author_corpora/boxiao-chen/2026-10-15/coverage.json": "a6d05b73cd76f2fa479a58fbaa29d84e030c636e39ed707da0bb1d17f50427eb",
     "knowledge/author_corpora/boxiao-chen/2026-10-15/interface_gaps.json": "00ab7cd7e9df8a978bdd63fc44b4fc3195cd40a72bbcde8fabd3b6e61c2e608a",
     "docs/boxiao-chen/2026-10-15/PAUSED.json": "2c1a6fa02070b884190f170b4c6e2364f1207961e6d1b7827a85c445078b5aec",
+    "docs/boxiao-chen/2026-10-18/deepseek/WORKFLOW_STATUS.json": "a4b6889ccfacad01978d5bc1528cd07df3ceea5512bb888421bd47ba60c03603",
+    "docs/boxiao-chen/2026-10-18/deepseek/usage-summary.json": "65ef3399bc00b00d4a9c7473f5e1315bf59b6bc709779cf582ecda8fa7936ef7",
+    "docs/boxiao-chen/2026-10-18/deepseek/boundary-thinking/independent-review.json": "24cac23971acc57d71f90d0e12f34e9ccbd0fdf9a6df4a75564e80394ad57af1",
+    "docs/boxiao-chen/2026-10-18/deepseek/boundary-thinking/actual-byte-recheck.json": "cece36bbc3e92cd72384cf9481c0ae4f7486adcb609dadadd5ce4689b42da081",
+    "docs/boxiao-chen/2026-10-18/deepseek/boundary-thinking/boundary-thinking-01.lean": "d468363c28ce371220ed02b1579cc3e22ad3d88c9321e20bf346b99705f20803",
+    "runs/chen19-signed-secant-001/snapshot/lean/Challenge.lean": "3884ccefdb82fd888b4bdf0ea4884094caceaa426c492c9c703e12c4e02d5aed",
+    "docs/boxiao-chen/2026-10-18/deepseek/boundary-thinking/TrustedCheck.lean": "e2571daecc4a744bf0ecc3e2a053bbbf0ad78a9d90ea37d43b48b71cc2c8ddfa",
+    "docs/boxiao-chen/2026-10-18/deepseek/boundary-thinking/actual-byte-recheck.log": "755ec17b48f9a96615dd27e9394fd93687120196316b101bd00d24449f46fe1e",
+    "docs/boxiao-chen/2026-10-18/deepseek/uniform-slope-serial/independent-review.json": "77721c4c4a0a7896024fd84f5386c6d0ab4f31cb5aa2dcf46760754d3c1db63b",
+    "docs/boxiao-chen/2026-10-18/deepseek/uniform-slope-serial/uniform-slope-serial-01.lean": "fd48b77157ee28d9495ad59a84d2e3bed7b6eda75faf3e2bce4fa8718b2504d3",
+    "docs/boxiao-chen/2026-10-18/deepseek/uniform-slope-serial/source/Challenge.lean": "3884ccefdb82fd888b4bdf0ea4884094caceaa426c492c9c703e12c4e02d5aed",
+    "docs/boxiao-chen/2026-10-18/deepseek/uniform-slope-serial/TrustedCheck.lean": "fc24867cba443c27bb04c9152c589adbdb7c9b3bbd5bdb7bcf7b97a9a9b1cfda",
+    "docs/boxiao-chen/2026-10-18/deepseek/uniform-slope-serial/uniform-slope-serial-01.log": "c56b021c26ab7d3cb1d79e3c3c650213f8e8045b5388169a8be6c3abef9ff527",
+    "docs/boxiao-chen/2026-10-18/deepseek/uniform-slope-serial/uniform-slope-serial-01.check.json": "2c3b0d5ec95c287964a86f68026aa206edade83257f60a148f998af0d3fc21d9",
     "docs/boxiao-chen/2026-10-15/corpus-independent-review/review.json": "ec46f3048fedad338eb0195d5c05ae8895ba5b98c379f7d9dddb3ea2c7991d47",
     "knowledge/author_corpora/boxiao-chen/2026-10-15/reading-snapshot.json": "54c089c5af0cb15686af00de54892d7df30ecda0bb10c7df2fba8fcee69d8fe7",
     "docs/boxiao-chen/2026-10-15/chen19-obligation-status-v4.json": "76be11b32db722a390c3cd0d53432bf58896193170a8a6fc55e94fab2ad1c64b",
