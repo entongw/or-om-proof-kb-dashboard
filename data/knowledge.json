@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T19:42:26.647110+00:00",
+  "generated_at": "2026-10-18T15:11:20.994050+00:00",
   "source_commit": "9239ebdec68d7be14f0cf764c12b776582469e11",
   "source_commit_note": "Base commit only; working-tree inputs are bound by input SHA256 values.",
   "publication": {
@@ -3164,6 +3164,492 @@
         "lemmas": "# Local lemmas\n\n## L1\n\nslope_error、intercept_error只要求n>0，其余输入任意实数/数组；不需要非零s、概率或有界性。恒等式分别为eb=((L1-L2)/s-beta)+(mean1-mean2)/s和ea=mean1+p*eb，采用Lean实数除法定义。\n\n## L2\n\nsquare_add_le对任意x,y证明(x+y)²<=2x²+2y²。slope_square_le给定delta>0、d>=0、|s|=delta、|a|<=d，证明(a+(x-y)/s)²<=2d²+(4/delta²)(x²+y²)。delta正性在当前证明中未实际使用，但保留精确声明。\n\n## L3\n\nintercept_square_le给定P>=0、|p|<=P，证明(m+p*e)²<=2m²+2P²e²。没有概率独立性或均值条件。\n",
         "theorems": "# Theorems\n\n## T1 — block_moment\n\n任意Omega:Type上的概率空间，正有限块长，实值MemLp2创新、零均值、块内两两独立且Var<=v>=0，得到块均值MemLp2、期望零、Emean²=sum Var/n²和Emean²<=v/n。无需同分布或全体联合独立。\n\n## T2 — regression_moments\n\n两个块各满足T1条件，可互相依赖。可测随机p,s,L1,L2,beta0可依赖全部噪声；只要求a.e.价格界、固定绝对价差delta>0和割线偏差<=d。结论包括两个平方误差可积以及Bbeta、Balpha预算。最后对每个bmin>0，在beta0>=bmin a.e.的子条件下，给mu.real{betahat<=0}<=Bbeta/bmin²。L1/L2/beta0不需分别可积，误差的可积性由消去和支配得到。\n\n## T3 — twoPriceMoments\n\n完整T1与T2合取，双向exact对应原冻结Target。有限矩和Markov控制不等于指数尾界；真实政策采样与光滑性实例化仍在接口外。\n"
       }
+    },
+    {
+      "id": "signed-secant-bridge",
+      "version": 1,
+      "title": "边界安全价格扰动与光滑需求回归矩桥接",
+      "path": "02_mathematical_interfaces/estimation/signed-secant-bridge/v1",
+      "domain": "estimation",
+      "lifecycle": "frozen",
+      "status": "semantically_accepted_existing_proof",
+      "material_sha256": "bdef9cbee32d79d8a377e6e43929e68d2c61ca5d53264a32ab5b628bc0bce4d2",
+      "assumptions": [
+        {
+          "id": "A0",
+          "meaning": "lower<upper，分别用于 L1/L2/L3/T1。",
+          "applies_to": [
+            "L1",
+            "L2",
+            "L3",
+            "T1"
+          ]
+        },
+        {
+          "id": "A1",
+          "meaning": "0<delta、2*delta<=upper-lower；L1 还输入 p 在闭区间内，T1 输入 p 几乎处处在闭区间内。",
+          "applies_to": [
+            "L1",
+            "T1"
+          ]
+        },
+        {
+          "id": "A2a",
+          "meaning": "f 在每个闭区间点（含端点）具有导数 f'。",
+          "applies_to": [
+            "L2",
+            "T1"
+          ]
+        },
+        {
+          "id": "A2b",
+          "meaning": "f' 在每个闭区间点（含端点）具有导数 f''。",
+          "applies_to": [
+            "L2",
+            "L3",
+            "T1"
+          ]
+        },
+        {
+          "id": "A2c",
+          "meaning": "0<=M 且 |f'' x|<=M；不要求 f'' 连续。",
+          "applies_to": [
+            "L2",
+            "T1"
+          ]
+        },
+        {
+          "id": "A3",
+          "meaning": "uniform positive slope 情形：闭区间非空（lower<upper）、f' 在区间上逐点 HasDerivAt（端点亦然）、f' 在区间上严格负；从而 -f' 取得正下界，bmin 是由紧性得出的存在量。不隐含任何 delta、宽度、M 或 f'' 界前提。",
+          "applies_to": [
+            "L3"
+          ]
+        },
+        {
+          "id": "A4",
+          "meaning": "tangent 回归矩桥接 T1 不推导 bmin，而是把显式 bmin>0 与 ∀x∈Icc lower upper, bmin≤-f' x 作为输入假设，与概率界 slope/bmin^2 配合。L3 是 T2 中独立存在性合取项；T2 不把它实例化为 T1 的 bmin，L3 不是 T1 的实际证明依赖。",
+          "applies_to": [
+            "T1"
+          ]
+        },
+        {
+          "id": "A5",
+          "meaning": "噪声：对 eps1 与 eps2 分别假设同块内两两独立（∀j k, j≠k → IndepFun (eps_i j) (eps_i k) μ），并假设同块内零均值、二阶矩 MemLp 2、方差≤v。不假设联合独立、跨块独立、同分布或设计噪声独立。",
+          "applies_to": [
+            "T1"
+          ]
+        },
+        {
+          "id": "A6",
+          "meaning": "回归组合可测性（p、f∘p、f∘(p+s)、f'∘p）作为显式前提给出；其中 f∘(p+s) 使用 s=boundarySeparation upper delta (p ω)。不假设对数需求模型或自适应新息表示已被证明。",
+          "applies_to": [
+            "T1"
+          ]
+        },
+        {
+          "id": "A7",
+          "meaning": "Ω 带 MeasurableSpace，μ 是概率测度；n>0；v>=0，且两个块的每项方差均不超过 v。",
+          "applies_to": [
+            "T1"
+          ]
+        },
+        {
+          "id": "A8",
+          "meaning": "在冻结接口命题 SignedSecantControl 中，两条结论共享全局假设 lower < upper、0 ≤ M，以及 f、f'、f'' 在 Icc lower upper 上相应的 HasDerivAt 与二阶导绝对值界 |f'' x| ≤ M；第一条结论对任意 x, y ∈ Icc lower upper 给出 |f' y - f' x| ≤ M * |y - x|，即导数在闭区间上的 Lipschitz 型控制；第二条结论是带符号割线估计，其局部前提为 p ∈ Icc lower upper、s : ℝ 满足 s ≠ 0 且 p + s ∈ Icc lower upper，结论为 |(f p - f (p + s)) / s + f' p| ≤ M * |s|，不额外引入 delta，也不要求 s > 0；这些局部区间与位移前提区别于上述对全区间成立的全局微积分假设。",
+          "applies_to": [
+            "L2"
+          ]
+        }
+      ],
+      "scope_notes": [
+        "该精确源与提取模块已通过本地精确目标检查与独立试点审查；但本接口仍为 DRAFT，等待陈述审查、冻结、验证与后审。",
+        "不宣称实际 DDA 自适应新息、阶段调参、优化器/库存实现或指数尾界。",
+        "legacy_technique_ids 只标识既有输入技巧 two-price-moments，不表示该新提取桥接已属于某个被接受旧运行。",
+        "现有 Lean 源与提取检查在出具本接口生命周期之外已由本地证据确认；本接口自身尚未运行 Lean 编译验证，也不构成正式 pool-run 准入。"
+      ],
+      "obligations": [
+        "接口按精确源文件与骨架填写，旧正式运行保持不变，不宣称全论文 regret。",
+        "预算常数必须按源中 slopeMomentBudget、interceptMomentBudget 的定义解释：斜率 2*(M*delta)^2+8*v/(n*delta^2)，截距 2*v/n+2*P^2*slope，P=max(|lower|,|upper|)，概率界为 slope/bmin^2。",
+        "严格区分各合取项假设：lower<upper 用于 L1/L2/L3/T1；0<delta 与 2*delta≤upper-lower 仅用于 L1/T1；f 的 HasDerivAt 用于 L2/T1；f' 的 HasDerivAt 用于 L2/L3/T1；M≥0 与 |f''|≤M 用于 L2/T1；f' 严格负仅用于 L3；矩桥接 T1 使用显式 bmin>0 与 bmin≤-f'，而不从 L1/L2/L3 推断 bmin。",
+        "不添加同分布、联合独立、跨块独立或设计噪声独立假设；只保留源中同块内两两独立、同块零均值、方差上界与显式可测性。",
+        "D1 与 D2 是无假设前提的定义；D2 不归属 A2。"
+      ],
+      "techniques": [
+        "two-price-moments"
+      ],
+      "routes": [],
+      "lean": {
+        "module": "ProofKB.SignedSecantBridge",
+        "contract_declaration": "ProofKB.Challenge.Target",
+        "proof_declaration": "ProofKB.SignedSecantBridge.proof",
+        "contract_file": "contract.lean"
+      },
+      "dependencies": [
+        "ProofKB.Candidate.proof",
+        "ProofKB.Challenge.BoundarySeparationControl",
+        "ProofKB.Challenge.SignedSecantControl",
+        "ProofKB.Challenge.TangentRegressionMoments",
+        "ProofKB.Challenge.Target",
+        "ProofKB.Challenge.UniformPositiveTangentSlope",
+        "ProofKB.Challenge.boundarySeparation",
+        "ProofKB.Challenge.intervalPriceRadius",
+        "ProofKB.SignedSecantBridge.BoundarySeparationControl",
+        "ProofKB.SignedSecantBridge.SignedSecantControl",
+        "ProofKB.SignedSecantBridge.TangentRegressionMoments",
+        "ProofKB.SignedSecantBridge.Target",
+        "ProofKB.SignedSecantBridge.UniformPositiveTangentSlope",
+        "ProofKB.SignedSecantBridge.boundarySeparation",
+        "ProofKB.SignedSecantBridge.boundary_control",
+        "ProofKB.SignedSecantBridge.intervalPriceRadius",
+        "ProofKB.SignedSecantBridge.positive_slope",
+        "ProofKB.SignedSecantBridge.proof",
+        "ProofKB.SignedSecantBridge.secant_control",
+        "ProofKB.SignedSecantBridge.tangent_regression_moments",
+        "ProofKB.TwoPriceCentering.blockMean",
+        "ProofKB.TwoPriceCentering.fittedIntercept",
+        "ProofKB.TwoPriceCentering.fittedSlope",
+        "ProofKB.TwoPriceCentering.logObservations",
+        "ProofKB.TwoPriceCentering.mean_translate",
+        "ProofKB.TwoPriceMoments.BlockMeanSecondMoment",
+        "ProofKB.TwoPriceMoments.TwoPriceRegressionMoments",
+        "ProofKB.TwoPriceMoments.blockNoiseMean",
+        "ProofKB.TwoPriceMoments.block_moment",
+        "ProofKB.TwoPriceMoments.interceptMomentBudget",
+        "ProofKB.TwoPriceMoments.intercept_error",
+        "ProofKB.TwoPriceMoments.intercept_square_le",
+        "ProofKB.TwoPriceMoments.randomFittedIntercept",
+        "ProofKB.TwoPriceMoments.randomFittedSlope",
+        "ProofKB.TwoPriceMoments.regression_moments",
+        "ProofKB.TwoPriceMoments.slopeMomentBudget",
+        "ProofKB.TwoPriceMoments.slope_error",
+        "ProofKB.TwoPriceMoments.slope_square_le",
+        "ProofKB.TwoPriceMoments.square_add_le",
+        "ProofKB.Challenge.BoundarySeparationControl._proof_1",
+        "ProofKB.Challenge.SignedSecantControl._proof_1",
+        "ProofKB.SignedSecantBridge.BoundarySeparationControl._proof_1",
+        "ProofKB.SignedSecantBridge.SignedSecantControl._proof_1",
+        "ProofKB.TwoPriceMoments.slopeMomentBudget._proof_1",
+        "ProofKB.TwoPriceMoments.slopeMomentBudget._proof_2"
+      ],
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "reviewer": "/root/chen19_bridge_admission_reviewer",
+      "receipts": {
+        "statement-review": "cff9b2be7289089bf59387e381309b7ab5e57c8158a1ef2c41c56a870ec6f702",
+        "freeze": "5ebda1bfac2ba5f8305d5557041fe4497b5cd9b68c64cf5d78991cf00729cb6c",
+        "verification": "632abbfbd0207e1813ffcbda5d3ce2fa0e70ec70a86528b868ff1d3cf79e05bf",
+        "acceptance": "c03eb716609d701e3e34764c15aa9941ac49004ca1661d9ebbbff0f32375428b"
+      },
+      "documents": {
+        "definitions": "# 定义\n\nD1 boundarySeparation（源码 noncomputable def boundarySeparation (upper delta p : ℝ) : ℝ）：若 p+delta≤upper 取 +delta，否则取 -delta。该定义无假设前提。\n\nD2 intervalPriceRadius（源码 noncomputable def intervalPriceRadius (lower upper : ℝ) : ℝ）：max |lower| |upper|，即 P。该定义无假设前提，不要求导数或曲率条件。\n\nD3 四个命题模式：BoundarySeparationControl、SignedSecantControl、UniformPositiveTangentSlope、TangentRegressionMoments；Target 是它们的合取。四者不是新公理，而是接口暴露的 Prop schema。\n\n各模式的假设前提按实际声明：BoundarySeparationControl 使用 lower<upper、0<delta、2*delta≤upper-lower、p∈Icc；SignedSecantControl 使用 lower<upper、0≤M、f 与 f' 的逐点 HasDerivAt、|f''|≤M；UniformPositiveTangentSlope 使用 lower<upper、f' 的逐点 HasDerivAt、f' 严格负；TangentRegressionMoments 使用概率测度、n>0、MemLp 2、零均值、同块内两两独立、方差上界、显式 AEMeasurable、所有微分条件、价格 a.e. 区间成员、显式 bmin>0 与 bmin≤-f'。\n\n预算函数来自 ProofKB.TwoPriceMoments：slopeMomentBudget n v delta (M*delta) = 2*(M*delta)^2+8*v/(n*delta^2)；interceptMomentBudget n v delta (M*delta) P = 2*v/n+2*P^2*slope；概率界为 slope/bmin^2。\n",
+        "lemmas": "# 引理\n\nL1 boundary_control：证明 BoundarySeparationControl。给定 lower<upper、0<delta、2*delta≤upper-lower、p∈Icc lower upper，输出四合一：|扰动|=delta、扰动≠0、p+扰动∈Icc lower upper、|p|≤intervalPriceRadius。此引理（与 T1 对其的实例化）使用宽度/delta 的几何前提。\n\nL2 secant_control：证明 SignedSecantControl。前提含 lower<upper、0≤M、f 与 f' 在区间上的逐点 HasDerivAt、|f''|≤M；结论包括 f' 的区间 Lipschitz 型界与割线误差界 |(f p-f(p+s))/s+f' p|≤M*|s|。端点按 HasDerivAt 处理，不要求 f'' 连续。\n\nL3 positive_slope：证明 UniformPositiveTangentSlope。额外前提是区间非空（lower<upper）、f' 在区间上逐点 HasDerivAt、f' 在区间上严格负；结论是存在 bmin>0 使 bmin≤-f' 在区间上成立。L3 不用 f 的导数、M、f'' 界或 delta/宽度，也不向 T1 提供实际证明依赖；T1 从其冻结前提取得显式 bmin。\n\nL2 局部量词范围：在冻结接口命题 SignedSecantControl 中，两条结论共享全局假设 lower < upper、0 ≤ M，以及 f、f'、f'' 在 Icc lower upper 上相应的 HasDerivAt 与二阶导绝对值界 |f'' x| ≤ M；第一条结论对任意 x, y ∈ Icc lower upper 给出 |f' y - f' x| ≤ M * |y - x|，即导数在闭区间上的 Lipschitz 型控制；第二条结论是带符号割线估计，其局部前提为 p ∈ Icc lower upper、s : ℝ 满足 s ≠ 0 且 p + s ∈ Icc lower upper，结论为 |(f p - f (p + s)) / s + f' p| ≤ M * |s|，不额外引入 delta，也不要求 s > 0；这些局部区间与位移前提区别于上述对全区间成立的全局微积分假设。\n",
+        "theorems": "# 定理\n\nT1 tangent_regression_moments：证明 TangentRegressionMoments，是既有 regression_moments 的实例化，并以 boundary_control（L1）与 secant_control（L2）为实际证明依赖。\n\nT1 前提逐项：Ω 带 MeasurableSpace、μ 为概率测度、n>0；eps1 与 eps2 各自 MemLp 2、∫ eps_i j = 0、同块内两两独立（∀j k, j≠k → IndepFun (eps_i j) (eps_i k) μ）、v≥0 且 variance (eps_i j) μ≤v；v≥0、lower<upper、0≤M、0<delta、2*delta≤upper-lower、bmin>0；f 与 f' 在闭区间上逐点 HasDerivAt、|f''|≤M、∀x∈Icc, bmin≤-f' x；p 的 AEMeasurable、p 的 a.e. 区间成员、f∘p 的 AEMeasurable、f∘(p+s) 的 AEMeasurable、f'∘p 的 AEMeasurable（s=boundarySeparation upper delta (p ω)）。\n\nT1 输出：斜率误差平方可积、截距误差平方可积、斜率误差积分≤slopeMomentBudget n v delta (M*delta)、截距误差积分≤interceptMomentBudget n v delta (M*delta) P、μ.real{ω | randomFittedSlope s L1 L2 eps1 eps2 ω≤0}≤slope/bmin^2，其中 P=intervalPriceRadius lower upper。\n\n不添加同分布、联合独立、跨块独立或设计噪声独立；bmin 不从 L1/L2/L3 推断，L3 不是 T1 的实际证明依赖。\n\nT2 proof：证明 ProofKB.SignedSecantBridge.Target，即 L1∧L2∧L3∧T1 的组合；实际项目依赖为 L1、L2、L3、T1 均汇入 T2，L3 仅作为独立存在性合取项，不对 T1 进行 bmin 实例化。对应 contract_declaration 为 ProofKB.Challenge.Target，proof_declaration 为 ProofKB.SignedSecantBridge.proof。\n\nL2 局部量词范围：在冻结接口命题 SignedSecantControl 中，两条结论共享全局假设 lower < upper、0 ≤ M，以及 f、f'、f'' 在 Icc lower upper 上相应的 HasDerivAt 与二阶导绝对值界 |f'' x| ≤ M；第一条结论对任意 x, y ∈ Icc lower upper 给出 |f' y - f' x| ≤ M * |y - x|，即导数在闭区间上的 Lipschitz 型控制；第二条结论是带符号割线估计，其局部前提为 p ∈ Icc lower upper、s : ℝ 满足 s ≠ 0 且 p + s ∈ Icc lower upper，结论为 |(f p - f (p + s)) / s + f' p| ≤ M * |s|，不额外引入 delta，也不要求 s > 0；这些局部区间与位移前提区别于上述对全区间成立的全局微积分假设。\n"
+      }
+    },
+    {
+      "id": "contractive-stage-rate",
+      "version": 1,
+      "title": "几何扰动收缩递推与临界速率见证",
+      "path": "02_mathematical_interfaces/regret_accounting/contractive-stage-rate/v1",
+      "domain": "regret_accounting",
+      "lifecycle": "frozen",
+      "status": "semantically_accepted_existing_proof",
+      "material_sha256": "9bf4e9c7dee317348cf18d938fb2f49a30fe0153696e8e19ee9b866d52cc7c5a",
+      "assumptions": [
+        {
+          "id": "A1",
+          "meaning": "r>1，严格速率分离所需的下界。",
+          "applies_to": [
+            "L1",
+            "T2"
+          ]
+        },
+        {
+          "id": "A2",
+          "meaning": "theta>=0 与 C>=0，几何系数与强迫常数非负。",
+          "applies_to": [
+            "L1",
+            "T2"
+          ]
+        },
+        {
+          "id": "A3",
+          "meaning": "a 0>=0，初始值非负；仅假定第 0 项，不假定所有后期项。",
+          "applies_to": [
+            "L1",
+            "T2"
+          ]
+        },
+        {
+          "id": "A4",
+          "meaning": "theta*r<1，速率分离条件；由此得正分母 1-theta*r>0。",
+          "applies_to": [
+            "L1",
+            "T2"
+          ]
+        },
+        {
+          "id": "A5",
+          "meaning": "forall n, a(n+1)<=theta*a n+C/r^n，显式强制递推；是 L1 的唯一递推输入。",
+          "applies_to": [
+            "L1",
+            "T2"
+          ]
+        }
+      ],
+      "scope_notes": [
+        "D1 为一般几何强制收缩递推；A4 严格分离条件 theta*r<1 是结论存在的前提，theta*r=1 时不可套用。",
+        "D2/T1 是无条件固定存在性见证（theta=1/2、r=2、C=1/2、a n=(n+1)/2^n），不是输入假设，也不是论文级或策略级不可能性下界。",
+        "D3/T2 为两者合取；T2 是完整证明，L1/T1 是其投影，依赖方向为 proof→投影。",
+        "legacy_technique_ids: geometric-budget 仅为相关主题映射，不声称实际复用旧 ProofKB 定理。",
+        "本文档仍为 Draft；精确合同编译与独立复审未完成，本地 pilot 已被接受但接口生命周期未完成。"
+      ],
+      "obligations": [
+        "在冻结正式合同中确认 ProofKB.ContractiveStageRate.proof 的类型恰为 ProofKB.Challenge.Target，且 D1/D2/D3 量词与 A1-A5 中的局部前提未被削弱。",
+        "明确 L1=proof.1 与 T1=proof.2 是源文件末尾新加的公开投影；原本地接受候选只有 ProofKB.Candidate.proof，不存在同名旧声明，不得声称 T1/T2 同名投影来自旧候选。",
+        "任何“所有策略下界”“累计执行代价”“DDA 表示”“阶段取整”或完整遗憾声明均须独立证明并单独评审，当前接口不承担。"
+      ],
+      "techniques": [
+        "geometric-budget"
+      ],
+      "routes": [],
+      "lean": {
+        "module": "ProofKB.ContractiveStageRate",
+        "contract_declaration": "ProofKB.Challenge.Target",
+        "proof_declaration": "ProofKB.ContractiveStageRate.proof",
+        "contract_file": "contract.lean"
+      },
+      "dependencies": [
+        "ProofKB.Candidate.proof",
+        "ProofKB.Challenge.ContractionRate",
+        "ProofKB.Challenge.CriticalRateWitness",
+        "ProofKB.Challenge.Target",
+        "ProofKB.ContractiveStageRate.ContractionRate",
+        "ProofKB.ContractiveStageRate.CriticalRateWitness",
+        "ProofKB.ContractiveStageRate.Target",
+        "ProofKB.ContractiveStageRate.proof",
+        "ProofKB.Challenge.CriticalRateWitness._proof_1",
+        "ProofKB.ContractiveStageRate.CriticalRateWitness._proof_1"
+      ],
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "reviewer": "/root/chen19_bridge_admission_reviewer",
+      "receipts": {
+        "statement-review": "b98ec73d2a61215d4fe110a0c2cfed897703af4c5c7ad29f07098a3e26d9ec5a",
+        "freeze": "a67deb44dba0bb7fdde927df4b39d228e107c43ffd5f8b68f542b378abafae88",
+        "verification": "5149832ee324b9f10c89ea09e2257dcb059366347c25452654ceb6c1cd2a16a0",
+        "acceptance": "ee9f44390d785745ea99535503b6a9637e3582c8d6932b2e5f8b36d54e300aa8"
+      },
+      "documents": {
+        "definitions": "- **D1 `ContractionRate`**：`∀ (r theta C : ℝ) (a : ℕ → ℝ), 1 < r → 0 ≤ theta → 0 ≤ C → 0 ≤ a 0 → theta * r < 1 → (∀ n, a (n+1) ≤ theta * a n + C / r^n) → let K := a 0 + C * r / (1 - theta * r); ∀ n, r^n * a n ≤ K ∧ a n ≤ K / r^n`。\n- **D2 `CriticalRateWitness`**：`∃ a : ℕ → ℝ, a 0 = 1 ∧ (∀ n, 0 ≤ a n) ∧ (∀ n, a (n+1) = (1/2) * a n + (1/2) / 2^n) ∧ (∀ n, 2^n * a n = n + 1) ∧ (∀ K : ℝ, ∃ n : ℕ, K < 2^n * a n)`；无输入前提。\n- **D3 `Target`**：`ContractionRate ∧ CriticalRateWitness`；`proof` 的目标即为该合取。",
+        "lemmas": "- **L1 `contraction_rate : ContractionRate`**：`proof.1` 的公开投影，即 D1 的完整命题（输入前提 A1-A5 作用于该分支）。\n- 辅助事实（非独立声明，仅示证明结构）：`b n := r^n * a n` 在 A1-A5 下满足 `∀ n, b n ≤ K`；依赖正分母 `1 - theta * r > 0`（由 A4）与常数不等式 `theta * r * K + C * r ≤ K`。\n",
+        "theorems": "- **T2 `proof : Target`**：源文件中先直接证明的完整目标，同时给出 D1 收缩估计与 D2 临界见证；不是后来投影的组合产物。\n- **T1 `critical_rate_witness : CriticalRateWitness`**：`proof.2` 的公开投影，给出临界参数下 `r^n * a n` 无统一上界的递推见证；这是递推层面见证，不是论文级或策略级下界/不可能性结论。\n"
+      }
+    },
+    {
+      "id": "fixed-target-inventory-clearing",
+      "version": 1,
+      "title": "正需求下固定库存目标清空与平方夹逼",
+      "path": "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v1",
+      "domain": "inventory",
+      "lifecycle": "frozen",
+      "status": "verification_failed",
+      "material_sha256": "60ea11c227253901a1d3fce203429993a539d3d6a2bc66d8a22ec3fed44063cc",
+      "assumptions": [
+        {
+          "id": "A1",
+          "meaning": "0 < d，严格正需求下界参数；只作用于 L1/T1 的两条输出。",
+          "applies_to": [
+            "L1",
+            "T1"
+          ]
+        },
+        {
+          "id": "A2",
+          "meaning": "∀ n, d ≤ demand n，全时期需求下界；demand 类型为 ℕ → ℝ，非标量实数。",
+          "applies_to": [
+            "L1",
+            "T1"
+          ]
+        },
+        {
+          "id": "A3",
+          "meaning": "initial - target ≤ n * d，LOCAL 条件；仅用于推出第 n 步 actualInventory n = target，不是净库存上包络的假设，也不等同上界或需求发生后等式。",
+          "applies_to": [
+            "L1",
+            "T1"
+          ]
+        },
+        {
+          "id": "A4",
+          "meaning": "a ≤ z，BracketingSquare 的左端局部前提。",
+          "applies_to": [
+            "L2",
+            "T1"
+          ]
+        },
+        {
+          "id": "A5",
+          "meaning": "z ≤ max a b，BracketingSquare 的右端局部前提。",
+          "applies_to": [
+            "L2",
+            "T1"
+          ]
+        }
+      ],
+      "scope_notes": [
+        "D1/D2 为无条件实值递归定义，target/initial 任意；actualInventory 是第 n 期订货后、需求发生前状态，清空等号不是需求相消后的等号。",
+        "A1/A2 只作用于 L1/T1 的输出；A3 阈值是 LOCAL 条件，只用于推出第 n 步 actualInventory n = target，不是净库存上包络的假设；n=0 条件为 initial ≤ target。",
+        "L2 的 A4/A5 对任意实数 b、q 成立；允许 b < a 时前提迫使 z = a；不声称期望、分布或策略最优性结论。",
+        "legacy_technique_ids: newsvendor-primitives 仅为相关主题映射，不声称实际复用旧 ProofKB 定理。",
+        "本文档仍为 Draft；精确合同编译与独立复审未完成，本地 pilot 已被接受但接口生命周期未完成。"
+      ],
+      "obligations": [
+        "在精确合同中确认 ProofKB.InventoryClearing.proof 的类型恰为 ProofKB.Challenge.Target；确认固定目标清空与平方夹逼的量化与局部前提未被削弱。",
+        "明确公开投影 fixed_target_clearing := proof.1 与 bracketing_square := proof.2 是源文件末尾新加的 alias；原本地接受候选只有 ProofKB.Candidate.proof，不得声称旧候选已有同名声明。",
+        "任何期望算子替换、累计执行成本、随机清空时间、变动目标策略、Chen19 源策略对应、终期截断预算或完整遗憾声明均须单独证明与评审，当前接口不承担。"
+      ],
+      "techniques": [
+        "newsvendor-primitives"
+      ],
+      "routes": [],
+      "lean": {
+        "module": "ProofKB.InventoryClearing",
+        "contract_declaration": "ProofKB.Challenge.Target",
+        "proof_declaration": "ProofKB.InventoryClearing.proof",
+        "contract_file": "contract.lean"
+      },
+      "dependencies": [],
+      "axioms": [],
+      "reviewer": null,
+      "receipts": {
+        "statement-review": "eaa7bff590bd4a3fecad2a45aa55c1a59a8eb16811f3843b7ba5e1410afd1529",
+        "freeze": "d34da8cc4e69ca743edbbceacc63ededab46d4d3b15b3bf85b5b038c23a76e3e",
+        "verification": "0bc710024fa9632ce6d146021c5cde938804bd8c967720231dd34afd6bc8bf1c"
+      },
+      "documents": {
+        "definitions": "- **D1 `netInventory`**：`noncomputable def netInventory (target initial : ℝ) (demand : ℕ → ℝ) : ℕ → ℝ`，按 `0 => initial`、`n+1 => max target (netInventory n) - demand n` 递归；`demand` 为 `ℕ → ℝ` 序列，target/initial 任意实数。\n- **D2 `actualInventory`**：`noncomputable def actualInventory (target initial : ℝ) (demand : ℕ → ℝ) (n : ℕ) : ℝ := max target (netInventory target initial demand n)`。\n- **D3 命题模式**：`FixedTargetClearing` 保留 `0 < d`、`∀ n, d ≤ demand n`、任意实数 `target/initial/d`、`demand : ℕ → ℝ` 与任意 n，含逐步界与阈值下订货后等号；`BracketingSquare` 保留 `a ≤ z`、`z ≤ max a b` 与任意实数 `b`、`q`。`Target := FixedTargetClearing ∧ BracketingSquare`。",
+        "lemmas": "- **L1 `fixed_target_clearing : FixedTargetClearing`**：`proof.1` 的公开投影，即 D3 中 `FixedTargetClearing` 的完整命题；输入前提为 A1、A2 与局部 A3。\n- **L2 `bracketing_square : BracketingSquare`**：`proof.2` 的公开投影，给出 A4、A5 下对任意实数 b、q 的平方夹逼。\n- 辅助事实（仅供理解证明结构）：对每个 n 有 `netInventory n ≤ max target (initial - n*d)`，且 `initial - target ≤ n*d` 推出该步 `netInventory n ≤ target`。\n",
+        "theorems": "- **T1 `proof : Target`**：源文件中先经 camelCase helper 直接证明的完整目标，同时给出固定目标清空性质与平方夹逼性质。\n- 公开 snake_case 别名 `fixed_target_clearing`、`bracketing_square` 由 `proof.1`/`proof.2` 拆分得到，是 L1/L2 的声明锚点；接口不把它们重新陈述为独立定理，避免与 L1/L2 重复。\n"
+      }
+    },
+    {
+      "id": "fixed-target-inventory-clearing",
+      "version": 2,
+      "title": "正需求下固定库存目标清空与平方夹逼",
+      "path": "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v2",
+      "domain": "inventory",
+      "lifecycle": "frozen",
+      "status": "semantically_accepted_existing_proof",
+      "material_sha256": "9166f8840aa0b17479ed35d5f0850b49ff922828b2ee6825a5bb8837eed016cd",
+      "assumptions": [
+        {
+          "id": "A1",
+          "meaning": "0 < d，严格正需求下界参数；只作用于 L1/T1 的两条输出。",
+          "applies_to": [
+            "L1",
+            "T1"
+          ]
+        },
+        {
+          "id": "A2",
+          "meaning": "∀ n, d ≤ demand n，全时期需求下界；demand 类型为 ℕ → ℝ，非标量实数。",
+          "applies_to": [
+            "L1",
+            "T1"
+          ]
+        },
+        {
+          "id": "A3",
+          "meaning": "initial - target ≤ n * d，LOCAL 条件；仅用于推出第 n 步 actualInventory n = target，不是净库存上包络的假设，也不等同上界或需求发生后等式。",
+          "applies_to": [
+            "L1",
+            "T1"
+          ]
+        },
+        {
+          "id": "A4",
+          "meaning": "a ≤ z，BracketingSquare 的左端局部前提。",
+          "applies_to": [
+            "L2",
+            "T1"
+          ]
+        },
+        {
+          "id": "A5",
+          "meaning": "z ≤ max a b，BracketingSquare 的右端局部前提。",
+          "applies_to": [
+            "L2",
+            "T1"
+          ]
+        }
+      ],
+      "scope_notes": [
+        "D1/D2 为无条件实值递归定义，target/initial 任意；actualInventory 是第 n 期订货后、需求发生前状态，清空等号不是需求相消后的等号。",
+        "A1/A2 只作用于 L1/T1 的输出；A3 阈值是 LOCAL 条件，只用于推出第 n 步 actualInventory n = target，不是净库存上包络的假设；n=0 条件为 initial ≤ target。",
+        "L2 的 A4/A5 对任意实数 b、q 成立；允许 b < a 时前提迫使 z = a；不声称期望、分布或策略最优性结论。",
+        "legacy_technique_ids: newsvendor-primitives 仅为相关主题映射，不声称实际复用旧 ProofKB 定理。",
+        "本文档仍为 Draft；精确合同编译与独立复审未完成，本地 pilot 已被接受但接口生命周期未完成。",
+        "v2 仅改合同递归定义引用方式；源模块、完整量词和所有数学结论不变。DeepSeek response.notes 的一般性 definitional equality 说明不作为已审查结论。"
+      ],
+      "obligations": [
+        "在精确合同中确认 ProofKB.InventoryClearing.proof 的类型恰为 ProofKB.Challenge.Target；确认固定目标清空与平方夹逼的量化与局部前提未被削弱。",
+        "明确公开投影 fixed_target_clearing := proof.1 与 bracketing_square := proof.2 是源文件末尾新加的 alias；原本地接受候选只有 ProofKB.Candidate.proof，不得声称旧候选已有同名声明。",
+        "任何期望算子替换、累计执行成本、随机清空时间、变动目标策略、Chen19 源策略对应、终期截断预算或完整遗憾声明均须单独证明与评审，当前接口不承担。",
+        "v2 的 Challenge.netInventory 和 actualInventory 显式透明引用已绑定源模块的同一递归定义；与 v1 独立复制递归定义的数学含义相同，v1 精确复用失败保持不变。新合同必须重新独立审查、冻结和编译。"
+      ],
+      "techniques": [
+        "newsvendor-primitives"
+      ],
+      "routes": [],
+      "lean": {
+        "module": "ProofKB.InventoryClearing",
+        "contract_declaration": "ProofKB.Challenge.Target",
+        "proof_declaration": "ProofKB.InventoryClearing.proof",
+        "contract_file": "contract.lean"
+      },
+      "dependencies": [
+        "ProofKB.Candidate.proof",
+        "ProofKB.Challenge.BracketingSquare",
+        "ProofKB.Challenge.FixedTargetClearing",
+        "ProofKB.Challenge.Target",
+        "ProofKB.Challenge.actualInventory",
+        "ProofKB.Challenge.netInventory",
+        "ProofKB.InventoryClearing.BracketingSquare",
+        "ProofKB.InventoryClearing.FixedTargetClearing",
+        "ProofKB.InventoryClearing.Target",
+        "ProofKB.InventoryClearing.actualInventory",
+        "ProofKB.InventoryClearing.bracketingSquare",
+        "ProofKB.InventoryClearing.fixedTargetClearing",
+        "ProofKB.InventoryClearing.netInventory",
+        "ProofKB.InventoryClearing.proof",
+        "ProofKB.InventoryClearing.actualInventory.eq_1",
+        "ProofKB.InventoryClearing.netInventory._f",
+        "ProofKB.InventoryClearing.netInventory.match_1"
+      ],
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "reviewer": "/root/chen19_independent_reviewer",
+      "receipts": {
+        "statement-review": "03ac6ffba5708e01d973350f1c38daca5288b61b91df840e619abb8f7de9c301",
+        "freeze": "7d96be474623288ad7078a263458ef8665b8b918246d527b307402eb2a0d0560",
+        "verification": "59f8d68df72d9c5b838fd8dbfd6d5ec9e2215a88f899670d26bf789482941072",
+        "acceptance": "a4c786d51b7aef38d0c9b210b8433aba4afb27f82cdaf318791fd5b7e09ded2f"
+      },
+      "documents": {
+        "definitions": "- **D1 `netInventory`**：`noncomputable def netInventory (target initial : ℝ) (demand : ℕ → ℝ) : ℕ → ℝ`，按 `0 => initial`、`n+1 => max target (netInventory n) - demand n` 递归；`demand` 为 `ℕ → ℝ` 序列，target/initial 任意实数。\n- **D2 `actualInventory`**：`noncomputable def actualInventory (target initial : ℝ) (demand : ℕ → ℝ) (n : ℕ) : ℝ := max target (netInventory target initial demand n)`。\n- **D3 命题模式**：`FixedTargetClearing` 保留 `0 < d`、`∀ n, d ≤ demand n`、任意实数 `target/initial/d`、`demand : ℕ → ℝ` 与任意 n，含逐步界与阈值下订货后等号；`BracketingSquare` 保留 `a ≤ z`、`z ≤ max a b` 与任意实数 `b`、`q`。`Target := FixedTargetClearing ∧ BracketingSquare`。",
+        "lemmas": "- **L1 `fixed_target_clearing : FixedTargetClearing`**：`proof.1` 的公开投影，即 D3 中 `FixedTargetClearing` 的完整命题；输入前提为 A1、A2 与局部 A3。\n- **L2 `bracketing_square : BracketingSquare`**：`proof.2` 的公开投影，给出 A4、A5 下对任意实数 b、q 的平方夹逼。\n- 辅助事实（仅供理解证明结构）：对每个 n 有 `netInventory n ≤ max target (initial - n*d)`，且 `initial - target ≤ n*d` 推出该步 `netInventory n ≤ target`。\n",
+        "theorems": "- **T1 `proof : Target`**：源文件中先经 camelCase helper 直接证明的完整目标，同时给出固定目标清空性质与平方夹逼性质。\n- 公开 snake_case 别名 `fixed_target_clearing`、`bracketing_square` 由 `proof.1`/`proof.2` 拆分得到，是 L1/L2 的声明锚点；接口不把它们重新陈述为独立定理，避免与 L1/L2 重复。\n"
+      }
     }
   ],
   "papers": [
@@ -5179,19 +5665,19 @@
   "delegation": {
     "date": "2026-10-18",
     "model": "deepseek-ai/DeepSeek-V4.1-Flash",
-    "calls": 33,
+    "calls": 117,
     "unknown_outcomes": 0,
     "local_checks": {
-      "failed": 16,
-      "passed": 4
+      "failed": 48,
+      "passed": 8
     },
-    "generated_at": "2026-10-17T19:42:06Z",
+    "generated_at": "2026-10-18T15:10:45Z",
     "independently_reviewed_components": 4,
     "bridge_candidate_sha256": "327620571e72d29ff7392b7fdd15ef351f345a01abf44833cb8ff094cb62b8a0",
     "bridge_review_sha256": "89d09faf540ef70733b3ddd6daad121e3748f677a4d934444cf2087a0f9b3f82",
     "remote_review_verdict": "reject",
-    "error_jobs_without_usage": 2,
-    "provider_jobs_in_responses": 35,
+    "error_jobs_without_usage": 10,
+    "provider_jobs_in_responses": 127,
     "slope_candidate_sha256": "fd48b77157ee28d9495ad59a84d2e3bed7b6eda75faf3e2bce4fa8718b2504d3",
     "slope_review_sha256": "77721c4c4a0a7896024fd84f5386c6d0ab4f31cb5aa2dcf46760754d3c1db63b",
     "formal_run_admission": false,
@@ -5219,10 +5705,10 @@
     ],
     "cost_money": null,
     "codex_savings_percent": null,
-    "total_tokens": 501162,
-    "prompt_tokens": 323868,
-    "completion_tokens": 177294,
-    "reasoning_tokens": 92842
+    "total_tokens": 1580304,
+    "prompt_tokens": 935969,
+    "completion_tokens": 644335,
+    "reasoning_tokens": 314053
   },
   "chen2019": {
     "nodes": [
@@ -6012,8 +6498,169 @@
     "later_phases_new_calls": 0,
     "excluded_book": "Online Algorithms for Revenue Management"
   },
+  "continuation": {
+    "date": "2026-10-18",
+    "full_paper_complete": false,
+    "formal_pool_run_admission": false,
+    "quota_reset_performed": false,
+    "codex_visual_tasks_after_instruction": 0,
+    "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+    "accepted_interfaces": [
+      {
+        "id": "signed-secant-bridge",
+        "version": 1,
+        "scope": "完整四项割线与回归桥接；原正式池运行未准入"
+      },
+      {
+        "id": "contractive-stage-rate",
+        "version": 1,
+        "scope": "严格速率分离下的几何收缩递推及临界见证"
+      },
+      {
+        "id": "fixed-target-inventory-clearing",
+        "version": 2,
+        "scope": "固定目标库存清空与逐点平方夹逼；v1失败保留"
+      }
+    ],
+    "reviewed_local_components": [
+      {
+        "id": "single-count-regression",
+        "scope": "单计数回归数值预算完整目标；不等同实际DDA计数",
+        "full_target_complete": true,
+        "formal_run_admission": false,
+        "full_paper_complete": false
+      },
+      {
+        "id": "aggregate-execution-prefix",
+        "scope": "任意截断与时变Lipschitz成本的确定性执行预算",
+        "full_target_complete": true,
+        "formal_run_admission": false,
+        "full_paper_complete": false
+      },
+      {
+        "id": "two-count-regression",
+        "scope": "前后不同样本计数下的完整回归预算；源DDA计数与策略仍待对应",
+        "full_target_complete": true,
+        "formal_run_admission": false,
+        "full_paper_complete": false
+      }
+    ],
+    "pending_components": [
+      {
+        "id": "geometric-prefix-accounting",
+        "status": "具体陈述独立接受、定义已编译；证明待完成"
+      },
+      {
+        "id": "prediction-cancellation",
+        "status": "既有完整目标尚未通过；失败保留"
+      }
+    ],
+    "remaining_gaps": [
+      "精确源策略、首阶段正整数样本量、带符号扰动与任意终期历史映射。",
+      "通用双计数预算与实际DDA阶段计数、随机回归和价格MSE递推的衔接。",
+      "共同积分CDF误差、经验优化值与可测选择器的概率证明；A1(7)仍保留。",
+      "预测误差抵消完整目标；源oracle与收益可积的非预知比较策略。",
+      "统一需求下界及成本常数的源对应；几何阶段前缀汇总与完整期望后悔界。"
+    ],
+    "vision": {
+      "calls": 5,
+      "total_tokens": 41036,
+      "reasoning_is_subtotal": true,
+      "scope": "精确Flash模型完成5次真实图像输入转TeX测试；小符号曾误读，裁剪复读及剩余不确定性保留。Codex未做指令后的视觉任务。"
+    },
+    "evidence": [
+      {
+        "path": "02_mathematical_interfaces/estimation/signed-secant-bridge/v1/acceptance.json",
+        "sha256": "c03eb716609d701e3e34764c15aa9941ac49004ca1661d9ebbbff0f32375428b"
+      },
+      {
+        "path": "02_mathematical_interfaces/estimation/signed-secant-bridge/v1/verification.json",
+        "sha256": "632abbfbd0207e1813ffcbda5d3ce2fa0e70ec70a86528b868ff1d3cf79e05bf"
+      },
+      {
+        "path": "02_mathematical_interfaces/estimation/signed-secant-bridge/v1/freeze.json",
+        "sha256": "5ebda1bfac2ba5f8305d5557041fe4497b5cd9b68c64cf5d78991cf00729cb6c"
+      },
+      {
+        "path": "02_mathematical_interfaces/regret_accounting/contractive-stage-rate/v1/acceptance.json",
+        "sha256": "ee9f44390d785745ea99535503b6a9637e3582c8d6932b2e5f8b36d54e300aa8"
+      },
+      {
+        "path": "02_mathematical_interfaces/regret_accounting/contractive-stage-rate/v1/verification.json",
+        "sha256": "5149832ee324b9f10c89ea09e2257dcb059366347c25452654ceb6c1cd2a16a0"
+      },
+      {
+        "path": "02_mathematical_interfaces/regret_accounting/contractive-stage-rate/v1/freeze.json",
+        "sha256": "a67deb44dba0bb7fdde927df4b39d228e107c43ffd5f8b68f542b378abafae88"
+      },
+      {
+        "path": "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v2/acceptance.json",
+        "sha256": "a4c786d51b7aef38d0c9b210b8433aba4afb27f82cdaf318791fd5b7e09ded2f"
+      },
+      {
+        "path": "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v2/verification.json",
+        "sha256": "59f8d68df72d9c5b838fd8dbfd6d5ec9e2215a88f899670d26bf789482941072"
+      },
+      {
+        "path": "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v2/freeze.json",
+        "sha256": "7d96be474623288ad7078a263458ef8665b8b918246d527b307402eb2a0d0560"
+      },
+      {
+        "path": "docs/boxiao-chen/2026-10-18/deepseek/regression-final-field-repair-fast/independent-review.json",
+        "sha256": "88c62e1f993131be288b519fafbed52eef12d7fef34bd34c0e9cb8f82ee4f7dc"
+      },
+      {
+        "path": "docs/boxiao-chen/2026-10-18/deepseek/regression-final-field-repair-fast/independent-local-recheck/recheck.json",
+        "sha256": "198b60c0a22916fd460e0ffb0fe3e829d4f8e8e9ac6652b88c4ba5eb70c84c36"
+      },
+      {
+        "path": "docs/boxiao-chen/2026-10-18/deepseek/aggregate-execution-thinking/independent-review.json",
+        "sha256": "509ebd1faee5ee8156751b9f1c436654372f05bdaacd7d40fb5bf48e340554e7"
+      },
+      {
+        "path": "docs/boxiao-chen/2026-10-18/deepseek/aggregate-execution-thinking/independent-local-recheck/recheck.json",
+        "sha256": "47826c6e1f4d8ddec1618ca0897df99e5c074415302fb250ad8a5ca10dacad1e"
+      },
+      {
+        "path": "docs/boxiao-chen/2026-10-18/continuation/FLASH_VISION_VALIDATION.json",
+        "sha256": "5ac9a62661445652224a8e7c7494cb113fe97c77ea943c5aced736dc27f49681"
+      },
+      {
+        "path": "docs/boxiao-chen/2026-10-18/continuation/NO_VISUAL_SKILL_UPDATE.json",
+        "sha256": "0856b60d2e00d9a836dce9290eacca741c89d78177bfa2225ff761a8b12978b9"
+      },
+      {
+        "path": "docs/boxiao-chen/2026-10-18/continuation/inventory-clearing-v1-reuse-failure.json",
+        "sha256": "87b713c9dd626b79a74adf9d1941d1424ed9955415f3a51c30a68796e79a220b"
+      },
+      {
+        "path": "docs/boxiao-chen/2026-10-18/deepseek/two-count-structured-edit-check-01/independent-review.json",
+        "sha256": "544d369fc575f9cbab85c1f8d27d5c52bd5275eb1dd57d5ae1c2ff6d7e4d6c86"
+      },
+      {
+        "path": "docs/boxiao-chen/2026-10-18/deepseek/two-count-structured-edit-check-01/independent-local-recheck/recheck.json",
+        "sha256": "edc604543099b239dd78bbf1c09b570b0ce2b22d34699d8911eb162f1e4e97dc"
+      },
+      {
+        "path": "docs/boxiao-chen/2026-10-18/continuation/WORKFLOW_OFFLINE_CHECKS_02.json",
+        "sha256": "4803c4a42de0dad7b8bb86d2b811b20b940df3d1974c4901bce03d9980abdb6d"
+      },
+      {
+        "path": "docs/boxiao-chen/2026-10-18/continuation/GENERIC_ARTIFACT_SKILL_UPDATE.json",
+        "sha256": "c202c4c720b7c060f8b95b2df6a3a414a02e6228515e2f7be94145b2f550b0f0"
+      },
+      {
+        "path": "docs/boxiao-chen/2026-10-18/continuation/STRUCTURED_EDIT_SKILL_UPDATE.json",
+        "sha256": "69d91361437fda158f2ec2080960eb73b90177574c77be728b10779b3778016e"
+      },
+      {
+        "path": "docs/boxiao-chen/2026-10-18/continuation/reviews/fixed-price-physical-capping-statement-review.json",
+        "sha256": "814e3d62e8f071af837bc418cd56c225ed8ea71fde4b9ed409bfa08b09caaa69"
+      }
+    ]
+  },
   "input_sha256": {
-    "02_mathematical_interfaces/registry.json": "88a3f91db98544b63af8495f60b28519cb73343bb71880e15cea9c2474b0f33c",
+    "02_mathematical_interfaces/registry.json": "e2a7b507f7771deb4435d88f71c8467c3fdb107026c01cbf164e9280027b1dcf",
     "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v1/interface.json": "d6d40ce310df06227138e153ae64f19bc32f8de715ad9524fc5c1fcba15516a4",
     "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v1/definitions.md": "464a09a34066884dbb80463983bcd8d61c1e5e64921bf357671f19d3083cb8fa",
     "02_mathematical_interfaces/regret_accounting/weighted-log-budget/v1/lemmas.md": "6b3507bee6bc36cd922d451ea493c83117ccac13da9417301579facdad6c8856",
@@ -6126,6 +6773,22 @@
     "02_mathematical_interfaces/estimation/two-price-moments/v1/definitions.md": "3aa4910e6c9b645ddc8e877194fdece10940d3b4ef103025b73fa306eb7a5ac5",
     "02_mathematical_interfaces/estimation/two-price-moments/v1/lemmas.md": "b0aa205e5f4c21ecdcc07fcf5380e9cf159c20e038ccf27a7f9c24a4487a2445",
     "02_mathematical_interfaces/estimation/two-price-moments/v1/theorems.md": "7e0f56b92e9dac78918d6da7614ff76233979d3c90cc059b0af6b90ef3164994",
+    "02_mathematical_interfaces/estimation/signed-secant-bridge/v1/interface.json": "e4640c099fe31395ecd75b28c6af3b31bda6e9d22c2f8f5ba1a4894f9a6af1e0",
+    "02_mathematical_interfaces/estimation/signed-secant-bridge/v1/definitions.md": "202aa1769fbc56d2684468a1da69539b22b9a03176344b6794aa7e075211362b",
+    "02_mathematical_interfaces/estimation/signed-secant-bridge/v1/lemmas.md": "3e6be11de9a16340ea21eb3a09cec2b4fada693328860da4f26018c8e415f86c",
+    "02_mathematical_interfaces/estimation/signed-secant-bridge/v1/theorems.md": "2401b3c5164c31edf4069e7c0f2f1bc49263e901a00e70bac08e171cf48f8965",
+    "02_mathematical_interfaces/regret_accounting/contractive-stage-rate/v1/interface.json": "cbee22c7cba81b788ffab941f56b53ebf9769032551c0a395343516238f5a53f",
+    "02_mathematical_interfaces/regret_accounting/contractive-stage-rate/v1/definitions.md": "b71f893d4b3c6516a7371b2a6908d09d9d159bfc0174ce6ab49ded5b89932c28",
+    "02_mathematical_interfaces/regret_accounting/contractive-stage-rate/v1/lemmas.md": "4527d6a74150bbda437fdc6666d5e70a22efc233884e2561461bddb7c91de837",
+    "02_mathematical_interfaces/regret_accounting/contractive-stage-rate/v1/theorems.md": "2074dbccaf8d70bd63869841e723e6122281a01be9fe1a798f96031052ca7cc1",
+    "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v1/interface.json": "56869d8a83b184c1a82896e63404f1347a28ab32fc80ba16579b81956627ad9b",
+    "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v1/definitions.md": "552dd6980ad0f34e5e9815a533e291a632f3cbefa18ecf37f94f1f2bffa3530f",
+    "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v1/lemmas.md": "cff8686c5539cc925f830fafe1dd46fff58d145f3b9f54910f5d79c21551b82a",
+    "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v1/theorems.md": "c154b51cad16de3eebef41d67a79221928147dac0452b69ccacc5fbfaba01fae",
+    "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v2/interface.json": "1f3a8c674473c67f221af1ba2a60e47ebb490e5dc6df9197652a75030a337e38",
+    "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v2/definitions.md": "552dd6980ad0f34e5e9815a533e291a632f3cbefa18ecf37f94f1f2bffa3530f",
+    "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v2/lemmas.md": "cff8686c5539cc925f830fafe1dd46fff58d145f3b9f54910f5d79c21551b82a",
+    "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v2/theorems.md": "c154b51cad16de3eebef41d67a79221928147dac0452b69ccacc5fbfaba01fae",
     "02_mathematical_interfaces/normalization/p4-2026-10-15/paper-scope-ledger.json": "c1cb1efe5c816630ee07312dbdd16926c2a6fa3c2820d43b9f238de0a14848d6",
     "campaigns/cwz-table2-v1/campaign.json": "a45c3f26f40b0ccfb73c51a37eb71570fb3d33c89875e2fb2d0dd33c77004689",
     "campaigns/cwz-table2-v1/events/event-0001.json": "ab3eb511e022ad1b0bad6125d8474ae1af396de8a510188985f8517590790f4d",
@@ -6183,7 +6846,7 @@
     "knowledge/author_corpora/boxiao-chen/2026-10-15/interface_gaps.json": "00ab7cd7e9df8a978bdd63fc44b4fc3195cd40a72bbcde8fabd3b6e61c2e608a",
     "docs/boxiao-chen/2026-10-15/PAUSED.json": "2c1a6fa02070b884190f170b4c6e2364f1207961e6d1b7827a85c445078b5aec",
     "docs/boxiao-chen/2026-10-18/deepseek/WORKFLOW_STATUS.json": "a4b6889ccfacad01978d5bc1528cd07df3ceea5512bb888421bd47ba60c03603",
-    "docs/boxiao-chen/2026-10-18/deepseek/usage-summary.json": "e77a03a4dc352c1baaa8e707973595fb83c680534e7709338250bc1b4150790a",
+    "docs/boxiao-chen/2026-10-18/deepseek/usage-summary.json": "82109ceed31650de9d67ab95ddac2d03958c959ae83aef3c8710d70437dbacc5",
     "docs/boxiao-chen/2026-10-18/deepseek/boundary-thinking/independent-review.json": "24cac23971acc57d71f90d0e12f34e9ccbd0fdf9a6df4a75564e80394ad57af1",
     "docs/boxiao-chen/2026-10-18/deepseek/boundary-thinking/actual-byte-recheck.json": "cece36bbc3e92cd72384cf9481c0ae4f7486adcb609dadadd5ce4689b42da081",
     "docs/boxiao-chen/2026-10-18/deepseek/boundary-thinking/boundary-thinking-01.lean": "d468363c28ce371220ed02b1579cc3e22ad3d88c9321e20bf346b99705f20803",
@@ -6215,6 +6878,29 @@
     "02_mathematical_interfaces/normalization/p1-2026-10-13/closeout.json": "d34c6537ae40cf6e1cf2078166c132e5de468f0a9d10f8268367d7e50fe8e915",
     "02_mathematical_interfaces/normalization/p2-2026-10-13/closeout.json": "17a6e0f63ab3c533d394d0b2e46ae711278e9d7af94ba92b238fc39b1633792f",
     "02_mathematical_interfaces/normalization/p3-2026-10-15/closeout.json": "207cdb8c4d888eb47d7a82f60c40eef82159b774cc040a807715a4a4c9a12c3b",
-    "02_mathematical_interfaces/normalization/p4-2026-10-15/closeout.json": "bb5bf0d616920d4ed2832e8d2d38e127ef8d734caba747a7fe9a4721cb391466"
+    "02_mathematical_interfaces/normalization/p4-2026-10-15/closeout.json": "bb5bf0d616920d4ed2832e8d2d38e127ef8d734caba747a7fe9a4721cb391466",
+    "docs/boxiao-chen/2026-10-18/continuation/PUBLIC_STATUS.json": "9eb7d7ecce40b7ef0d0f4fd72c1cbe8d75911d702d21786d3d52bc6ac39fa4af",
+    "02_mathematical_interfaces/estimation/signed-secant-bridge/v1/acceptance.json": "c03eb716609d701e3e34764c15aa9941ac49004ca1661d9ebbbff0f32375428b",
+    "02_mathematical_interfaces/estimation/signed-secant-bridge/v1/verification.json": "632abbfbd0207e1813ffcbda5d3ce2fa0e70ec70a86528b868ff1d3cf79e05bf",
+    "02_mathematical_interfaces/estimation/signed-secant-bridge/v1/freeze.json": "5ebda1bfac2ba5f8305d5557041fe4497b5cd9b68c64cf5d78991cf00729cb6c",
+    "02_mathematical_interfaces/regret_accounting/contractive-stage-rate/v1/acceptance.json": "ee9f44390d785745ea99535503b6a9637e3582c8d6932b2e5f8b36d54e300aa8",
+    "02_mathematical_interfaces/regret_accounting/contractive-stage-rate/v1/verification.json": "5149832ee324b9f10c89ea09e2257dcb059366347c25452654ceb6c1cd2a16a0",
+    "02_mathematical_interfaces/regret_accounting/contractive-stage-rate/v1/freeze.json": "a67deb44dba0bb7fdde927df4b39d228e107c43ffd5f8b68f542b378abafae88",
+    "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v2/acceptance.json": "a4c786d51b7aef38d0c9b210b8433aba4afb27f82cdaf318791fd5b7e09ded2f",
+    "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v2/verification.json": "59f8d68df72d9c5b838fd8dbfd6d5ec9e2215a88f899670d26bf789482941072",
+    "02_mathematical_interfaces/inventory/fixed-target-inventory-clearing/v2/freeze.json": "7d96be474623288ad7078a263458ef8665b8b918246d527b307402eb2a0d0560",
+    "docs/boxiao-chen/2026-10-18/deepseek/regression-final-field-repair-fast/independent-review.json": "88c62e1f993131be288b519fafbed52eef12d7fef34bd34c0e9cb8f82ee4f7dc",
+    "docs/boxiao-chen/2026-10-18/deepseek/regression-final-field-repair-fast/independent-local-recheck/recheck.json": "198b60c0a22916fd460e0ffb0fe3e829d4f8e8e9ac6652b88c4ba5eb70c84c36",
+    "docs/boxiao-chen/2026-10-18/deepseek/aggregate-execution-thinking/independent-review.json": "509ebd1faee5ee8156751b9f1c436654372f05bdaacd7d40fb5bf48e340554e7",
+    "docs/boxiao-chen/2026-10-18/deepseek/aggregate-execution-thinking/independent-local-recheck/recheck.json": "47826c6e1f4d8ddec1618ca0897df99e5c074415302fb250ad8a5ca10dacad1e",
+    "docs/boxiao-chen/2026-10-18/continuation/FLASH_VISION_VALIDATION.json": "5ac9a62661445652224a8e7c7494cb113fe97c77ea943c5aced736dc27f49681",
+    "docs/boxiao-chen/2026-10-18/continuation/NO_VISUAL_SKILL_UPDATE.json": "0856b60d2e00d9a836dce9290eacca741c89d78177bfa2225ff761a8b12978b9",
+    "docs/boxiao-chen/2026-10-18/continuation/inventory-clearing-v1-reuse-failure.json": "87b713c9dd626b79a74adf9d1941d1424ed9955415f3a51c30a68796e79a220b",
+    "docs/boxiao-chen/2026-10-18/deepseek/two-count-structured-edit-check-01/independent-review.json": "544d369fc575f9cbab85c1f8d27d5c52bd5275eb1dd57d5ae1c2ff6d7e4d6c86",
+    "docs/boxiao-chen/2026-10-18/deepseek/two-count-structured-edit-check-01/independent-local-recheck/recheck.json": "edc604543099b239dd78bbf1c09b570b0ce2b22d34699d8911eb162f1e4e97dc",
+    "docs/boxiao-chen/2026-10-18/continuation/WORKFLOW_OFFLINE_CHECKS_02.json": "4803c4a42de0dad7b8bb86d2b811b20b940df3d1974c4901bce03d9980abdb6d",
+    "docs/boxiao-chen/2026-10-18/continuation/GENERIC_ARTIFACT_SKILL_UPDATE.json": "c202c4c720b7c060f8b95b2df6a3a414a02e6228515e2f7be94145b2f550b0f0",
+    "docs/boxiao-chen/2026-10-18/continuation/STRUCTURED_EDIT_SKILL_UPDATE.json": "69d91361437fda158f2ec2080960eb73b90177574c77be728b10779b3778016e",
+    "docs/boxiao-chen/2026-10-18/continuation/reviews/fixed-price-physical-capping-statement-review.json": "814e3d62e8f071af837bc418cd56c225ed8ea71fde4b9ed409bfa08b09caaa69"
   }
 }

@@ -13,6 +13,31 @@ function metric(label,value,note,extra=''){return `<article class="metric"><div 
 function panel(name,body,link=''){return `<section class="panel"><div class="panel-head"><h2>${name}</h2>${link}</div>${body}</section>`;}
 function table(rows,headers){return `<div class="table-wrap"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`;}
 function interfaceRows(list){return list.map(x=>`<tr data-open="interface:${esc(x.id)}:${x.version}" tabindex="0" aria-label="查看 ${esc(x.title)} v${x.version}"><td><strong>${esc(x.title)}</strong><small>${esc(x.id)}</small></td><td>${esc(domains[x.domain] || x.domain)}</td><td>v${x.version}</td><td>${badge(x.status)}</td><td class="table-action">↗</td></tr>`);}
+function componentCards(){return data.chen2019.components.map(c=>`<article class="component"><span class="badge accepted">已证明并独立验收</span><h3>${esc(c.title)}</h3><p>${esc(c.summary)}</p><button class="subtle-button" data-open="interface:${esc(c.id)}:1">假设与证明证据 ↗</button></article>`).join('');}
+function continuationPanel(){
+ const c=data.continuation;
+ if(!c)return '';
+ const acceptedList=(c.accepted_interfaces||[]).map(x=>`<li><strong>${esc(x.id)}</strong> · v${esc(x.version)}<br><span class="muted">${esc(x.scope)}</span></li>`).join('');
+ const reviewedList=(c.reviewed_local_components||[]).map(x=>`<li><strong>${esc(x.id)}</strong><br><span class="muted">${esc(x.scope)}</span><br><span class="tag">完整通用目标 · 源策略与全文衔接待完成</span></li>`).join('');
+ const pendingList=(c.pending_components||[]).map(x=>`<li><strong>${esc(x.id)}</strong> · ${esc(x.status)}</li>`).join('');
+ const gapList=(c.remaining_gaps||[]).map(g=>`<li>${esc(g)}</li>`).join('');
+ const vision=c.vision||{};
+ const evidence=(c.evidence||[]).map(e=>`<li><small>${esc(e.path)}</small><br><span class="hash">${esc(e.sha256)}</span></li>`).join('');
+ return panel('本轮续接快照 · 状态边界',`<div class="panel-body">`+
+ `<div class="stat-line"><span>当前模型</span><strong>${esc(c.model)}</strong></div>`+
+ (vision.calls!=null?`<div class="stat-line"><span>视觉调用</span><strong>${fmt(vision.calls)} 次 · ${fmt(vision.total_tokens)} Token${vision.reasoning_is_subtotal?'（推理 Token 已含于总量；不计为额外 Token）':''}</strong></div>`:'')+
+ `<div class="stat-line"><span>Codex 视觉任务（指令后）</span><strong>${fmt(c.codex_visual_tasks_after_instruction)} 次</strong></div>`+
+ `<div class="stat-line"><span>完整论文</span><strong>${c.full_paper_complete?'已完成':'未完成'}</strong></div>`+
+ `<div class="stat-line"><span>正式池运行准入</span><strong>${c.formal_pool_run_admission?'已准入':'未准入'}</strong></div>`+
+ `<div class="stat-line"><span>配额重置</span><strong>${c.quota_reset_performed?'已执行':'未执行'}</strong></div>`+
+ `<h3>已准入接口</h3>${acceptedList?`<ul>${acceptedList}</ul>`:'<div class="empty">本轮未记录新的已准入接口。</div>'}`+
+ `<h3>本地已复核组件</h3>${reviewedList?`<ul>${reviewedList}</ul>`:'<div class="empty">本轮未记录本地复核组件。</div>'}`+
+ `<h3>待完成组件</h3>${pendingList?`<ul>${pendingList}</ul>`:'<div class="empty">无待完成组件记录。</div>'}`+
+ `<h3>剩余缺口</h3>${gapList?`<ul>${gapList}</ul>`:'<div class="empty">无剩余缺口记录。</div>'}`+
+ (evidence?`<details><summary>快照证据指纹</summary><ul>${evidence}</ul></details>`:'')+
+ `<p class="muted">快照为当前续接的公开边界记录；历史 v4 DAG 仍作历史证据保留。本页不重新编译 Lean，也不提升论文或正式池状态。</p>`+
+ `</div>`);
+}
 function overview(){
  const c=data.corpus.coverage, done=latest.filter(accepted).length, failed=data.interfaces.filter(x=>x.status==='verification_failed').length;
  const full=data.papers.reduce((n,p)=>n+p.upper.full_regret_reward,0);
@@ -23,7 +48,6 @@ function overview(){
  `<div class="grid-two">${panel('阅读 → 接口 → 证明',`<div class="flow">${[['R','Source','原文与页码'],['◇','Route','技巧路线'],['D','Contract','显式假设'],['L','Lean','核验'],['✓','Review','独立验收']].map(([icon,en,zh])=>`<div class="flow-step"><div class="flow-icon">${icon}</div><strong>${en}</strong><small>${zh}</small></div>`).join('')}</div><div class="notice">正文完整、缺附录、仅附录和暂缺全文分别记录。<br>阅读覆盖、候选接口、已验收组件、完整论文后悔界分别计数；委托运行作为独立工作流记录。</div>`)}${panel('验收与历史保全',`<div class="panel-body"><div class="coverage-row"><span>当前接口独立验收</span><strong class="green">${done} / ${latest.length}</strong></div><div class="bar"><span style="width:${100*done/latest.length}%"></span></div><div class="tags"><span class="tag">${data.interfaces.length} 历史版本</span><span class="badge failed">${failed} 历史验证失败</span><span class="badge pending">2 无最终回执</span></div><p class="muted">此前三项组件均已正式验收。新增本地试验未提升正式接口或整篇论文状态；历史失败与纠错记录保留。</p></div>`)}</div>`+
  panel('知识资产',`<div class="panel-body tags">${Object.entries(data.counts).map(([k,v])=>`<span class="tag">${{sources:'来源记录',techniques:'技巧',experts:'专家档案',routes:'已登记证明路线',corpora:'形式化语料'}[k]} ${fmt(v)}</span>`).join('')}<span class="tag">只读证据快照 · 非在线执行器</span></div>`);
 }
-function componentCards(){return data.chen2019.components.map(c=>`<article class="component"><span class="badge accepted">已证明并独立验收</span><h3>${esc(c.title)}</h3><p>${esc(c.summary)}</p><button class="subtle-button" data-open="interface:${esc(c.id)}:1">假设与证明证据 ↗</button></article>`).join('');}
 function corpusView(){const c=data.corpus.coverage;return title('AUTHOR CORPUS · SOURCE-GROUNDED TECHNIQUES','Boxiao Chen 论文集','33 项可见成果与 1 项隐藏学位论文分别建档。点击论文查看原始来源入口；下方提供跨论文技巧路线和候选接口。')+
  `<div class="metrics">${metric('已读可得版本',`${c.acquired_version_page_by_page_completed} <small>/ ${c.original_material_acquired}</small>`,'720 来源页：672 PDF＋48 官方解析')}${metric('整项覆盖完整',c.whole_item_page_by_page_completed,'包含2个完整章节；不表示整本书')}${metric('组成部分缺失','4','3项缺附录 · 1项仅附录')}${metric('暂缓获取全文',c.no_original_fulltext_acquired,'按用户决定保留题录')}</div>`+
  `<div class="info-strip">阅读完成不表示论文定理已验证。Chen 2019 附录依据官方完整解析文本，未取得 PDF 字节或完整视觉核对；15 项缺源成果尚未阅读。独立复核确认覆盖与来源绑定，并抽查5项数学问题，未认证全部候选问题。</div>`+
@@ -47,15 +71,17 @@ function filterInterfaces(){const q=$('#interface-search').value.toLowerCase(),d
  $('#interface-table').innerHTML=list.length?table(interfaceRows(list),['接口','数学模块','版本','证据状态','']):'<div class="empty">没有符合条件的接口。试试其他关键词或筛选条件。</div>';
 }
 function papersView(){return title('CLAIM SCOPE & REMAINING OBLIGATIONS','论文与证明进度','论文原始目标、后续实际验收和仍未证明的义务分别保留。点击任意一行查看范围。')+
- `<div class="info-strip">当前 8 个论文目标中，1 个已有修正版完整上界验收。Chen 2019 已增加3项组件，最新记录为event-0050；完整后悔界仍未完成。研究目标已恢复；新本地子引理试验尚未正式入库。</div>`+
+ `<div class="info-strip">当前 8 个论文目标中，1 个已有修正版完整上界验收。Table2 正式池仍保留 3 项历史组件/event-0050；signed-secant-bridge 及后续续接接口已各自完成单独提取接口验收；原始 signed-secant 正式池运行仍待完成。Chen 2019 完整后悔界仍未完成。研究目标已恢复；本轮新组件状态见下方“本轮续接快照 · 状态边界”面板。</div>`+
+ continuationPanel()+
  panel('Chen 2019 · 三项已验收组件',`<div class="panel-body component-grid">${componentCards()}</div>`)+
  panel('Chen 2019 · 保存的证明义务',`<div class="panel-body"><span class="badge pending">研究已恢复 · 下方保留历史暂停位置</span><p>${esc(data.chen2019.pause_summary)}</p><p class="muted">下方是数学论证顺序，部分节点含已完成的子组件；它不是Lean调用依赖图。</p><div class="flow proof-flow">${['原始模型与采样','估计与优化响应','库存执行','阶段汇总','完整后悔界'].map(x=>`<div class="flow-step"><strong>${esc(x)}</strong></div>`).join('')}</div></div>${table(data.chen2019.nodes.map(n=>`<tr><td><strong>${esc(n.id)}</strong><small>${esc(n.kind)}</small></td><td>${esc(n.goal)}</td><td><span class="badge ${n.status==='lean_verified_independently_accepted_component'?'accepted':'pending'}">${n.status==='lean_verified_independently_accepted_component'?'组件已验收':n.status.startsWith('partial_')?'部分子组件已验收':n.status==='candidate_gap'?'来源义务待闭合':'尚未完成'}</span></td></tr>`),['节点','待证明的完整义务','状态'])}`)+
  panel('Table 2 · 逐篇证据状态',table(data.papers.map(p=>`<tr data-open="paper:${esc(p.id)}" tabindex="0"><td><strong>${esc(p.id)}</strong><small>${p.id==='huh-2009'?'2007 作者稿 / 有限均值修正版':'查看假设、组件与剩余义务'}</small></td><td>${badge(p.upper.status)}</td><td>${badge(p.lower.status)}</td><td>${p.upper.full_regret_reward}</td><td class="table-action">↗</td></tr>`),['论文目标','上界','下界','完整上界 reward','']))+
  `<section class="hero"><div><span class="eyebrow">READ THE CONTRACT</span><h2>Huh 已验收结果的边界</h2><p>有限需求一阶矩 · 易腐 iid 库存 · 实际删失销量 SGD · C(1+log T)。<br>realizedRegret 已取期望；不表示逐样本或高概率后悔界。非易腐 carryover 与更广策略类仍在范围之外。</p></div><button class="subtle-button" data-open="paper:huh-2009">查看精确范围 →</button></section>`;}
 function mcpView(){const m=data.mcp,d=data.delegation;return title('DEEPSEEK · REVIEWED WORKFLOW','DeepSeek 工作流','委托起草、本地验证与独立审查；历史核读记录单独保留。')+
  `<div class="metrics">${metric('委托日期',esc(d.date),'2026-10-18 V4.1-Flash 工作流')}${metric('有用量回执',fmt(d.calls),`模型 ${esc(d.model)}`)}${metric('已记录 Token',fmt(d.total_tokens),`${fmt(d.prompt_tokens)} 输入 / ${fmt(d.completion_tokens)} 输出`)}${metric('推理 Token（小计）',fmt(d.reasoning_tokens),'已含于总量；不计为额外 Token')}${metric('未知结果',fmt(d.unknown_outcomes),'等待结果核对的调用数')}${metric('本地核对',`${fmt(d.local_checks.passed)} <small>/ ${fmt(d.local_checks.failed)}</small>`,'通过 / 失败')}</div>`+
- `<div class="info-strip">本次委托运行经由路由分配；独立复核的桥接结论 ${d.independently_reviewed_components} 项，非正式接口验收。正式运行准入：${d.formal_run_admission?'已准入':'未准入'}；冻结四部分桥接目标：${d.full_target_complete?'已闭合':'未闭合'}；完整论文：${d.full_paper_complete?'已完成':'未完成'}。金额与 Codex 节省未度量，Token 数不能直接解释为费用。已记录 Token 不含 ${d.error_jobs_without_usage} 次缺少用量回执的失败任务。</div>`+
- panel('本地试验依据',`<div class="panel-body"><p>边界分离、有符号割线误差、统一正斜率下界、切线回归矩界，四部分已组合通过本地 Lean 与独立重编译。正式入库与论文完整遗憾证明仍待完成。远程审查曾因无法核验本地 API 和日志而拒绝；原记录保留，随后由本地独立审查完成核验。</p><details><summary>完整桥接候选与复核 SHA256</summary><pre>${esc(d.bridge_candidate_sha256)}\n${esc(d.bridge_review_sha256)}</pre></details><details><summary>正斜率子引理候选与复核 SHA256</summary><pre>${esc(d.slope_candidate_sha256)}\n${esc(d.slope_review_sha256)}</pre></details></div>`)+
+ `<div class="info-strip">本次委托运行经由路由分配；独立复核的桥接结论 ${d.independently_reviewed_components} 项。桥接接口验收：${((data.continuation&&data.continuation.accepted_interfaces)||[]).some(x=>x.id==='signed-secant-bridge'&&Number(x.version)===1)?'已单独完成接口验收':'未完成接口验收'}；原始正式池运行：${d.formal_run_admission?'已准入':'未准入'}；冻结四部分桥接目标：${d.full_target_complete?'已闭合':'未闭合'}；完整论文：${d.full_paper_complete?'已完成':'未完成'}。金额与 Codex 节省未度量，Token 数不能直接解释为费用。已记录 Token 为普通有效响应总量，不含单独记录的失败载荷隔离用量与视觉调用用量。</div>`+
+ continuationPanel()+
+ panel('本地试验依据',`<div class="panel-body"><p>边界分离、有符号割线误差、统一正斜率下界、切线回归矩界，四部分已组合通过本地 Lean 与独立重编译。桥接接口（signed-secant-bridge v1）已单独提取并完成接口验收；原始正式池运行仍未准入，论文完整遗憾证明仍待完成。远程审查曾因无法核验本地 API 和日志而拒绝；原记录保留，随后由本地独立审查完成核验。</p><details><summary>完整桥接候选与复核 SHA256</summary><pre>${esc(d.bridge_candidate_sha256)}\n${esc(d.bridge_review_sha256)}</pre></details><details><summary>正斜率子引理候选与复核 SHA256</summary><pre>${esc(d.slope_candidate_sha256)}\n${esc(d.slope_review_sha256)}</pre></details></div>`)+
  panel('路由分配',table(d.routing.map(r=>`<tr><td><strong>${esc(r.task)}</strong></td><td>${esc(r.owner)}</td></tr>`),['任务','负责方']))+
  `<div class="info-strip">以下为历史 2026-10-13 P1 的 V4-Pro MCP 记录，仅作历史证据，不代表本次委托工作流。</div>`+
  `<div class="metrics">${metric('历史指定核读任务','5','4 本教材 · 20 个物理页 · 历史 P1')}${metric('历史 Provider 尝试',m.provider_attempts,`${m.tool_successes} 个原始结果 · ${m.tool_errors} 次摘录校验错误 · 历史 P1`)}${metric('历史已记录 Token',fmt(m.usage.total_tokens),`${fmt(m.usage.prompt_tokens)} 输入 / ${fmt(m.usage.completion_tokens)} 输出 · 历史 P1`)}${metric('历史规范化审核','5 <small>/ 5</small>','4 项本地修正 · 修正未追加外部调用 · 历史 P1')}</div>`+
